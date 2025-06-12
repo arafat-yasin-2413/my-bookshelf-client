@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
+import logo from '/assets/logo.png';
 
 const Navbar = () => {
 
@@ -30,13 +31,13 @@ const Navbar = () => {
                             viewBox="0 0 24 24"
                             stroke="currentColor"
                         >
-                            {" "}
+                            
                             <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                                 strokeWidth="2"
                                 d="M4 6h16M4 12h8m-8 6h16"
-                            />{" "}
+                            />
                         </svg>
                     </div>
                     <ul
@@ -46,7 +47,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost text-xl">Bookshelf</Link>
+                <Link to="/" className=" text-xl font-bold flex items-center gap-2"><img className="w-8" src={logo} alt="" /> Bookshelf</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 gap-2">
