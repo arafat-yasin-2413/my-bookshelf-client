@@ -61,15 +61,15 @@ const BookDetails = () => {
                 <img src={coverPhoto} alt={`image of ${bookTitle}`} />
 
                 <div className="gap-2 flex">
-                    <button className="btn text-xl bg-blue-400">
+                    <Link to={`/updateBook/${_id}`} className="btn text-xl bg-blue-400">
                         <FaEdit></FaEdit>
-                    </button>
+                    </Link>
                     <button
                         onClick={() => handleDeleteBook(_id)}
                         className="btn text-xl bg-red-400"
                     >
-                        {" "}
-                        <MdDelete></MdDelete>{" "}
+                    
+                        <MdDelete></MdDelete>
                     </button>
                 </div>
             </div>

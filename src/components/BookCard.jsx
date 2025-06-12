@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router";
 
+
 const BookCard = ({ book }) => {
     const { _id,bookTitle, coverPhoto, bookAuthor, bookCategory } = book || {};
+    
 
+
+
+    
     return (
         <div className="card bg-base-100 shadow-sm">
             <figure>
@@ -27,6 +32,9 @@ const BookCard = ({ book }) => {
                 <div>
                     <Link to={`/bookDetails/${_id}`} className="btn">See Details</Link>
                 </div>
+
+
+
             </div>
         </div>
     );
