@@ -7,6 +7,8 @@ import AddBook from "../pages/AddBook";
 import Bookshelf from "../pages/Bookshelf";
 import BookDetails from "../pages/BookDetails";
 import UpdateBook from "../pages/UpdateBook";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
                 path: '/updateBook/:id',
                 loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/book/${params.id}`),
                 Component: UpdateBook,
+            },
+            {
+                path: '/register',
+                Component: Register,
+            },
+            {
+                path: '/login',
+                Component: Login,
             },
         ]
     },
