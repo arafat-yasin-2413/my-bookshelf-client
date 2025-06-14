@@ -9,7 +9,7 @@ const Login = () => {
                     <h1 className="text-4xl font-bold text-center">
                         Login now!
                     </h1>
-                    <fieldset className="fieldset">
+                    <form className="fieldset">
                         {/* email */}
                         <label className="label fieldset-legend text-base">
                             Email
@@ -33,9 +33,15 @@ const Login = () => {
                         />
 
                         <div>
-                            <Link className="link link-hover fieldset-legend">
-                                Forgot password?
-                            </Link>
+                            <p className="text-base font-medium">
+                                Don't have an Account?{" "}
+                                <Link
+                                    className="link-hover text-blue-400"
+                                    to="/register"
+                                >
+                                    Register
+                                </Link>
+                            </p>
                         </div>
 
                         <div>
@@ -76,7 +82,7 @@ const Login = () => {
                         </div>
 
                         <button className="btn btn-neutral mt-4">Login</button>
-                    </fieldset>
+                    </form>
                 </div>
             </div>
         </div>

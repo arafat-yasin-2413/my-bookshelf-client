@@ -1,13 +1,80 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const Register = () => {
+    const { createUser } = use(AuthContext);
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        // to get the whole object
+        const { email, password, ...rest } = Object.fromEntries(
+            formData.entries()
+        );
+
+        // console.log(email, password, rest);
+
+        // to get specific field
+        // const email = formData.get("email");
+        // const password = formData.get("password");
+        const name = formData.get("name");
+        const photo = formData.get("photoURL");
+
+        // console.log(email, name);
+
+        createUser(email, password)
+            .then((result) => {
+                result.user.displayName = name;
+                result.user.photoURL = photo;
+                console.log(result.user);
+
+                const userProfile = {
+                    email,
+                    ...rest,
+                    creationTime: result.user?.metadata?.creationTime,
+                    lastSignInTime: result.user?.metadata?.lastSignInTime,
+                };
+
+                // save profile in DB
+                fetch("http://localhost:3000/users", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(userProfile),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log("after saving the profile", data);
+                        if (data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "User info saved to DB",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        }
+                    });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        form.reset();
+    };
+
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="card bg-base-100 border w-2xl shrink-0 shadow-2xl">
                 <div className="card-body">
-                    <h1 className="text-4xl font-bold text-center">Register now!</h1>
-                    <fieldset className="fieldset">
+                    <h1 className="text-4xl font-bold text-center">
+                        Register now!
+                    </h1>
+                    <form onSubmit={handleRegister} className="fieldset">
                         {/* name */}
                         <label className="label fieldset-legend text-base">
                             Name
@@ -52,12 +119,18 @@ const Register = () => {
                         />
 
                         <div>
-                            <Link className="link link-hover fieldset-legend">
-                                Forgot password?
-                            </Link>
+                            <p className="text-base font-medium">
+                                Already have an Account?{" "}
+                                <Link
+                                    className="link-hover text-blue-400"
+                                    to="/login"
+                                >
+                                    Login
+                                </Link>
+                            </p>
                         </div>
 
-                        <div>
+                        <div className="mt-2">
                             {/* Google */}
                             <button className="btn bg-white text-black border-[#e5e5e5] w-full h-12 hover:bg-base-300">
                                 <svg
@@ -94,10 +167,14 @@ const Register = () => {
                             </button>
                         </div>
 
+                        <div className="flex w-full flex-col">
+                            <div className="divider">OR</div>
+                        </div>
+
                         <button className="btn btn-neutral mt-4">
                             Register
                         </button>
-                    </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
