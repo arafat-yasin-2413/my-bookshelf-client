@@ -1,9 +1,15 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { useEffect } from 'react';
+import { useLoaderData, useLocation } from 'react-router';
 import BookCard from '../components/BookCard';
 import LoaderSpinner from '../components/LoaderSpinner';
 
 const Bookshelf = () => {
+
+    const location = useLocation();
+    useEffect(()=>{
+        document.title = "Bookshelf";
+    },[location.pathname])
+
     const allBook = useLoaderData();
     console.log(allBook);
     return (

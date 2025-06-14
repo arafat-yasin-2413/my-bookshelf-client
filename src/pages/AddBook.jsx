@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router";
 import Swal from "sweetalert2";
 
 const AddBook = () => {
+    const location = useLocation();
+    useEffect(()=>{
+        document.title = "Add Book";
+    },[location.pathname])
+
+
+
     const handleAddBook = (e) => {
         e.preventDefault();
         const form = e.target;

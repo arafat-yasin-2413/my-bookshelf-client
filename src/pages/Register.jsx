@@ -1,16 +1,20 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 const Register = () => {
+    const location = useLocation();
+        useEffect(()=>{
+            document.title = "Register";
+        },[location.pathname])
+    
 
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
 	const { createUser, updateUserProfile, user, setUser, googleLogin } = use(AuthContext);
     const navigate = useNavigate();
-    const location = useLocation();
 
 	const handleRegister = (e) => {
 		e.preventDefault();

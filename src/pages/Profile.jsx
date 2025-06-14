@@ -1,7 +1,13 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { useEffect } from 'react';
+import { useLoaderData, useLocation } from 'react-router';
 
 const Profile = () => {
+
+    const location = useLocation();
+    useEffect(()=>{
+        document.title = "Profile";
+    },[location.pathname])
+
     const profileData = useLoaderData();
     console.log(profileData);
     return (

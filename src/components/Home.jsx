@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Categories from './Categories';
+import { useLocation } from 'react-router';
 
 const Home = () => {
+    const location = useLocation();
+    useEffect(()=>{
+        document.title = "Home";
+    },[location.pathname])
+
     return (
         <div>
             <h2>this is home</h2>

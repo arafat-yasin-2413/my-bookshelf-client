@@ -4,16 +4,16 @@ import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
+    const location = useLocation();
     useEffect(() => {
         document.title = "Login";
-    }, []);
-    
+    }, [location.pathname]);
+
+    const navigate = useNavigate();
+
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState("");
     const { logInUser, googleLogin } = use(AuthContext);
-
-    const location = useLocation();
-    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -118,12 +118,13 @@ const Login = () => {
                             </p>
                         </div>
 
-
                         {/* showing error message */}
-						<div>
-                            {
-                                error && <p className="  max-w-fit rounded-md text-red-500 font-semibold">{error}</p>
-                            }
+                        <div>
+                            {error && (
+                                <p className="  max-w-fit rounded-md text-red-500 font-semibold">
+                                    {error}
+                                </p>
+                            )}
                         </div>
 
                         <div>

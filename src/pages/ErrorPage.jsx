@@ -1,7 +1,13 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router";
 
 const ErrorPage = () => {
+
+    const location = useLocation();
+    useEffect(()=>{
+        document.title = "404";
+    },[location.pathname])
+
     return (
         <div className="w-3xl mx-auto border border-secondary my-10 p-4">
             <h2>this is error page</h2>

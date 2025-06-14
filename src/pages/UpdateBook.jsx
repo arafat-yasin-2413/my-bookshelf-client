@@ -1,8 +1,14 @@
-import React from "react";
-import { useLoaderData, useNavigate } from "react-router";
+import React, { useEffect } from "react";
+import { useLoaderData, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const UpdateBook = () => {
+
+    const location = useLocation();
+    useEffect(()=>{
+        document.title = "Update Book";
+    },[location.pathname])
+
     const book = useLoaderData();
     const navigate = useNavigate();
     console.log(book);

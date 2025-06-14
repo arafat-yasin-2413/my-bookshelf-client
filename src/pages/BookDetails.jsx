@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BiSolidUpvote } from "react-icons/bi";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { Link, useLoaderData, useNavigate } from "react-router";
+import { Link, useLoaderData, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const BookDetails = () => {
+    const location = useLocation();
+    useEffect(()=>{
+        document.title = "Book Details";
+    },[location.pathname])
+
     const bookData = useLoaderData();
     const navigate = useNavigate();
     // TODO: user email, name niye ashte hobe
