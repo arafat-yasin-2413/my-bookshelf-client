@@ -11,12 +11,12 @@ const Navbar = () => {
         <li><NavLink className="nav bg-base-100" to="/bookshelf">Bookshelf</NavLink></li>
         <li><NavLink className="nav bg-base-100" to="/addBook">Add Book</NavLink></li>
         <li><NavLink className="nav bg-base-100" to="/cc">My Books</NavLink></li>
-        <li><NavLink className="nav bg-base-100" to="/dd">Profile</NavLink></li>
+        <li><NavLink className="nav bg-base-100" to="/profile">Profile</NavLink></li>
     
     </>
 
     return (
-        <div className="navbar bg-primary-content shadow-sm rounded">
+        <div className="navbar bg-primary-content shadow-sm rounded sticky top-0 z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div

@@ -9,51 +9,58 @@ import BookDetails from "../pages/BookDetails";
 import UpdateBook from "../pages/UpdateBook";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import Profile from "../pages/Profile";
 
 const router = createBrowserRouter([
     {
         path: "/",
         Component: Rootlayout,
-        children:[
+        children: [
             {
                 index: true,
-                Component: Home
+                Component: Home,
             },
             {
-                path: '/addBook',
-                Component: AddBook
+                path: "/addBook",
+                Component: AddBook,
             },
             {
-                path: '/bookshelf',
-                loader: ()=>fetch(`${import.meta.env.VITE_API_URL}/bookshelf`),
+                path: "/bookshelf",
+                loader: () =>
+                    fetch(`${import.meta.env.VITE_API_URL}/bookshelf`),
                 Component: Bookshelf,
             },
             {
-                path: '/bookDetails/:id',
-                loader: ({params})=>fetch(`${import.meta.env.VITE_API_URL}/book/${params.id}`),
+                path: "/bookDetails/:id",
+                loader: ({ params }) =>
+                    fetch(`${import.meta.env.VITE_API_URL}/book/${params.id}`),
                 Component: BookDetails,
             },
             {
-                path: '/updateBook/:id',
-                loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/book/${params.id}`),
+                path: "/updateBook/:id",
+                loader: ({ params }) =>
+                    fetch(`${import.meta.env.VITE_API_URL}/book/${params.id}`),
                 Component: UpdateBook,
             },
             {
-                path: '/register',
+                path: "/register",
                 Component: Register,
             },
             {
-                path: '/login',
+                path: "/login",
                 Component: Login,
             },
-        ]
+            {
+                path: "/profile",
+                Component: Profile,
+            },
+        ],
     },
 
-
     {
-        path: '/*',
+        path: "/*",
         Component: ErrorPage,
-    }
+    },
 ]);
 
 export default router;
