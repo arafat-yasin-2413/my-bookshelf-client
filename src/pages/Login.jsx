@@ -1,56 +1,83 @@
-import React, { use } from "react";
-import { Link } from "react-router";
+import React, { use, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
+    useEffect(() => {
+        document.title = "Login";
+    }, []);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState("");
+    const { logInUser, googleLogin } = use(AuthContext);
 
-    const { signInUser, googleLogin } = use(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const handleLogin =(e)=>{
+    const handleLogin = (e) => {
         e.preventDefault();
+
         const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(password);
+        const formData = new FormData(form);
+        const email = formData.get("email");
+        const password = formData.get("password");
 
-        signInUser(email,password)
-        .then(resutl=>{
-            console.log(resutl.user);
+        setError("");
+        setSuccess(false);
 
-            toast.success('Login Successfull')
+        const haveDigitExp = /(?=.*\d)/;
+        const haveLowerCase = /(?=.*[a-z])/;
+        const haveUpperCase = /(?=.*[A-Z])/;
+        const haveLength = /^.{6,}$/;
 
+        if (!haveLength.test(password)) {
+            setError("Password must be at least 6 character or long.");
+            toast.error("Password must be at least 6 character or long.");
+            return;
+        } else if (!haveDigitExp.test(password)) {
+            setError("Password must have at least one Digit!!!");
+            toast.error("Password must have at least one Digit!!!");
+            return;
+        } else if (!haveLowerCase.test(password)) {
+            setError("Password must have one Lowercase Letter!");
+            toast.error("Password must have one Lowercase Letter!");
+            return;
+        } else if (!haveUpperCase.test(password)) {
+            setError("Password must have one Uppercase Letter!");
+            toast.error("Password must have one Uppercase Letter!");
+            return;
+        }
 
-
-        })
-        .catch(error=>{
-            // console.log(error);
-            toast.error(error);
-        })
-    }
-
-
-
+        logInUser(email, password)
+            .then((result) => {
+                const user = result.user;
+                setSuccess(true);
+                toast.success("Login Successfull!");
+                navigate(`${location.state ? location.state : "/"}`);
+            })
+            .catch((error) => {
+                toast.error(`Login Failed : ${error.message}`);
+                setError(error.code);
+            });
+    };
 
     const handleGoogleLogin = (e) => {
-		e.preventDefault();
-		// console.log("google diye login korbo");
-		googleLogin()
-			.then((result) => {
-                toast.success("Login with Google Successfull!")
-				// navigate(`${location.state ? location.state : "/"}`);
-			})
-			.catch((error) => {
-				// console.log(error);
-				// setError(error.code);
-                toast.error(`Google Login failed: ${error.message}`)
-			});
-	};
+        e.preventDefault();
 
+        googleLogin()
+            .then((result) => {
+                toast.success("Login with Google Successfull!");
+                navigate(`${location.state ? location.state : "/"}`);
+            })
+            .catch((error) => {
+                toast.error(`Google Login Attemp Failed : ${error.message}`);
+                setError(error.code);
+            });
+    };
 
     return (
         <div className="hero bg-base-200 min-h-screen">
-            <div className="card bg-base-100 border w-2xl shrink-0 shadow-2xl">
+            <div className="card bg-base-100 border w-3/6 shrink-0 shadow-2xl">
                 <div className="card-body">
                     <h1 className="text-4xl font-bold text-center">
                         Login now!
@@ -90,9 +117,20 @@ const Login = () => {
                             </p>
                         </div>
 
+
+                        {/* showing error message */}
+						<div>
+                            {
+                                error && <p className="  max-w-fit rounded-md text-red-500 font-semibold">{error}</p>
+                            }
+                        </div>
+
                         <div>
                             {/* Google */}
-                            <button onClick={handleGoogleLogin} className="btn bg-white text-black border-[#e5e5e5] w-full h-12 hover:bg-base-300">
+                            <button
+                                onClick={handleGoogleLogin}
+                                className="btn bg-white text-black border-[#e5e5e5] w-full h-12 hover:bg-base-300"
+                            >
                                 <svg
                                     aria-label="Google logo"
                                     width="16"

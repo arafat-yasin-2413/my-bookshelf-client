@@ -10,6 +10,7 @@ import UpdateBook from "../pages/UpdateBook";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
+import LoaderSpinner from "../components/LoaderSpinner";
 
 const router = createBrowserRouter([
     {
@@ -28,18 +29,21 @@ const router = createBrowserRouter([
                 path: "/bookshelf",
                 loader: () =>
                     fetch(`${import.meta.env.VITE_API_URL}/bookshelf`),
+                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
                 Component: Bookshelf,
             },
             {
                 path: "/bookDetails/:id",
                 loader: ({ params }) =>
                     fetch(`${import.meta.env.VITE_API_URL}/book/${params.id}`),
+                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
                 Component: BookDetails,
             },
             {
                 path: "/updateBook/:id",
                 loader: ({ params }) =>
                     fetch(`${import.meta.env.VITE_API_URL}/book/${params.id}`),
+                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
                 Component: UpdateBook,
             },
             {

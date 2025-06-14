@@ -1,73 +1,138 @@
-import React, { use } from "react";
-import { Link } from "react-router";
+import React, { use, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 const Register = () => {
-    const { createUser, googleLogin } = use(AuthContext);
 
-    const handleRegister = (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-        // to get the whole object
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState(false);
+	const { createUser, updateUserProfile, user, setUser, googleLogin } = use(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+	const handleRegister = (e) => {
+		e.preventDefault();
+
+		const form = e.target;
+
+		const formData = new FormData(form);
+		// const email = formData.get("email");
+		// const password = formData.get('password')
+		// console.log(email);
+		// console.log(password);
+
+		setError("");
+        setSuccess(false);
         const { email, password, ...rest } = Object.fromEntries(
-            formData.entries()
-        );
+			formData.entries()
+		);
 
-        // console.log(email, password, rest);
-        console.log(password);
+		const haveDigitExp = /(?=.*\d)/;
+		const haveLowerCase = /(?=.*[a-z])/;
+		const haveUpperCase = /(?=.*[A-Z])/;
+		const haveLength = /^.{6,}$/;
 
-        // to get specific field
-        // const email = formData.get("email");
-        // const password = formData.get("password");
-        const name = formData.get("name");
-        const photo = formData.get("photoURL");
+		if (!haveLength.test(password)) {
+			setError("Password must be at least 6 character or long.");
+            toast.error("Password must be at least 6 character or long.");
+			return;
 
-        // console.log(email, name);
+		} else if (!haveDigitExp.test(password)) {
+			setError("Password must have at least one Digit!!!");
+            toast.error("Password must have at least one Digit!!!");
+			return;
+		} else if (!haveLowerCase.test(password)) {
+			setError("Password must have one Lowercase Letter!");
+            toast.error("Password must have one Lowercase Letter!");
+			return;
+		} else if (!haveUpperCase.test(password)) {
+			setError("Password must have one Uppercase Letter!");
+            toast.error("Password must have one Uppercase Letter!");
+			return;
+		}
 
-        createUser(email, password)
-            .then((result) => {
-                result.user.displayName = name;
-                result.user.photoURL = photo;
-                console.log(result.user);
+		
 
-                const userProfile = {
-                    email,
-                    ...rest,
-                    creationTime: result.user?.metadata?.creationTime,
-                    lastSignInTime: result.user?.metadata?.lastSignInTime,
-                };
+		createUser(email, password)
+			.then((result) => {
+				// console.log(result.user);
+                // setSuccess(true);
+                // toast.success("User created Successfully!");
 
-                // save profile in DB
-                fetch("http://localhost:3000/users", {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify(userProfile),
-                })
-                    .then((res) => res.json())
-                    .then((data) => {
-                        console.log("after saving the profile", data);
-                        if (data.insertedId) {
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "Account Created Successfully",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
-                        }
-                    });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
 
-        form.reset();
-    };
+
+                result.user.photURL= formData.get("photo");
+
+				// update user profile
+				updateUserProfile({
+					displayName: formData.get("name"),
+					photoURL: formData.get("photo"),
+				})
+					.then(() => {
+						setUser({
+							...user,
+							displayName: formData.get("name"),
+							photoURL: formData.get("photo"),
+						});
+						// navigate("/");
+					})
+					.catch((error) => {
+						// console.log(error);
+                        toast.error(error);
+						setUser(user);
+					});
+                    navigate("/");
+
+				const userProfileInfo = {
+					email,
+					...rest,
+					creationTime: result.user?.metadata?.creationTime,
+					lastSignInTime: result.user?.metadata?.lastSignInTime,
+				};
+
+
+
+
+				// save profile info to the db
+				fetch(`${import.meta.env.VITE_API_URL}/users`, {
+					method: "POST",
+					headers: {
+						"content-type": "application/json",
+					},
+					body: JSON.stringify(userProfileInfo),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						if (data.insertedId) {
+							// console.log(
+							// 	"after profile saved to db : ",
+							// 	data
+							// );
+
+							Swal.fire({
+								position: "top-end",
+								icon: "success",
+								title: "Account Created Successfully",
+								showConfirmButton: false,
+								timer: 1500,
+							});
+							form.reset();
+						}
+					});
+
+                    const desiredPath = location.state?.from?.pathname || "/";
+                    navigate(desiredPath);
+
+                    
+			})
+			.catch((error) => {
+				console.log(error);
+				setError(error.message);
+                toast.error(`User creation failed : ${error.message}`)
+			});
+	};
 
 
 
@@ -78,20 +143,21 @@ const Register = () => {
 		googleLogin()
 			.then((result) => {
                 toast.success("Login with Google Successfull!")
-				// navigate(`${location.state ? location.state : "/"}`);
+				navigate(`${location.state ? location.state : "/"}`);
 			})
 			.catch((error) => {
 				// console.log(error);
-				// setError(error.code);
+				setError(error.code);
                 toast.error(`Google Login failed: ${error.message}`)
 			});
 	};
 
 
 
+
     return (
         <div className="hero bg-base-200 min-h-screen">
-            <div className="card bg-base-100 border w-2xl shrink-0 shadow-2xl">
+            <div className="card bg-base-100 border w-3/6 shrink-0 shadow-2xl">
                 <div className="card-body">
                     <h1 className="text-4xl font-bold text-center">
                         Register now!
@@ -140,9 +206,19 @@ const Register = () => {
                             placeholder="Password"
                         />
 
+                        {/* showing error in the UI */}
+                        {
+                            error && (
+                                <p className="text-red-400 font-semibold">
+                                    {error}
+                                </p>
+                            )
+                        }
+
+
                         <div>
                             <p className="text-base font-medium">
-                                Already have an Account?{" "}
+                                Already have an Account?
                                 <Link
                                     className="link-hover text-blue-400"
                                     to="/login"

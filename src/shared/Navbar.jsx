@@ -5,7 +5,10 @@ import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
-    const {logOutUser} = use(AuthContext);
+    const {logOutUser, user } = use(AuthContext);
+
+    
+
     const handleLogout = () =>{
         logOutUser()
         .then(()=>{
@@ -66,6 +69,12 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal px-1 gap-2">
                    {links}
                 </ul>
+
+                <div>
+                    <p>
+                        {user?.email}
+                    </p>
+                </div>
 
 
                 
