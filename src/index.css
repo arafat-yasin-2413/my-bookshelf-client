@@ -15,3 +15,8 @@
     color: white;
     background-color: green;
 }
+
+.custom-toast-position{
+    top: 80px;
+    right: 50px;
+}

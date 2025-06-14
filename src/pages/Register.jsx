@@ -2,9 +2,10 @@ import React, { use } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const Register = () => {
-    const { createUser } = use(AuthContext);
+    const { createUser, googleLogin } = use(AuthContext);
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -16,6 +17,7 @@ const Register = () => {
         );
 
         // console.log(email, password, rest);
+        console.log(password);
 
         // to get specific field
         // const email = formData.get("email");
@@ -53,7 +55,7 @@ const Register = () => {
                             Swal.fire({
                                 position: "top-end",
                                 icon: "success",
-                                title: "User info saved to DB",
+                                title: "Account Created Successfully",
                                 showConfirmButton: false,
                                 timer: 1500,
                             });
@@ -66,6 +68,26 @@ const Register = () => {
 
         form.reset();
     };
+
+
+
+
+    const handleGoogleLogin = (e) => {
+		e.preventDefault();
+		// console.log("google diye login korbo");
+		googleLogin()
+			.then((result) => {
+                toast.success("Login with Google Successfull!")
+				// navigate(`${location.state ? location.state : "/"}`);
+			})
+			.catch((error) => {
+				// console.log(error);
+				// setError(error.code);
+                toast.error(`Google Login failed: ${error.message}`)
+			});
+	};
+
+
 
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -132,7 +154,7 @@ const Register = () => {
 
                         <div className="mt-2">
                             {/* Google */}
-                            <button className="btn bg-white text-black border-[#e5e5e5] w-full h-12 hover:bg-base-300">
+                            <button onClick={handleGoogleLogin} className="btn bg-white text-black border-[#e5e5e5] w-full h-12 hover:bg-base-300">
                                 <svg
                                     aria-label="Google logo"
                                     width="16"

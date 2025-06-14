@@ -1,8 +1,21 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import logo from '/assets/logo.png';
+import { AuthContext } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+    const {logOutUser} = use(AuthContext);
+    const handleLogout = () =>{
+        logOutUser()
+        .then(()=>{
+            toast.success('You have Logged Out Successfully');
+        })
+        .catch(error=>{
+            toast.error(error);
+        })
+        
+    }
 
 
     const links = <>
@@ -53,11 +66,14 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal px-1 gap-2">
                    {links}
                 </ul>
+
+
+                
             </div>
             <div className="navbar-end gap-2">
 
                 <Link to="/login" className="btn">Login</Link>
-                <Link className="btn">Logout</Link>
+                <button onClick={handleLogout} className="btn">Logout</button>
                 <Link to="/register" className="btn">Register</Link>
 
 
