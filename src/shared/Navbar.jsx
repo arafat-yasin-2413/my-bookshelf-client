@@ -1,35 +1,52 @@
 import React, { use } from "react";
 import { Link, NavLink } from "react-router";
-import logo from '/assets/logo.png';
+import logo from "/assets/logo.png";
 import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
-    const {logOutUser, user } = use(AuthContext);
+    const { logOutUser, user } = use(AuthContext);
+    console.log('user data in navbar : ', user);
 
-    
-
-    const handleLogout = () =>{
+    const handleLogout = () => {
         logOutUser()
-        .then(()=>{
-            toast.success('You have Logged Out Successfully');
-        })
-        .catch(error=>{
-            toast.error(error);
-        })
-        
-    }
+            .then(() => {
+                toast.success("You have Logged Out Successfully");
+            })
+            .catch((error) => {
+                toast.error(error);
+            });
+    };
 
-
-    const links = <>
-    
-        <li><NavLink className="nav bg-base-100" to="/">Home</NavLink></li>
-        <li><NavLink className="nav bg-base-100" to="/bookshelf">Bookshelf</NavLink></li>
-        <li><NavLink className="nav bg-base-100" to="/addBook">Add Book</NavLink></li>
-        <li><NavLink className="nav bg-base-100" to="/cc">My Books</NavLink></li>
-        <li><NavLink className="nav bg-base-100" to="/profile">Profile</NavLink></li>
-    
-    </>
+    const links = (
+        <>
+            <li>
+                <NavLink className="nav bg-base-100" to="/">
+                    Home
+                </NavLink>
+            </li>
+            <li>
+                <NavLink className="nav bg-base-100" to="/bookshelf">
+                    Bookshelf
+                </NavLink>
+            </li>
+            <li>
+                <NavLink className="nav bg-base-100" to="/addBook">
+                    Add Book
+                </NavLink>
+            </li>
+            <li>
+                <NavLink className="nav bg-base-100" to="/cc">
+                    My Books
+                </NavLink>
+            </li>
+            <li>
+                <NavLink className="nav bg-base-100" to="/profile">
+                    Profile
+                </NavLink>
+            </li>
+        </>
+    );
 
     return (
         <div className="navbar bg-primary-content shadow-sm rounded sticky top-0 z-50">
@@ -47,7 +64,6 @@ const Navbar = () => {
                             viewBox="0 0 24 24"
                             stroke="currentColor"
                         >
-                            
                             <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
@@ -63,30 +79,42 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <Link to="/" className=" text-xl font-bold flex items-center gap-2"><img className="w-8" src={logo} alt="" /> Bookshelf</Link>
+                <Link
+                    to="/"
+                    className=" text-xl font-bold flex items-center gap-2"
+                >
+                    <img className="w-8" src={logo} alt="" /> Bookshelf
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 gap-2">
-                   {links}
-                </ul>
+                <ul className="menu menu-horizontal px-1 gap-2">{links}</ul>
 
                 <div>
-                    <p>
-                        {user?.email}
-                    </p>
+                    <p>{user?.email}</p>
                 </div>
-
-
-                
             </div>
             <div className="navbar-end gap-2">
+                {user && (
+                    <>
+                    <div>
+                        <img referrerPolicy="no-referrer" className="w-10 h-10 rounded-full" src={user?.photoURL} alt="user image" />
+                    </div>
+                    <button onClick={handleLogout} className="btn">
+                        Logout
+                    </button>
+                    </>
+                )}
 
-                <Link to="/login" className="btn">Login</Link>
-                <button onClick={handleLogout} className="btn">Logout</button>
-                <Link to="/register" className="btn">Register</Link>
-
-
-
+                {!user && (
+                    <>
+                        <Link to="/register" className="btn">
+                            Register
+                        </Link>
+                        <Link to="/login" className="btn">
+                            Login
+                        </Link>
+                    </>
+                )}
             </div>
         </div>
     );

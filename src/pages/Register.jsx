@@ -63,18 +63,18 @@ const Register = () => {
 
 
 
-                result.user.photURL= formData.get("photo");
+                result.user.photURL= formData.get("photoURL");
 
 				// update user profile
 				updateUserProfile({
 					displayName: formData.get("name"),
-					photoURL: formData.get("photo"),
+					photoURL: formData.get("photoURL"),
 				})
 					.then(() => {
 						setUser({
 							...user,
 							displayName: formData.get("name"),
-							photoURL: formData.get("photo"),
+							photoURL: formData.get("photoURL"),
 						});
 						// navigate("/");
 					})
