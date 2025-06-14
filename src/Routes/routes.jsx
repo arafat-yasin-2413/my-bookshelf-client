@@ -11,6 +11,8 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import LoaderSpinner from "../components/LoaderSpinner";
+import PrivateRoute from "../providers/PrivateRoute";
+import MyBooks from "../pages/MyBooks";
 
 const router = createBrowserRouter([
     {
@@ -23,7 +25,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/addBook",
-                Component: AddBook,
+                element: (
+                    <PrivateRoute>
+                        <AddBook></AddBook>
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "/bookshelf",
@@ -44,7 +50,11 @@ const router = createBrowserRouter([
                 loader: ({ params }) =>
                     fetch(`${import.meta.env.VITE_API_URL}/book/${params.id}`),
                 hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
-                Component: UpdateBook,
+                element: (
+                    <PrivateRoute>
+                        <UpdateBook></UpdateBook>
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "/register",
@@ -55,8 +65,20 @@ const router = createBrowserRouter([
                 Component: Login,
             },
             {
+                path: "/myBooks",
+                element: (
+                    <PrivateRoute>
+                        <MyBooks></MyBooks>
+                    </PrivateRoute>
+                ),
+            },
+            {
                 path: "/profile",
-                Component: Profile,
+                element: (
+                    <PrivateRoute>
+                        <Profile></Profile>
+                    </PrivateRoute>
+                ),
             },
         ],
     },

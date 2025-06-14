@@ -7,6 +7,7 @@ const Login = () => {
     useEffect(() => {
         document.title = "Login";
     }, []);
+    
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState("");
     const { logInUser, googleLogin } = use(AuthContext);

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const Navbar = () => {
     const { logOutUser, user } = use(AuthContext);
-    console.log('user data in navbar : ', user);
+    console.log("user data in navbar : ", user);
 
     const handleLogout = () => {
         logOutUser()
@@ -36,7 +36,7 @@ const Navbar = () => {
                 </NavLink>
             </li>
             <li>
-                <NavLink className="nav bg-base-100" to="/cc">
+                <NavLink className="nav bg-base-100" to="/myBooks">
                     My Books
                 </NavLink>
             </li>
@@ -94,18 +94,21 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="navbar-end gap-2">
-                {user && (
+                {user ? (
                     <>
-                    <div>
-                        <img referrerPolicy="no-referrer" className="w-10 h-10 rounded-full" src={user?.photoURL} alt="user image" />
-                    </div>
-                    <button onClick={handleLogout} className="btn">
-                        Logout
-                    </button>
+                        <div>
+                            <img
+                                referrerPolicy="no-referrer"
+                                className="w-10 h-10 rounded-full"
+                                src={user?.photoURL}
+                                alt="user image"
+                            />
+                        </div>
+                        <button onClick={handleLogout} className="btn">
+                            Logout
+                        </button>
                     </>
-                )}
-
-                {!user && (
+                ) : (
                     <>
                         <Link to="/register" className="btn">
                             Register

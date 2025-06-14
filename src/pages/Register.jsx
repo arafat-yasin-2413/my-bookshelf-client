@@ -20,8 +20,7 @@ const Register = () => {
 		const formData = new FormData(form);
 		// const email = formData.get("email");
 		// const password = formData.get('password')
-		// console.log(email);
-		// console.log(password);
+		
 
 		setError("");
         setSuccess(false);
@@ -59,10 +58,7 @@ const Register = () => {
 			.then((result) => {
 				// console.log(result.user);
                 // setSuccess(true);
-                // toast.success("User created Successfully!");
-
-
-
+                
                 result.user.photURL= formData.get("photoURL");
 
 				// update user profile
@@ -76,10 +72,10 @@ const Register = () => {
 							displayName: formData.get("name"),
 							photoURL: formData.get("photoURL"),
 						});
-						// navigate("/");
+					
 					})
 					.catch((error) => {
-						// console.log(error);
+						
                         toast.error(error);
 						setUser(user);
 					});

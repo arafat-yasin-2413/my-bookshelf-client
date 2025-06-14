@@ -147,6 +147,8 @@ const UpdateBook = () => {
                             <option>Fiction</option>
                             <option>Non-Fiction</option>
                             <option>Fantasy</option>
+                            <option>Science</option>
+                            <option>Psychology</option>
                         </select>
                     </fieldset>
 
