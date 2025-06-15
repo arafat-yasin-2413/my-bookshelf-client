@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { use, useEffect } from "react";
 import { BiSolidUpvote, BiUpvote } from "react-icons/bi";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete, MdKeyboardArrowDown } from "react-icons/md";
 import { Link, useLoaderData, useLocation, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { AuthContext } from "../contexts/AuthContext";
 
 const BookDetails = () => {
     const location = useLocation();
@@ -14,6 +16,11 @@ const BookDetails = () => {
     const bookData = useLoaderData();
     const navigate = useNavigate();
     // TODO: user email, name niye ashte hobe
+    const {user} = use(AuthContext);
+    
+    
+    
+    
     const {
         _id,
         bookTitle,
@@ -24,7 +31,14 @@ const BookDetails = () => {
         readingStatus,
         bookOverview,
         publishingYear,
+        upvotedBy,
+        userEmail,
     } = bookData || {};
+    
+    console.log(user?.email);
+    console.log(userEmail);
+    // console.log('user email : ', user.email);
+    // console.log('userEmail from books db : ', userEmail);
 
     const handleDeleteBook = (id) => {
         console.log("id paisi : ", id);
@@ -60,6 +74,15 @@ const BookDetails = () => {
             }
         });
     };
+
+
+
+    const handleLike = () => {
+        if(user?.email === userEmail ) {
+            toast.error('Lojja kore na?')
+        }
+    }
+
     return (
         <>
             {/* <div className="flex items-center gap-2">
@@ -120,16 +143,22 @@ const BookDetails = () => {
                         </button>
                     </div>
 
-                    {/* upvote */}
-                    <div className="flex items-center gap-2">
-                        <div className="bg-gray-300 rounded p-1">
-                            <BiUpvote size={20}></BiUpvote>
-                        </div>
-
-                        <div>
-                            <h5 className="text-xl">0</h5>
-                        </div>
-                    </div>
+                    {/* update delete */}
+                    <div className="gap-2 flex">
+                    <Link
+                        to={`/updateBook/${_id}`}
+                        className="btn text-xl bg-blue-400"
+                    >
+                        <FaEdit></FaEdit>
+                    </Link>
+                    <button
+                        onClick={() => handleDeleteBook(_id)}
+                        className="btn text-xl bg-red-400"
+                    >
+                        <MdDelete></MdDelete>
+                    </button>
+                </div>
+                    
                 </div>
 
                 {/* content */}
@@ -142,15 +171,16 @@ const BookDetails = () => {
                     {/* book author */}
                     <p className="text-xl text-gray-500 my-3">{bookAuthor}</p>
 
-                    {/* upvotes */}
-                    <div className="flex gap-4">
+                    {/* upvotes and reviews*/}
+                    <div className="flex gap-4 items-center">
+
                         <div className="flex items-center gap-2">
-                            <div className="bg-gray-300 rounded p-1">
+                            <button onClick={handleLike} className="btn bg-gray-300 rounded hover:bg-green-200 hover:text-blue-500">
                                 <BiUpvote size={20}></BiUpvote>
-                            </div>
+                            </button>
 
                             <div>
-                                <h5 className="text-xl">0</h5>
+                                <h5 className="text-xl">{upvotedBy.length}</h5>
                             </div>
                         </div>
 
@@ -179,6 +209,13 @@ const BookDetails = () => {
 
                     {/* book overview */}
                     <p className="text-justify font-semibold">{bookOverview}</p>
+
+                    {/* added by */}
+                    <div className="my-4">
+                        <p>
+                            Added by : {userEmail}
+                        </p>
+                    </div>
                 </div>
             </div>
         </>
