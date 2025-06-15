@@ -78,6 +78,11 @@ const BookDetails = () => {
 
 
     const handleLike = () => {
+
+        if(!user) {
+            return toast.error('You have to Login before upvoting.')
+        }
+
         if(user?.email === userEmail ) {
             return toast.error('Lojja kore na?')
         }
