@@ -26,10 +26,10 @@ const router = createBrowserRouter([
                 // hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
                 Component: Home,
             },
-            {
-                path: "/categories/:categoryName",
-                Component: Categories,
-            },
+            // {
+            //     path: "/categories/:categoryName",
+            //     Component: Categories,
+            // },
             {
                 path: "/addBook",
                 element: (

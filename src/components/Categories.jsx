@@ -3,15 +3,13 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../contexts/AuthContext";
 import LoaderSpinner from "./LoaderSpinner";
 import BookCard from "./BookCard";
-import { useNavigate, useParams } from "react-router";
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     const { loading, setLoading } = use(AuthContext);
     const [books, setBooks] = useState([]);
     const [currentCategory, setCurrentCategory] = useState("");
-    const { categoryName } = useParams();
-    const navigate = useNavigate();
+   
 
     useEffect(() => {
         setLoading(true);
@@ -28,29 +26,16 @@ const Categories = () => {
             });
     }, []);
 
-    useEffect(() => {
-        if (categoryName) {
-            setLoading(true);
-            fetch(`${import.meta.env.VITE_API_URL}/books/category/${categoryName}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setBooks(data);
-                    setLoading(false);
-                })
-                .catch((error) => {
-                    toast.error("Failed to load books",error);
-                    setLoading(false);
-                });
-        } 
-        else {
-            setBooks([]);  // Clear when no category selected
-        }
-    }, [categoryName]);
-
-    const handleCategoryClick = (category) => {
-        navigate(`/categories/${category}`);
-    }
-
+    const handleCategoryWiseBooks = async (categoryName) => {
+        setLoading(true);
+        const res = await fetch(
+            `${import.meta.env.VITE_API_URL}/books/category/${categoryName}`
+        );
+        const data = await res.json();
+        setBooks(data);
+        setCurrentCategory(categoryName);
+        setLoading(false);
+    };
 
     return (
         <>
@@ -69,7 +54,7 @@ const Categories = () => {
                         categories.map((category, idx) => (
                             <button
                                 onClick={() =>
-                                    handleCategoryClick(category)
+                                    handleCategoryWiseBooks(category)
                                 }
                                 className={`btn  text-xl px-16 py-10 rounded-2xl
                                 
