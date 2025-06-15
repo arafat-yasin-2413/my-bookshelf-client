@@ -82,7 +82,7 @@ const BookDetails = () => {
             return toast.error('Lojja kore na?')
         }
         
-        axios.patch(`${import.meta.env.VITE_API_URL}/like/${_id}`,{email: user?.email})
+        axios.patch(`${import.meta.env.VITE_API_URL}/upvote/${_id}`,{email: user?.email})
         .then(data=>{
             console.log(data.data);
             if(data.data.modifiedCount) {
