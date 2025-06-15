@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { use, useEffect } from "react";
 import { useLoaderData, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import { AuthContext } from "../contexts/AuthContext";
 
 const UpdateBook = () => {
 
@@ -11,6 +12,7 @@ const UpdateBook = () => {
 
     const book = useLoaderData();
     const navigate = useNavigate();
+    const {user} = use(AuthContext);
     console.log(book);
 
     const {
@@ -123,6 +125,40 @@ const UpdateBook = () => {
                         />
                     </fieldset>
 
+                    {/* user email read only */}
+                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                        <label className="fieldset-legend text-sm">
+                            User Email
+                        </label>
+
+                        <input
+                            type="email"
+                            name="userEmail"
+                            className="input w-full"
+                            value={user?.email}
+                            readOnly
+                        />
+                    </fieldset>
+
+                    {/* user name read only */}
+                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                        <label className="fieldset-legend text-sm">
+                            User Name
+                        </label>
+
+                        <input
+                            type="text"
+                            name="userName"
+                            className="input w-full"
+                            value={user?.displayName}
+                            readOnly
+                        />
+                    </fieldset>
+
+
+
+
+
                     {/* publishing year */}
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
@@ -155,6 +191,8 @@ const UpdateBook = () => {
                             <option>Fantasy</option>
                             <option>Science</option>
                             <option>Psychology</option>
+                            <option>History</option>
+                            <option>Crime</option>
                         </select>
                     </fieldset>
 
