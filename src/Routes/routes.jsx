@@ -13,6 +13,7 @@ import Profile from "../pages/Profile";
 import LoaderSpinner from "../components/LoaderSpinner";
 import PrivateRoute from "../providers/PrivateRoute";
 import MyBooks from "../pages/MyBooks";
+import Categories from "../components/Categories";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
                 loader: ()=>fetch(`${import.meta.env.VITE_API_URL}/books/top`),
                 // hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
                 Component: Home,
+            },
+            {
+                path: "/categories/:categoryName",
+                Component: Categories,
             },
             {
                 path: "/addBook",
