@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BiSolidUpvote } from "react-icons/bi";
+import { BiSolidUpvote, BiUpvote } from "react-icons/bi";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete, MdKeyboardArrowDown } from "react-icons/md";
 import { Link, useLoaderData, useLocation, useNavigate } from "react-router";
@@ -62,7 +62,7 @@ const BookDetails = () => {
     };
     return (
         <>
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
                 <img src={coverPhoto} alt={`image of ${bookTitle}`} />
 
                 <div className="gap-2 flex">
@@ -84,7 +84,7 @@ const BookDetails = () => {
                 <p>Upvotes</p>
 
                 <p className="bg-gray-300 rounded flex items-center p-1 text-xl gap-1">
-                    <BiSolidUpvote></BiSolidUpvote> <span>0</span>
+                    <BiUpvote></BiUpvote> <span>0</span>
                 </p>
             </div>
             <div>
@@ -95,12 +95,11 @@ const BookDetails = () => {
                 <p>Category : {bookCategory}</p>
                 <p>Reading status : {readingStatus}</p>
                 <p>Book overview : {bookOverview}</p>
-            </div>
+            </div> */}
 
             <div className="grid grid-cols-8 w-5xl mx-auto my-16 ">
-                
                 <div className="col-span-3">
-                    
+                    {/* book cover photo */}
                     <div>
                         <img
                             className="rounded-tr-2xl rounded-br-2xl shadow-2xl w-4/5"
@@ -109,9 +108,11 @@ const BookDetails = () => {
                         />
                     </div>
 
+                    {/* reading status */}
                     <div className="my-4 flex">
-
-                        <button className="btn bg-success rounded-l-full">TODO: dynamic status</button>
+                        <button className="btn bg-success rounded-l-full">
+                            {readingStatus}
+                        </button>
                         <button className="btn bg-success rounded-r-full">
                             <MdKeyboardArrowDown
                                 size={30}
@@ -119,48 +120,65 @@ const BookDetails = () => {
                         </button>
                     </div>
 
-                    <div>
-                        <p className="text-xl font-medium">
-                            Upvotes : 0
-                        </p>
+                    {/* upvote */}
+                    <div className="flex items-center gap-2">
+                        <div className="bg-gray-300 rounded p-1">
+                            <BiUpvote size={20}></BiUpvote>
+                        </div>
+
+                        <div>
+                            <h5 className="text-xl">0</h5>
+                        </div>
                     </div>
                 </div>
 
+                {/* content */}
                 <div className="col-span-5">
-                    
+                    {/* book title */}
                     <h2 className="text-2xl md:text-4xl font-semibold ">
                         {bookTitle}
                     </h2>
 
-                    <p className="text-xl text-gray-500 my-3">
-                        {bookAuthor}
-                    </p>
+                    {/* book author */}
+                    <p className="text-xl text-gray-500 my-3">{bookAuthor}</p>
 
-
+                    {/* upvotes */}
                     <div className="flex gap-4">
-                        <p className="text-xl font-medium">
-                            Upvotes : 0
-                        </p>
+                        <div className="flex items-center gap-2">
+                            <div className="bg-gray-300 rounded p-1">
+                                <BiUpvote size={20}></BiUpvote>
+                            </div>
 
-                        <p className="text-gray-500">
-                            4 reviews
+                            <div>
+                                <h5 className="text-xl">0</h5>
+                            </div>
+                        </div>
+
+                        {/* reviews */}
+                        <p className="text-gray-500">0 reviews</p>
+                    </div>
+
+                    {/* book category */}
+                    <div>
+                        <p className="outline outline-green-500 w-fit px-4 rounded-full mt-4 text-green-700 font-medium">
+                            {bookCategory}
                         </p>
                     </div>
 
+                    <div className="flex gap-4 my-4 font-medium">
+                        {/* pages */}
+                        <p className="text-gray-600 text-base">
+                            {totalPage} pages
+                        </p>
 
-                    <p className="text-gray-600 text-base mt-4">
-                        {totalPage} pages
-                    </p>
+                        {/* publishing year */}
+                        <p className="text-gray-600 text-base">
+                            Published {publishingYear}
+                        </p>
+                    </div>
 
-                    <p className="text-gray-600 text-base mb-6">
-                        Published {publishingYear}
-                    </p>
-
-                    <p className="text-justify font-semibold">
-                        {bookOverview}
-                    </p>
-
-
+                    {/* book overview */}
+                    <p className="text-justify font-semibold">{bookOverview}</p>
                 </div>
             </div>
         </>

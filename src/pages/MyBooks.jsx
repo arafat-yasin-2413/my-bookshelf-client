@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router';
+import { useLoaderData, useLocation } from 'react-router';
 
 const MyBooks = () => {
 
@@ -8,6 +8,10 @@ const MyBooks = () => {
         document.title = "MyBooks";
     },[location.pathname])
 
+    const myAllBooks = useLoaderData();
+    console.log(myAllBooks);
+
+    
     return (
         <div>
             my books page

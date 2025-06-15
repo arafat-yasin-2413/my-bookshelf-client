@@ -65,7 +65,9 @@ const router = createBrowserRouter([
                 Component: Login,
             },
             {
-                path: "/myBooks",
+                path: "/myBooks/:email",
+                loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/myBooks/${params.email}`),
+                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
                 element: (
                     <PrivateRoute>
                         <MyBooks></MyBooks>

@@ -36,7 +36,7 @@ const Navbar = () => {
                 </NavLink>
             </li>
             <li>
-                <NavLink className="nav bg-base-100" to="/myBooks">
+                <NavLink className="nav bg-base-100" to={`/myBooks/${user?.email}`}>
                     My Books
                 </NavLink>
             </li>
