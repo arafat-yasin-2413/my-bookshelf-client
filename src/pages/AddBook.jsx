@@ -180,7 +180,6 @@ const AddBook = () => {
                             <option>Fantasy</option>
                             <option>Science</option>
                             <option>Psychology</option>
-                            <option>History</option>
                             <option>Crime</option>
                         </select>
                     </fieldset>

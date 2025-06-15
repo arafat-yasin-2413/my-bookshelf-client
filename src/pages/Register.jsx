@@ -157,7 +157,7 @@ const Register = () => {
 
     return (
         <div className="hero bg-base-200 min-h-screen">
-            <div className="card bg-base-100 border w-3/6 shrink-0 shadow-2xl">
+            <div className="card bg-base-100 border w-2xl shrink-0 shadow-2xl">
                 <div className="card-body">
                     <h1 className="text-4xl font-bold text-center">
                         Register now!
