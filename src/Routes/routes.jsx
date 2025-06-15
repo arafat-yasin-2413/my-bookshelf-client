@@ -22,7 +22,7 @@ const router = createBrowserRouter([
             {
                 index: true,
                 loader: ()=>fetch(`${import.meta.env.VITE_API_URL}/books/top`),
-                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
+                // hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
                 Component: Home,
             },
             {

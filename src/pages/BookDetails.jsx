@@ -17,8 +17,8 @@ const BookDetails = () => {
     const bookData = useLoaderData();
     const navigate = useNavigate();
     // TODO: user email, name niye ashte hobe
-    const {user} = use(AuthContext);
-    
+    const { user } = use(AuthContext);
+
     const {
         _id,
         bookTitle,
@@ -33,9 +33,9 @@ const BookDetails = () => {
         userEmail,
         userName,
     } = bookData || {};
-    
-    const [upvoteCount , setUpvoteCount] = useState(upvotedBy.length);
-    
+
+    const [upvoteCount, setUpvoteCount] = useState(upvotedBy.length);
+
     console.log(user?.email);
     console.log(userEmail);
     // console.log('user email : ', user.email);
@@ -76,68 +76,33 @@ const BookDetails = () => {
         });
     };
 
-
-
     const handleUpvote = () => {
-
-        if(!user) {
-            return toast.error('You have to Login before upvoting.')
+        if (!user) {
+            return toast.error("You have to Login before upvoting.");
         }
 
-        if(user?.email === userEmail ) {
-            return toast.error('Lojja kore na?')
+        if (user?.email === userEmail) {
+            return toast.error("Lojja kore na?");
         }
-        
-        axios.patch(`${import.meta.env.VITE_API_URL}/upvote/${_id}`,{email: user?.email})
-        .then(data=>{
-            console.log(data.data);
-            if(data.data.modifiedCount) {
-                toast.success('You have Liked the book Successfully');
-                setUpvoteCount(prev=> prev + 1)
-            }
-        })
-        .catch(error=>{
-            console.log(error);
-        })
-    }
+
+        axios
+            .patch(`${import.meta.env.VITE_API_URL}/upvote/${_id}`, {
+                email: user?.email,
+            })
+            .then((data) => {
+                console.log(data.data);
+                if (data.data.modifiedCount) {
+                    toast.success("You have Liked the book Successfully");
+                    setUpvoteCount((prev) => prev + 1);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
         <>
-            {/* <div className="flex items-center gap-2">
-                <img src={coverPhoto} alt={`image of ${bookTitle}`} />
-
-                <div className="gap-2 flex">
-                    <Link
-                        to={`/updateBook/${_id}`}
-                        className="btn text-xl bg-blue-400"
-                    >
-                        <FaEdit></FaEdit>
-                    </Link>
-                    <button
-                        onClick={() => handleDeleteBook(_id)}
-                        className="btn text-xl bg-red-400"
-                    >
-                        <MdDelete></MdDelete>
-                    </button>
-                </div>
-            </div>
-            <div className="my-4 flex gap-2 items-center">
-                <p>Upvotes</p>
-
-                <p className="bg-gray-300 rounded flex items-center p-1 text-xl gap-1">
-                    <BiUpvote></BiUpvote> <span>0</span>
-                </p>
-            </div>
-            <div>
-                <p>{bookTitle}</p>
-                <p>Author: {bookAuthor}</p>
-                <p>Total Page : {totalPage}</p>
-                <p>Publishing year : {publishingYear}</p>
-                <p>Category : {bookCategory}</p>
-                <p>Reading status : {readingStatus}</p>
-                <p>Book overview : {bookOverview}</p>
-            </div> */}
-
             <div className="grid grid-cols-8 w-5xl mx-auto my-16 ">
                 <div className="col-span-3">
                     {/* book cover photo */}
@@ -163,20 +128,19 @@ const BookDetails = () => {
 
                     {/* update delete */}
                     <div className="gap-2 flex">
-                    <Link
-                        to={`/updateBook/${_id}`}
-                        className="btn text-xl bg-blue-400"
-                    >
-                        <FaEdit></FaEdit>
-                    </Link>
-                    <button
-                        onClick={() => handleDeleteBook(_id)}
-                        className="btn text-xl bg-red-400"
-                    >
-                        <MdDelete></MdDelete>
-                    </button>
-                </div>
-                    
+                        <Link
+                            to={`/updateBook/${_id}`}
+                            className="btn text-xl bg-blue-400"
+                        >
+                            <FaEdit></FaEdit>
+                        </Link>
+                        <button
+                            onClick={() => handleDeleteBook(_id)}
+                            className="btn text-xl bg-red-400"
+                        >
+                            <MdDelete></MdDelete>
+                        </button>
+                    </div>
                 </div>
 
                 {/* content */}
@@ -191,9 +155,11 @@ const BookDetails = () => {
 
                     {/* upvotes and reviews*/}
                     <div className="flex gap-4 items-center">
-
                         <div className="flex items-center gap-2">
-                            <button onClick={handleUpvote} className="btn bg-gray-300 rounded hover:bg-green-200 hover:text-blue-500">
+                            <button
+                                onClick={handleUpvote}
+                                className="btn bg-gray-300 rounded hover:bg-green-200 hover:text-blue-500"
+                            >
                                 <BiUpvote size={20}></BiUpvote>
                             </button>
 
@@ -230,17 +196,10 @@ const BookDetails = () => {
 
                     {/* added by */}
                     <div className="my-4">
-
                         <h5 className="font-medium">Added By</h5>
-                        <p>
-                            Name : {userName}
-                        </p>
-                        
-                        <p>
-                            Email : {userEmail}
-                        </p>
+                        <p>Name : {userName}</p>
 
-
+                        <p>Email : {userEmail}</p>
                     </div>
                 </div>
             </div>
