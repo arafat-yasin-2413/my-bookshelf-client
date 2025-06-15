@@ -1,4 +1,4 @@
-import React, { use, useEffect } from "react";
+import React, { use, useEffect, useState } from "react";
 import { BiSolidUpvote, BiUpvote } from "react-icons/bi";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete, MdKeyboardArrowDown } from "react-icons/md";
@@ -6,6 +6,7 @@ import { Link, useLoaderData, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../contexts/AuthContext";
+import axios from "axios";
 
 const BookDetails = () => {
     const location = useLocation();
@@ -17,9 +18,6 @@ const BookDetails = () => {
     const navigate = useNavigate();
     // TODO: user email, name niye ashte hobe
     const {user} = use(AuthContext);
-    
-    
-    
     
     const {
         _id,
@@ -34,6 +32,8 @@ const BookDetails = () => {
         upvotedBy,
         userEmail,
     } = bookData || {};
+    
+    const [likeCount , setLikeCount] = useState(upvotedBy.length);
     
     console.log(user?.email);
     console.log(userEmail);
@@ -79,8 +79,20 @@ const BookDetails = () => {
 
     const handleLike = () => {
         if(user?.email === userEmail ) {
-            toast.error('Lojja kore na?')
+            return toast.error('Lojja kore na?')
         }
+        
+        axios.patch(`${import.meta.env.VITE_API_URL}/like/${_id}`,{email: user?.email})
+        .then(data=>{
+            console.log(data.data);
+            if(data.data.modifiedCount) {
+                toast.success('You have Liked the book Successfully');
+                setLikeCount(prev=> prev + 1)
+            }
+        })
+        .catch(error=>{
+            console.log(error);
+        })
     }
 
     return (
@@ -180,7 +192,7 @@ const BookDetails = () => {
                             </button>
 
                             <div>
-                                <h5 className="text-xl">{upvotedBy.length}</h5>
+                                <h5 className="text-xl">{likeCount}</h5>
                             </div>
                         </div>
 
