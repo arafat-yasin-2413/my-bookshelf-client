@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Categories from './Categories';
 import { useLocation } from 'react-router';
+import Top6Books from './TopBooks';
 
 const Home = () => {
     const location = useLocation();
@@ -14,6 +15,8 @@ const Home = () => {
 
 
             <Categories></Categories>
+
+            <Top6Books></Top6Books>
         </div>
     );
 };

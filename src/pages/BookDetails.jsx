@@ -33,7 +33,7 @@ const BookDetails = () => {
         userEmail,
     } = bookData || {};
     
-    const [likeCount , setLikeCount] = useState(upvotedBy.length);
+    const [upvoteCount , setUpvoteCount] = useState(upvotedBy.length);
     
     console.log(user?.email);
     console.log(userEmail);
@@ -77,7 +77,7 @@ const BookDetails = () => {
 
 
 
-    const handleLike = () => {
+    const handleUpvote = () => {
 
         if(!user) {
             return toast.error('You have to Login before upvoting.')
@@ -92,7 +92,7 @@ const BookDetails = () => {
             console.log(data.data);
             if(data.data.modifiedCount) {
                 toast.success('You have Liked the book Successfully');
-                setLikeCount(prev=> prev + 1)
+                setUpvoteCount(prev=> prev + 1)
             }
         })
         .catch(error=>{
@@ -192,12 +192,12 @@ const BookDetails = () => {
                     <div className="flex gap-4 items-center">
 
                         <div className="flex items-center gap-2">
-                            <button onClick={handleLike} className="btn bg-gray-300 rounded hover:bg-green-200 hover:text-blue-500">
+                            <button onClick={handleUpvote} className="btn bg-gray-300 rounded hover:bg-green-200 hover:text-blue-500">
                                 <BiUpvote size={20}></BiUpvote>
                             </button>
 
                             <div>
-                                <h5 className="text-xl">{likeCount}</h5>
+                                <h5 className="text-xl">{upvoteCount}</h5>
                             </div>
                         </div>
 
