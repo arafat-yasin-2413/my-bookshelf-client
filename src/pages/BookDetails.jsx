@@ -31,6 +31,7 @@ const BookDetails = () => {
         publishingYear,
         upvotedBy,
         userEmail,
+        userName,
     } = bookData || {};
     
     const [upvoteCount , setUpvoteCount] = useState(upvotedBy.length);
@@ -229,9 +230,17 @@ const BookDetails = () => {
 
                     {/* added by */}
                     <div className="my-4">
+
+                        <h5 className="font-medium">Added By</h5>
                         <p>
-                            Added by : {userEmail}
+                            Name : {userName}
                         </p>
+                        
+                        <p>
+                            Email : {userEmail}
+                        </p>
+
+
                     </div>
                 </div>
             </div>
