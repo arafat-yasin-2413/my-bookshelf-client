@@ -131,13 +131,14 @@ const BookDetails = () => {
 
         
         e.preventDefault();
+        const form = e.target;
 
         const alreadyReviewed = reviews.some((rev)=> rev.email === user?.email);
 
         if(alreadyReviewed) {
+            form.reset();
             return toast.error('You have already reviewed this book.');
         }
-        const form = e.target;
 
         const formData = new FormData(form);
         const reviewData = Object.fromEntries(formData.entries());
