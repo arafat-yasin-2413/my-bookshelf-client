@@ -16,7 +16,7 @@ const BookDetails = () => {
     useEffect(() => {
         document.title = "Book Details";
     }, [location.pathname]);
-    const {loading , setLoading} = use(AuthContext);
+    const { loading, setLoading } = use(AuthContext);
     const bookData = useLoaderData();
     const navigate = useNavigate();
     // TODO: user email, name niye ashte hobe
@@ -38,31 +38,28 @@ const BookDetails = () => {
     } = bookData || {};
 
     const [upvoteCount, setUpvoteCount] = useState(upvotedBy.length);
-    const [date , setDate] = useState('');
+    const [date, setDate] = useState("");
     const [reviews, setReviews] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         const formattedDate = getCurrentDateFormatted();
         setDate(formattedDate);
-    },[]);
+    }, []);
 
     useEffect(() => {
-            setLoading(true);
-            fetch(`${import.meta.env.VITE_API_URL}/reviews/${_id}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setReviews(data);
-                    setLoading(false);
-                    // console.log(data);
-                })
-                .catch((error) => {
-                    toast.error("Failed to fetch reviews : ", error);
-                    setLoading(false);
-                });
-
-            
-        }, [_id, setLoading]);
-
+        setLoading(true);
+        fetch(`${import.meta.env.VITE_API_URL}/reviews/${_id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setReviews(data);
+                setLoading(false);
+                // console.log(data);
+            })
+            .catch((error) => {
+                toast.error("Failed to fetch reviews : ", error);
+                setLoading(false);
+            });
+    }, [_id, setLoading]);
 
     console.log(user?.email);
     console.log(userEmail);
@@ -129,49 +126,46 @@ const BookDetails = () => {
             });
     };
 
-
     const handleAddReview = (e) => {
-            e.preventDefault();
-            const form = e.target;
-    
-            const formData = new FormData(form);
-            const reviewData = Object.fromEntries(formData.entries());
-            
-            reviewData.bookId = _id;
-            reviewData.email = user?.email;
-            reviewData.name = user?.displayName;
-            reviewData.photoURL = user?.photoURL;
-            reviewData.createdAt = date;
+        e.preventDefault();
+        const form = e.target;
 
-    
-            console.log(reviewData);
-            // send reviewData to the database
-    
-            fetch(`${import.meta.env.VITE_API_URL}/addReview`, {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json",
-                },
-                body: JSON.stringify(reviewData),
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    // console.log('after adding to db : ',data);
-                    if (data.insertedId) {
-                        setReviews((oldReviews)=>[reviewData, ...oldReviews])
-                        !Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Review Added to DB successfully",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                    }
-                });
-    
-            form.reset();
-        };
+        const formData = new FormData(form);
+        const reviewData = Object.fromEntries(formData.entries());
 
+        reviewData.bookId = _id;
+        reviewData.email = user?.email;
+        reviewData.name = user?.displayName;
+        reviewData.photoURL = user?.photoURL;
+        reviewData.createdAt = date;
+
+        console.log(reviewData);
+        // send reviewData to the database
+
+        fetch(`${import.meta.env.VITE_API_URL}/addReview`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(reviewData),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                // console.log('after adding to db : ',data);
+                if (data.insertedId) {
+                    setReviews((oldReviews) => [reviewData, ...oldReviews]);
+                    !Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Review Added to DB successfully",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            });
+
+        form.reset();
+    };
 
     return (
         <>
@@ -308,17 +302,21 @@ const BookDetails = () => {
 
                         {/* showing reviews */}
                         <div>
-                            {
-                                loading ? (<LoaderSpinner></LoaderSpinner>)
-                                : (
-                                    reviews.length > 0 && 
-                                    reviews.map(singleReview=>(
-                                        <Review key={singleReview._id} singleReview={singleReview}></Review>
-                                    ))
-                                )
-                            }
+                            {loading ? (
+                                <LoaderSpinner></LoaderSpinner>
+                            ) : (
+                                reviews.length > 0 &&
+                                reviews.map((singleReview) => (
+                                    <Review
+                                        allReviews={reviews}
+                                        setReviews={setReviews}
+                                        key={singleReview._id}
+                                        singleReview={singleReview}
+                                        book={bookData}
+                                    ></Review>
+                                ))
+                            )}
                         </div>
-
                     </div>
                 </div>
             </div>
