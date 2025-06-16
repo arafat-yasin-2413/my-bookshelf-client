@@ -46,6 +46,7 @@ const BookDetails = () => {
         setDate(formattedDate);
     }, []);
 
+    // getting reviews
     useEffect(() => {
         setLoading(true);
         fetch(`${import.meta.env.VITE_API_URL}/reviews/${_id}`)
@@ -61,8 +62,8 @@ const BookDetails = () => {
             });
     }, [_id, setLoading]);
 
-    console.log(user?.email);
-    console.log(userEmail);
+    // console.log(user?.email);
+    // console.log(userEmail);
     // console.log('user email : ', user.email);
     // console.log('userEmail from books db : ', userEmail);
 
@@ -127,7 +128,15 @@ const BookDetails = () => {
     };
 
     const handleAddReview = (e) => {
+
+        
         e.preventDefault();
+
+        const alreadyReviewed = reviews.some((rev)=> rev.email === user?.email);
+
+        if(alreadyReviewed) {
+            return toast.error('You have already reviewed this book.');
+        }
         const form = e.target;
 
         const formData = new FormData(form);
