@@ -7,13 +7,16 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
+import { getCurrentDateFormatted } from "../utils/getDate";
+import LoaderSpinner from "../components/LoaderSpinner";
+import Review from "../components/Review";
 
 const BookDetails = () => {
     const location = useLocation();
     useEffect(() => {
         document.title = "Book Details";
     }, [location.pathname]);
-
+    const {loading , setLoading} = use(AuthContext);
     const bookData = useLoaderData();
     const navigate = useNavigate();
     // TODO: user email, name niye ashte hobe
@@ -35,6 +38,31 @@ const BookDetails = () => {
     } = bookData || {};
 
     const [upvoteCount, setUpvoteCount] = useState(upvotedBy.length);
+    const [date , setDate] = useState('');
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(()=>{
+        const formattedDate = getCurrentDateFormatted();
+        setDate(formattedDate);
+    },[]);
+
+    useEffect(() => {
+            setLoading(true);
+            fetch(`${import.meta.env.VITE_API_URL}/reviews/${_id}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setReviews(data);
+                    setLoading(false);
+                    // console.log(data);
+                })
+                .catch((error) => {
+                    toast.error("Failed to fetch reviews : ", error);
+                    setLoading(false);
+                });
+
+            
+        }, [_id, setLoading]);
+
 
     console.log(user?.email);
     console.log(userEmail);
@@ -101,10 +129,53 @@ const BookDetails = () => {
             });
     };
 
+
+    const handleAddReview = (e) => {
+            e.preventDefault();
+            const form = e.target;
+    
+            const formData = new FormData(form);
+            const reviewData = Object.fromEntries(formData.entries());
+            
+            reviewData.bookId = _id;
+            reviewData.email = user?.email;
+            reviewData.name = user?.displayName;
+            reviewData.photoURL = user?.photoURL;
+            reviewData.createdAt = date;
+
+    
+            console.log(reviewData);
+            // send reviewData to the database
+    
+            fetch(`${import.meta.env.VITE_API_URL}/addReview`, {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(reviewData),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    // console.log('after adding to db : ',data);
+                    if (data.insertedId) {
+                        setReviews((oldReviews)=>[reviewData, ...oldReviews])
+                        !Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Review Added to DB successfully",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                });
+    
+            form.reset();
+        };
+
+
     return (
         <>
             <div className="grid grid-cols-8 w-5xl mx-auto my-16 ">
-                
                 {/* left side of book details */}
                 <div className="col-span-3 h-fit sticky top-24 z-50">
                     {/* book cover photo */}
@@ -196,14 +267,58 @@ const BookDetails = () => {
                     {/* book overview */}
                     <p className="text-justify font-semibold">{bookOverview}</p>
 
-                    
-
                     {/* added by */}
                     <div className="my-4">
                         <h5 className="font-medium">Added By</h5>
                         <p>Name : {userName}</p>
 
                         <p>Email : {userEmail}</p>
+                    </div>
+                    <div className="border-b-3 border-gray-300"></div>
+
+                    <h1 className="text-4xl font-semibold my-5">Reviews</h1>
+
+                    <div className="flex flex-col justify-center items-center">
+                        <h5 className="text-xl font-medium mt-4">
+                            Write a Review below
+                        </h5>
+                    </div>
+
+                    <div>
+                        <form onSubmit={handleAddReview}>
+                            <fieldset className="fieldset">
+                                <label className="fieldset-legend text-sm">
+                                    What do you think
+                                </label>
+                                <textarea
+                                    className="textarea h-24 w-full"
+                                    placeholder="write a short review"
+                                    name="review"
+                                ></textarea>
+                            </fieldset>
+
+                            <input
+                                className="btn mt-2"
+                                type="submit"
+                                value="Post"
+                            />
+                        </form>
+
+                        <div className="border-b-3 border-gray-300 my-10"></div>
+
+                        {/* showing reviews */}
+                        <div>
+                            {
+                                loading ? (<LoaderSpinner></LoaderSpinner>)
+                                : (
+                                    reviews.length > 0 && 
+                                    reviews.map(singleReview=>(
+                                        <Review key={singleReview._id} singleReview={singleReview}></Review>
+                                    ))
+                                )
+                            }
+                        </div>
+
                     </div>
                 </div>
             </div>
