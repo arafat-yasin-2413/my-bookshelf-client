@@ -104,7 +104,9 @@ const BookDetails = () => {
     return (
         <>
             <div className="grid grid-cols-8 w-5xl mx-auto my-16 ">
-                <div className="col-span-3">
+                
+                {/* left side of book details */}
+                <div className="col-span-3 h-fit sticky top-24 z-50">
                     {/* book cover photo */}
                     <div>
                         <img
@@ -193,6 +195,8 @@ const BookDetails = () => {
 
                     {/* book overview */}
                     <p className="text-justify font-semibold">{bookOverview}</p>
+
+                    
 
                     {/* added by */}
                     <div className="my-4">
