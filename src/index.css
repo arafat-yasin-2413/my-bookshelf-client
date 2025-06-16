@@ -11,9 +11,12 @@
 
 
 .nav.active{
-    font-weight: 600;
-    color: white;
-    background-color: green;
+    
+    @apply bg-white p-1;
+    @apply outline outline-teal-300;
+    @apply text-teal-700;
+    
+    
 }
 
 .custom-toast-position{
