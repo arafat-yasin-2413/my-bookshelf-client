@@ -70,6 +70,10 @@ const BookDetails = () => {
     const handleDeleteBook = (id) => {
         console.log("id paisi : ", id);
 
+        if(userEmail !== user?.email) {
+            return toast.error('Not your book. Cannot Delete.');
+        }
+
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -177,11 +181,19 @@ const BookDetails = () => {
         form.reset();
     };
 
+
+    const handleEditClick = (e)=>{
+        if(userEmail !== user?.email) {
+            e.preventDefault();
+            toast.error('You are not allowed to update this book.');
+        }
+    }
+
     return (
         <>
             <div className="grid grid-cols-8 w-5xl mx-auto my-16 ">
                 {/* left side of book details */}
-                <div className="col-span-3 h-fit sticky top-24 z-50">
+                <div className="col-span-3 h-fit sticky top-24 z-20">
                     {/* book cover photo */}
                     <div>
                         <img
@@ -208,6 +220,7 @@ const BookDetails = () => {
                         <Link
                             to={`/updateBook/${_id}`}
                             className="btn text-xl bg-blue-400"
+                            onClick={handleEditClick}
                         >
                             <FaEdit></FaEdit>
                         </Link>
