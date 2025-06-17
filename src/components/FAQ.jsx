@@ -12,7 +12,7 @@ const FAQ = () => {
                 className="group [&_summary::-webkit-details-marker]:hidden"
                 open
             >
-                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-50 p-4 text-gray-900">
+                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-100 p-4 text-gray-900">
                     <h2 className="text-lg font-medium">
                         How can I add a new book?
                     </h2>
@@ -55,7 +55,7 @@ const FAQ = () => {
 
             {/* 2 */}
             <details className="group [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-50 p-4 text-gray-900">
+                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-100 p-4 text-gray-900">
                     <h2 className="text-lg font-medium">
                         How do I track my reading status?
                     </h2>
@@ -98,7 +98,7 @@ const FAQ = () => {
 
             {/* 3 */}
             <details className="group [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-50 p-4 text-gray-900">
+                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-100 p-4 text-gray-900">
                     <h2 className="text-lg font-medium">
                         How can I filter books by category?
                     </h2>
@@ -141,7 +141,7 @@ const FAQ = () => {
 
             {/* 4 */}
             <details className="group [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-50 p-4 text-gray-900">
+                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-100 p-4 text-gray-900">
                     <h2 className="text-lg font-medium">
                         Can I edit book information?
                     </h2>
@@ -184,7 +184,7 @@ const FAQ = () => {
 
             {/* 5 */}
             <details className="group [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-50 p-4 text-gray-900">
+                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-100 p-4 text-gray-900">
                     <h2 className="text-lg font-medium">
                         Where can I see detailed information about a book?
                     </h2>
@@ -227,7 +227,7 @@ const FAQ = () => {
 
             {/* 6 */}
             <details className="group [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-50 p-4 text-gray-900">
+                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-100 p-4 text-gray-900">
                     <h2 className="text-lg font-medium">
                         How do I create an account or log in?
                     </h2>
@@ -270,7 +270,7 @@ const FAQ = () => {
 
             {/* 7 */}
             <details className="group [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-50 p-4 text-gray-900">
+                <summary className="flex items-center justify-between gap-1.5 rounded-md border border-gray-100 bg-gray-100 p-4 text-gray-900">
                     <h2 className="text-lg font-medium">
                         How do I delete a book I added?
                     </h2>
@@ -306,7 +306,7 @@ const FAQ = () => {
                     </svg>
                 </summary>
 
-                <p className="px-4 pt-4 text-gray-900">
+                <p className="px-4 pt-4  text-gray-900">
                     Navigate to the My Books section. There you can delete any book you’ve added by clicking the "Delete" button.
                 </p>
             </details>
