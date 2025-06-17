@@ -15,6 +15,7 @@ import PrivateRoute from "../providers/PrivateRoute";
 import MyBooks from "../pages/MyBooks";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
+import CategoryWiseBooks from "../pages/CategoryWiseBooks";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,13 @@ const router = createBrowserRouter([
                     fetch(`${import.meta.env.VITE_API_URL}/bookshelf`),
                 hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
                 Component: Bookshelf,
+            },
+
+            {
+                path: '/books/category/:categoryName',
+                loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/books/category/${params.categoryName}`),
+                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
+                Component: CategoryWiseBooks,
             },
 
     

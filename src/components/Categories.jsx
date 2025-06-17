@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../contexts/AuthContext";
 import LoaderSpinner from "./LoaderSpinner";
 import BookCard from "./BookCard";
+import { Link } from "react-router";
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
@@ -25,53 +26,49 @@ const Categories = () => {
             });
     }, []);
 
-    const handleCategoryWiseBooks = async (categoryName) => {
-        setLoading(true);
-        const res = await fetch(
-            `${import.meta.env.VITE_API_URL}/books/category/${categoryName}`
-        );
-        const data = await res.json();
-        setBooks(data);
-        setCurrentCategory(categoryName);
-        setLoading(false);
-    };
+    // const handleCategoryWiseBooks = async (categoryName) => {
+    //     setLoading(true);
+    //     const res = await fetch(
+    //         `${import.meta.env.VITE_API_URL}/books/category/${categoryName}`
+    //     );
+    //     const data = await res.json();
+    //     setBooks(data);
+    //     setCurrentCategory(categoryName);
+    //     setLoading(false);
+    // };
 
     return (
         <>
 
-        
-            <div className="grid grid-cols-12 mx-auto gap-3 my-10">
+            <div className="mx-auto gap-3 my-10">
                 
-                <div className="col-span-12 md:col-span-3 border">
-                    <div className="my-10">
-                        <h2 className="text-xl text-center my-4">
-                            Showing All categories{" "}
+                <div className="border">
+                    <div className="my-10 w-fit border border-red-200 mx-auto">
+                        <h2 className="text-xl text-center my-4 text-gray-800 font-medium">
+                            All categories
                             <span className="font-bold">
                                 ({categories.length ? categories.length : 0}){" "}
                             </span>
                         </h2>
-                        <div className="flex flex-col gap-3">
+                        <div className="flex-wrap md:flex gap-3 space-x-2">
                             {loading ? (
                                 <LoaderSpinner></LoaderSpinner>
                             ) : (
                                 categories.length > 0 &&
                                 categories.map((category, idx) => (
-                                    <button
-                                        onClick={() =>
-                                            handleCategoryWiseBooks(category)
-                                        }
-                                        className={`btn  text-base rounded-2xl
+                                    <Link to={`/books/category/${category}`}
+                                        className={`btn btn-sm bg-white text-base rounded-2xl border border-gray-500
                                 
                                     ${
                                         currentCategory === category
-                                            ? "bg-black text-white"
+                                            ? "bg-black text-gray-800"
                                             : "bg-gray-100 hover:bg-black  hover:text-white"
                                     } 
                                 `}
                                         key={idx}
                                     >
                                         {category}
-                                    </button>
+                                    </Link>
                                 ))
                             )}
                         </div>

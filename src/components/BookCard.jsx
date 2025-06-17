@@ -15,11 +15,12 @@ const BookCard = ({ book }) => {
                         src={coverPhoto}
                         className="rounded-md object-cover w-36"
                     />
+
                 </div>
 
                 <div className="mt-2">
                     <div>
-                        <div></div>
+                        
 
                         <div>
                             <h4 className="font-medium text-[1.5rem] text-gray-900">
@@ -30,6 +31,13 @@ const BookCard = ({ book }) => {
                         <div>
                             <p className="text-gray-500 text-[0.8rem]">
                                 Author : {bookAuthor}
+                            </p>
+                        </div>
+
+                        <div className="mt-2">
+                            <p className="flex items-center bg-base-300 w-fit px-2 rounded outline outline-teal-200">
+
+                            <BiUpvote></BiUpvote> {upvotedBy.length}
                             </p>
                         </div>
                     </div>
@@ -43,9 +51,9 @@ const BookCard = ({ book }) => {
                         </div>
 
                         <div>
-                            <p className="cursor-pointer rounded-full bg-teal-600 hover:bg-blue-500 text-white px-2.5 py-0.5 text-sm">
+                            <Link to={`/bookDetails/${_id}`} className="cursor-pointer rounded-full bg-teal-600 hover:bg-blue-500 text-white px-2.5 py-0.5 text-sm">
                                 See Details
-                            </p>
+                            </Link>
                         </div>
                     </div>
                 </div>
