@@ -13,7 +13,8 @@ import Profile from "../pages/Profile";
 import LoaderSpinner from "../components/LoaderSpinner";
 import PrivateRoute from "../providers/PrivateRoute";
 import MyBooks from "../pages/MyBooks";
-import Categories from "../components/Categories";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
 
 const router = createBrowserRouter([
     {
@@ -91,6 +92,15 @@ const router = createBrowserRouter([
                         <Profile></Profile>
                     </PrivateRoute>
                 ),
+            },
+            {
+                path: '/about',
+                Component: About,
+            },
+
+            {
+                path: '/contact',
+                Component: Contact,
             },
         ],
     },

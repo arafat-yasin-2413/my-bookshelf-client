@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-100 dark:bg-gray-900">
+        <footer className="bg-teal-700  mt-10 rounded">
             <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="flex justify-center text-teal-600 dark:text-teal-300 items-center gap-2">
                     
@@ -14,27 +14,29 @@ const Footer = () => {
 
                 </div>
 
-                <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500 dark:text-gray-400">
+                <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-800">
                     Discover, organize, and track your favorite books. Bookshelf helps you read smarter and stay inspired every single day.
                 </p>
 
                 <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
                     <li>
-                        <a
+                        <Link 
+                            to="/about"
                             className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                            href="#"
+                            
                         >
                             About
-                        </a>
+                        </Link>
                     </li>
 
                     <li>
-                        <a
+                        <Link
+                            to="/contact"
                             className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                            href="#"
+                            
                         >
                             Contact
-                        </a>
+                        </Link>
                     </li>
 
                     <li>
