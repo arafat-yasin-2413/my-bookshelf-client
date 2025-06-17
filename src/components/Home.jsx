@@ -3,6 +3,9 @@ import Categories from './Categories';
 import { useLocation } from 'react-router';
 import Top6Books from './TopBooks';
 import Slider from './Slider';
+import { motion } from 'framer-motion';
+import { FaQ } from 'react-icons/fa6';
+import FAQ from './FAQ';
 
 const Home = () => {
     const location = useLocation();
@@ -11,7 +14,12 @@ const Home = () => {
     },[location.pathname])
 
     return (
-        <div>
+        <motion.div 
+            initial={{opacity: 0, y: 30}}
+            animate={{opacity: 1, y: 0}}
+            exit={{opacity: 0, y: -30}}
+            transition={{duration: 0.5, ease: "easeOut"}}
+        >
             
 
             <Slider></Slider>
@@ -20,7 +28,9 @@ const Home = () => {
             <Categories></Categories>
 
             <Top6Books></Top6Books>
-        </div>
+
+            <FAQ></FAQ>
+        </motion.div>
     );
 };
 
