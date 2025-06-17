@@ -42,8 +42,8 @@ const Categories = () => {
 
             <div className="mx-auto gap-3 my-10">
                 
-                <div className="border">
-                    <div className="my-10 w-fit border border-red-200 mx-auto">
+                <div className="">
+                    <div className="my-10 w-fit mx-auto">
                         <h2 className="text-xl text-center my-4 text-gray-800 font-medium">
                             All categories
                             <span className="font-bold">
@@ -75,7 +75,7 @@ const Categories = () => {
                     </div>
                 </div>
 
-                <div className="col-span-12 md:col-span-9 border">
+                {/* <div className="col-span-12 md:col-span-9 border">
                     <div>
                         <h2 className="text-4xl font-bold text-center my-4">
                             {currentCategory}
@@ -95,7 +95,7 @@ const Categories = () => {
                             )}
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     );

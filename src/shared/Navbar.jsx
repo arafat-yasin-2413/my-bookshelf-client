@@ -107,7 +107,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="navbar bg-teal-600 text-white shadow-sm justify-between">
+            <div className="navbar bg-teal-600 text-white shadow-sm justify-between sticky top-0 z-50">
                 
                 <div className="navbar-start border w-fit">
                     <div className="dropdown">

@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLoaderData, useParams } from "react-router";
 import BookCard from "../components/BookCard";
 
 const CategoryWiseBooks = () => {
     const cat = useParams();
-    console.log(cat.categoryName);
+    // console.log(cat.categoryName);
     const categoryWiseBooks = useLoaderData();
     console.log(categoryWiseBooks);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
-        <div className="bg-gray-100 rounded-2xl p-6">
+        <div className="bg-gray-100 rounded-2xl p-6 my-10">
         
             <div>
                 <h2 className="text-3xl text-gray-700 font-semibold">
