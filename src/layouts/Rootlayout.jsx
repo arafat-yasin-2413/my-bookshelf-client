@@ -1,15 +1,21 @@
-import React from 'react';
-import { Outlet } from 'react-router';
-import Navbar from '../shared/Navbar';
-import Footer from '../shared/Footer';
+import React from "react";
+import { Outlet } from "react-router";
+import Navbar from "../shared/Navbar";
+import Footer from "../shared/Footer";
 
 const Rootlayout = () => {
     return (
-        <div className='max-w-11/12 mx-auto'>
+        <>
             <Navbar></Navbar>
-            <Outlet></Outlet>
+
+            <div className="max-w-11/12 mx-auto">
+                {/* <Navbar></Navbar> */}
+                <Outlet></Outlet>
+            </div>
+            
+            
             <Footer></Footer>
-        </div>
+        </>
     );
 };
 

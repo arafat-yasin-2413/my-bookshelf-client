@@ -23,7 +23,7 @@ const Navbar = () => {
         <>
             <li>
                 <NavLink
-                    className="nav text-sm text-black font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
+                    className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
                     to="/"
                 >
                     Home
@@ -31,7 +31,7 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
-                    className="nav text-sm text-black font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
+                    className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
                     to="/bookshelf"
                 >
                     Bookshelf
@@ -39,7 +39,7 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
-                    className="nav text-sm text-black font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
+                    className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
                     to="/addBook"
                 >
                     Add Book
@@ -47,7 +47,7 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
-                    className="nav text-sm text-black font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
+                    className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
                     to={`/myBooks/${user?.email}`}
                 >
                     My Books
@@ -55,7 +55,7 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
-                    className="nav text-sm text-black font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
+                    className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
                     to="/profile"
                 >
                     Profile
@@ -107,7 +107,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="navbar bg-teal-100 shadow-sm justify-between">
+            <div className="navbar bg-teal-600 text-white shadow-sm justify-between">
                 
                 <div className="navbar-start border w-fit">
                     <div className="dropdown">
@@ -135,7 +135,7 @@ const Navbar = () => {
 
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-36 p-2 shadow"
+                            className="menu menu-sm dropdown-content bg-gray-600 rounded-box z-1 mt-3 w-36 p-2 shadow"
                         >
                             {links}
 
@@ -152,7 +152,7 @@ const Navbar = () => {
                     <div>
                         <Link className="flex justify-center items-center gap-2">
                             <img className="w-8" src={logo} alt="logo" />
-                            <span className="text-2xl font-bold text-teal-700">
+                            <span className="text-2xl font-semibold text-white">
                                 Bookshelf
                             </span>
                         </Link>

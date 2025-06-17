@@ -13,12 +13,12 @@ const Bookshelf = () => {
     const allBook = useLoaderData();
     console.log(allBook);
     return (
-        <div>
+        <div className='bg-gray-200 p-4 rounded my-10'>
             <h2>bookshelf page</h2>
 
             
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
                 {
                     allBook.map((book)=>(
                         <BookCard book={book} key={book._id}></BookCard>
