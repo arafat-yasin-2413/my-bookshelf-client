@@ -6,6 +6,7 @@ import Slider from './Slider';
 import { motion } from 'framer-motion';
 import { FaQ } from 'react-icons/fa6';
 import FAQ from './FAQ';
+import Blog from './Blog';
 
 const Home = () => {
     const location = useLocation();
@@ -29,7 +30,13 @@ const Home = () => {
 
             <Top6Books></Top6Books>
 
+            <div className='md:flex gap-4'>
             <FAQ></FAQ>
+
+            <Blog></Blog>
+
+            </div>
+
         </motion.div>
     );
 };
