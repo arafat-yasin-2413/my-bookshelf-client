@@ -3,7 +3,7 @@ import React from "react";
 const FAQ = () => {
     return (
 
-        <div className="space-y-4 my-10 max-w-xl">
+        <div className="space-y-4 my-10 max-w-xl h-fit">
 
             <h2 className="text-4xl font-semibold">Frequently Asked Questions</h2>
 
