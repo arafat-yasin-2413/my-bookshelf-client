@@ -14,9 +14,8 @@ const Bookshelf = () => {
     console.log(allBook);
     return (
         <div className='bg-gray-200 p-4 rounded my-10'>
-            <h2>bookshelf page</h2>
 
-            
+            <h2 className='text-4xl font-medium my-6'>Bookshelf</h2>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
                 {
