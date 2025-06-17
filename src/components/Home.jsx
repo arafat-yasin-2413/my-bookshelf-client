@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Categories from './Categories';
 import { useLocation } from 'react-router';
 import Top6Books from './TopBooks';
+import Slider from './Slider';
 
 const Home = () => {
     const location = useLocation();
@@ -11,7 +12,9 @@ const Home = () => {
 
     return (
         <div>
-            <h2>this is home</h2>
+            
+
+            <Slider></Slider>
 
 
             <Categories></Categories>
