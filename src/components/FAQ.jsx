@@ -1,11 +1,22 @@
+import { motion } from "framer-motion";
 import React from "react";
 
 const FAQ = () => {
     return (
-
         <div className="space-y-4 my-10 max-w-xl h-fit">
-
-            <h2 className="text-4xl font-semibold">Frequently Asked Questions</h2>
+            <motion.h2
+                className="text-4xl font-semibold"
+                animate={{
+                    rotate: [0, -2, 2, -2, 2, 0],
+                }}
+                transition={{
+                    duration: 0.5,
+                    ease: "easeInOut",
+                    repeat: 1,
+                }}
+            >
+                Frequently Asked Questions
+            </motion.h2>
 
             {/* 1 */}
             <details
@@ -49,7 +60,9 @@ const FAQ = () => {
                 </summary>
 
                 <p className="px-4 pt-4 text-gray-900">
-                    After logging in, go to the "Add Book" page and fill in the required information like title, author, category, etc. to add a new book to your collection.
+                    After logging in, go to the "Add Book" page and fill in the
+                    required information like title, author, category, etc. to
+                    add a new book to your collection.
                 </p>
             </details>
 
@@ -92,7 +105,9 @@ const FAQ = () => {
                 </summary>
 
                 <p className="px-4 pt-4 text-gray-900">
-                    Each book has a reading status such as Want to Read, Reading, or Read. You can update the status directly from your Bookshelf page.
+                    Each book has a reading status such as Want to Read,
+                    Reading, or Read. You can update the status directly from
+                    your Bookshelf page.
                 </p>
             </details>
 
@@ -135,7 +150,9 @@ const FAQ = () => {
                 </summary>
 
                 <p className="px-4 pt-4 text-gray-900">
-                    Visit the Categories section on the homepage or navbar and select your desired category to view all books under that category.
+                    Visit the Categories section on the homepage or navbar and
+                    select your desired category to view all books under that
+                    category.
                 </p>
             </details>
 
@@ -178,7 +195,9 @@ const FAQ = () => {
                 </summary>
 
                 <p className="px-4 pt-4 text-gray-900">
-                    Yes, you can edit only the books that you have added. Click the "Update" button on the book card in your My Books section to make changes.
+                    Yes, you can edit only the books that you have added. Click
+                    the "Update" button on the book card in your My Books
+                    section to make changes.
                 </p>
             </details>
 
@@ -221,7 +240,9 @@ const FAQ = () => {
                 </summary>
 
                 <p className="px-4 pt-4 text-gray-900">
-                    Click the "View Details" button on any book card to view more information like author, category, publisher, and description.
+                    Click the "View Details" button on any book card to view
+                    more information like author, category, publisher, and
+                    description.
                 </p>
             </details>
 
@@ -264,7 +285,8 @@ const FAQ = () => {
                 </summary>
 
                 <p className="px-4 pt-4 text-gray-900">
-                    You can register or log in using your email and password from the Register or Login page in the navigation bar.
+                    You can register or log in using your email and password
+                    from the Register or Login page in the navigation bar.
                 </p>
             </details>
 
@@ -307,13 +329,10 @@ const FAQ = () => {
                 </summary>
 
                 <p className="px-4 pt-4  text-gray-900">
-                    Navigate to the My Books section. There you can delete any book you’ve added by clicking the "Delete" button.
+                    Navigate to the My Books section. There you can delete any
+                    book you’ve added by clicking the "Delete" button.
                 </p>
             </details>
-
-
-
-
         </div>
     );
 };

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React from "react";
 import { FaRocketchat } from "react-icons/fa";
 
@@ -5,10 +6,12 @@ const Contact = () => {
     return (
         <section class="bg-teal-700 rounded mt-10">
             <div class="container px-6 py-12 mx-auto">
-                <div>
-                    <p class="font-medium text-white">
-                        Contact us
-                    </p>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                >
+                    <p class="font-medium text-white">Contact us</p>
 
                     <h1 class="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">
                         We’d love to hear from you
@@ -17,7 +20,7 @@ const Contact = () => {
                     <p class="mt-3 text-gray-500 dark:text-gray-400">
                         Our friendly team is always here to chat.
                     </p>
-                </div>
+                </motion.div>
 
                 <div class="grid grid-cols-1 gap-12 mt-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     <div class="p-4 rounded-lg bg-white">
@@ -41,9 +44,7 @@ const Contact = () => {
                         <h2 class="mt-4 text-base font-medium text-gray-700">
                             Chat to sales
                         </h2>
-                        <p class="mt-2 text-sm">
-                            Speak to our friendly team.
-                        </p>
+                        <p class="mt-2 text-sm">Speak to our friendly team.</p>
                         <p class="mt-2 text-sm text-teal-700">
                             sales@bookshelf.com
                         </p>
@@ -57,12 +58,8 @@ const Contact = () => {
                         <h2 class="mt-4 text-base font-medium text-black">
                             Chat to support
                         </h2>
-                        <p class="mt-2 text-sm">
-                            We’re here to help.
-                        </p>
-                        <p class="mt-2 text-sm text-teal-700">
-                            Start new chat
-                        </p>
+                        <p class="mt-2 text-sm">We’re here to help.</p>
+                        <p class="mt-2 text-sm text-teal-700">Start new chat</p>
                     </div>
 
                     <div class="p-4 rounded-lg bg-white">
@@ -88,14 +85,11 @@ const Contact = () => {
                             </svg>
                         </span>
 
-                        <h2 class="mt-4 text-base font-medium ">
-                            Visit us
-                        </h2>
-                        <p class="mt-2 text-sm">
-                            Visit our office HQ..
-                        </p>
+                        <h2 class="mt-4 text-base font-medium ">Visit us</h2>
+                        <p class="mt-2 text-sm">Visit our office HQ..</p>
                         <p class="mt-2 text-sm text-teal-700">
-                            FR Tower, Level-6,Tejgaon Industrial Area, Dhaka-1205
+                            FR Tower, Level-6,Tejgaon Industrial Area,
+                            Dhaka-1205
                         </p>
                     </div>
 
@@ -117,12 +111,8 @@ const Contact = () => {
                             </svg>
                         </span>
 
-                        <h2 class="mt-4 text-base font-medium">
-                            Call us
-                        </h2>
-                        <p class="mt-2 text-sm">
-                            Sat-Thu from 8am to 5pm.
-                        </p>
+                        <h2 class="mt-4 text-base font-medium">Call us</h2>
+                        <p class="mt-2 text-sm">Sat-Thu from 8am to 5pm.</p>
                         <p class="mt-2 text-sm text-teal-700">
                             +880 1833-555444
                         </p>

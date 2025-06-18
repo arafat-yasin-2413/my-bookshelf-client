@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
-import { useLoaderData } from 'react-router';
-import BookCard from './BookCard';
+import React, { useState } from "react";
+import { useLoaderData } from "react-router";
+import BookCard from "./BookCard";
+import { motion } from "framer-motion";
 
 const Top6Books = () => {
-    
     const initialTopBooks = useLoaderData();
-	const [topBooks, setTopBooks] = useState(initialTopBooks);
+    const [topBooks, setTopBooks] = useState(initialTopBooks);
 
     return (
-        <div className='bg-gray-100 p-6 rounded-2xl'>
+        <div className="bg-gray-100 p-6 rounded-2xl">
+            <motion.h2
+                className="text-4xl my-10 font-semibold"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 3, ease: "easeOut" }}
+            >
+                Top Books
+            </motion.h2>
 
-            <h2 className='text-4xl my-10 font-semibold'>Top Books</h2>
-            
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 '>
-                {
-                    topBooks.length> 0 && 
-                    topBooks.map(book => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+                {topBooks.length > 0 &&
+                    topBooks.map((book) => (
                         <BookCard key={book._id} book={book}></BookCard>
-                    ))
-                }
+                    ))}
             </div>
         </div>
     );

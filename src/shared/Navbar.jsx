@@ -109,7 +109,7 @@ const Navbar = () => {
         <>
             <div className="navbar bg-teal-600 text-white shadow-sm justify-between sticky top-0 z-50">
                 
-                <div className="navbar-start border w-fit">
+                <div className="navbar-start  w-fit">
                     <div className="dropdown">
                         <div
                             tabIndex={0}
@@ -165,7 +165,7 @@ const Navbar = () => {
                     </h5>
                 </div> */}
 
-                <div className="navbar-end hidden lg:flex border border-red-300 w-fit gap-4">
+                <div className="navbar-end hidden lg:flex w-fit gap-4">
 
                     <ul className="flex gap-3">{links}</ul>
 
