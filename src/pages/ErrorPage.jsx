@@ -9,10 +9,10 @@ const ErrorPage = () => {
     }, [location.pathname]);
 
     return (
-        <section class="bg-gray-200">
-            <div class="container flex items-center justify-center min-h-screen px-6 py-12 mx-auto">
-                <div class="w-full ">
-                    <div class="flex flex-col items-center max-w-lg mx-auto text-center">
+        <section className="bg-gray-200">
+            <div className="container flex items-center justify-center min-h-screen px-6 py-12 mx-auto">
+                <div className="w-full ">
+                    <div className="flex flex-col items-center max-w-lg mx-auto text-center">
 
 
                         <div>
@@ -20,15 +20,15 @@ const ErrorPage = () => {
                         </div>
 
 
-                        <h1 class="mt-3 text-2xl font-semibold md:text-3xl">
+                        <h1 className="mt-3 text-2xl font-semibold md:text-3xl">
                             Page not Found
                         </h1>
                         
 
-                        <div class="flex items-center w-full mt-6 gap-x-3 shrink-0 sm:w-auto">
+                        <div className="flex items-center w-full mt-6 gap-x-3 shrink-0 sm:w-auto">
 
 
-                            <Link to="/" class="w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                            <Link to="/" className="w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
                                 Take me home
                             </Link>
                         </div>
