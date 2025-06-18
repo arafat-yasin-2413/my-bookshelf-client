@@ -2,18 +2,16 @@ import React, { use, useEffect } from "react";
 import { useLocation } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../contexts/AuthContext";
+import { motion } from "framer-motion";
 
 const AddBook = () => {
     const location = useLocation();
-    useEffect(()=>{
+    useEffect(() => {
         document.title = "Add Book";
-    },[location.pathname])
+    }, [location.pathname]);
 
-    const {user} = use(AuthContext);
+    const { user } = use(AuthContext);
     console.log(user);
-
-
-
 
     const handleAddBook = (e) => {
         e.preventDefault();
@@ -21,7 +19,7 @@ const AddBook = () => {
 
         const formData = new FormData(form);
         const bookData = Object.fromEntries(formData.entries());
-        
+
         bookData.upvotedBy = [];
 
         console.log(bookData);
@@ -51,13 +49,20 @@ const AddBook = () => {
         form.reset();
     };
     return (
-        <div className="bg-blue-300 rounded">
-            <h2>Add book page</h2>
+        <div className="bg-base-300 rounded p-2 my-10">
+            <motion.h2
+                className="text-center text-4xl mt-6 font-semibold mb-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+                Add book form
+            </motion.h2>
 
             <form onSubmit={handleAddBook}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-6">
                     {/* book title */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                    <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
                             Book Title
                         </label>
@@ -71,7 +76,7 @@ const AddBook = () => {
                     </fieldset>
 
                     {/* cover photo */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                    <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
                             Cover Photo
                         </label>
@@ -85,7 +90,7 @@ const AddBook = () => {
                     </fieldset>
 
                     {/* total page */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                    <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
                             Total Page
                         </label>
@@ -99,7 +104,7 @@ const AddBook = () => {
                     </fieldset>
 
                     {/* book author */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                    <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
                             Book Author
                         </label>
@@ -111,10 +116,9 @@ const AddBook = () => {
                             placeholder="author name"
                         />
                     </fieldset>
-                    
-                    
+
                     {/* user email read only */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                    <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
                             User Email
                         </label>
@@ -129,7 +133,7 @@ const AddBook = () => {
                     </fieldset>
 
                     {/* user name read only */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                    <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
                             User Name
                         </label>
@@ -143,14 +147,8 @@ const AddBook = () => {
                         />
                     </fieldset>
 
-
-
-
-
-
-
                     {/* publishing year */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                    <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
                             Publishing Year
                         </label>
@@ -164,7 +162,7 @@ const AddBook = () => {
                     </fieldset>
 
                     {/* book category */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                    <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
                             Book Category
                         </label>
@@ -185,7 +183,7 @@ const AddBook = () => {
                     </fieldset>
 
                     {/* reading status */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                    <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
                             Reading Status
                         </label>
@@ -204,7 +202,7 @@ const AddBook = () => {
                     </fieldset>
 
                     {/* book overview */}
-                    <fieldset className="fieldset bg-base-200 border-base-300 rounded-box  border p-4">
+                    <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
                         <label className="fieldset-legend text-sm">
                             Book Overview
                         </label>
@@ -219,7 +217,7 @@ const AddBook = () => {
                 <div className="p-6">
                     <input
                         type="submit"
-                        className="btn w-full text-xl "
+                        className="btn w-full text-xl border-teal-200"
                         value="Add Book"
                     />
                 </div>

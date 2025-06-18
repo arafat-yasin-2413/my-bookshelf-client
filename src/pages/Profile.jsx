@@ -122,7 +122,7 @@ const Profile = () => {
                                     ))}
                                 </ul>
                             ) : (
-                                <p className="text-sm italic text-gray-400 mt-1">
+                                <p className="text-4xl text-center text-gray-400 mt-1">
                                     No category data found.
                                 </p>
                             )}

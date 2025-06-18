@@ -51,13 +51,3 @@ const MyBooks = () => {
 };
 
 export default MyBooks;
-
-{/* <div>
-                my books page
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {myAllBooks.length > 0 &&
-                        myAllBooks.map((book) => (
-                            <MyBookCard key={book._id} book={book}></MyBookCard>
-                        ))}
-                </div>
-            </div> */}
