@@ -12,7 +12,7 @@ const Blog = () => {
 
                 <div className="bg-white p-4 sm:p-6">
                     <time
-                        datetime="2025-06-16"
+                        dateTime="2025-06-16"
                         className="block text-xs text-gray-500"
                     >
                         {" "}

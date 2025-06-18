@@ -48,7 +48,7 @@ const Navbar = () => {
             <li>
                 <NavLink
                     className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
-                    to={`/myBooks/${user?.email}`}
+                    to={`/myBooks`}
                 >
                     My Books
                 </NavLink>

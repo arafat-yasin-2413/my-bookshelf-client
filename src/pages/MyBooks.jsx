@@ -1,37 +1,62 @@
-import React, { useEffect } from 'react';
-import { useLoaderData, useLocation } from 'react-router';
-import BookCard from '../components/BookCard';
-import MyBookCard from '../components/MyBookCard';
+import React, { Suspense, use, useEffect } from "react";
+import { useLoaderData, useLocation } from "react-router";
+import BookCard from "../components/BookCard";
+import MyBookCard from "../components/MyBookCard";
+import { AuthContext } from "../contexts/AuthContext";
+import LoaderSpinner from "../components/LoaderSpinner";
+import MyBooksList from "./MyBooksList";
+import { myBooksPromise } from "../api/myBooksApi";
 
 const MyBooks = () => {
-
     const location = useLocation();
-    useEffect(()=>{
+    const { user } = use(AuthContext);
+
+    useEffect(() => {
         document.title = "MyBooks";
-    },[location.pathname])
+    }, [location.pathname]);
 
-    const myAllBooks = useLoaderData();
-    console.log(myAllBooks);
 
-    
+    console.log("user in mybooks : ", user);
+
     return (
-        <div>
-            my books page
+        <>
+            
 
 
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
 
+
+            <div className="my-10">
+
+                {/* <Suspense fallback={<LoaderSpinner></LoaderSpinner>}>
+                    <MyBooksList>
+                        myBooksPromise = {myBooksPromise(user?.email)}
+                    </MyBooksList>
+                </Suspense> */}
+
+                    <h2 className="mb-10 text-center text-4xl font-semibold">My Books</h2>
                 {
-                    myAllBooks.length > 0 && 
-                    myAllBooks.map(book=> (
-                        <MyBookCard key={book._id} book={book}></MyBookCard>
-                    ))
-                }
+                    user?.email ? (
+                        <Suspense fallback={<LoaderSpinner></LoaderSpinner>}>
+                            <MyBooksList myBooksPromise={myBooksPromise(user.email)}>
 
+                            </MyBooksList>
+                        </Suspense>
+                    ) : (<LoaderSpinner></LoaderSpinner>)
+                }
             </div>
-        </div>
+        </>
     );
 };
 
 export default MyBooks;
+
+{/* <div>
+                my books page
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {myAllBooks.length > 0 &&
+                        myAllBooks.map((book) => (
+                            <MyBookCard key={book._id} book={book}></MyBookCard>
+                        ))}
+                </div>
+            </div> */}

@@ -83,15 +83,22 @@ const router = createBrowserRouter([
                 path: "/login",
                 Component: Login,
             },
+            // {
+            //     path: "/myBooks/:email",
+            //     loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/myBooks/${params.email}`),
+            //     hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
+            //     element: (
+            //         <PrivateRoute>
+            //             <MyBooks></MyBooks>
+            //         </PrivateRoute>
+            //     ),
+            // },
+
             {
-                path: "/myBooks/:email",
-                loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/myBooks/${params.email}`),
-                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
-                element: (
-                    <PrivateRoute>
-                        <MyBooks></MyBooks>
-                    </PrivateRoute>
-                ),
+                path: '/myBooks',
+                element: <PrivateRoute>
+                    <MyBooks></MyBooks>
+                </PrivateRoute>
             },
             {
                 path: "/profile",

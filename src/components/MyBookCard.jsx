@@ -7,9 +7,17 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../contexts/AuthContext";
 
 const MyBookCard = ({ book }) => {
-    const { _id, bookTitle, coverPhoto, bookAuthor, bookCategory, upvotedBy, userEmail } = book || {};
+    const {
+        _id,
+        bookTitle,
+        coverPhoto,
+        bookAuthor,
+        bookCategory,
+        upvotedBy,
+        userEmail,
+    } = book || {};
     const navigate = useNavigate();
-    const {user} = use(AuthContext);
+    const { user } = use(AuthContext);
 
     const handleDeleteBook = (id) => {
         console.log("id paisi : ", id);
@@ -46,36 +54,33 @@ const MyBookCard = ({ book }) => {
         });
     };
 
-
-
     return (
         <div className="card bg-base-100 shadow-sm">
             <figure>
-                <img src={`${coverPhoto}`} alt={`image of ${bookTitle}`} />
+                <img className="rounded w-36 object-cover" src={`${coverPhoto}`} alt={`image of ${bookTitle}`} />
             </figure>
 
-            <div className="flex items-center gap-2">
-                <button
-                
-                    className="btn bg-gray-300 rounded"
-                >
-                    <BiUpvote size={20}></BiUpvote>
-                </button>
+            <div className="flex flex-col justify-center items-center mt-2">
+                <div className="flex items-center gap-2 mt-4">
+                    <button className="btn bg-gray-300 rounded">
+                        <BiUpvote size={20}></BiUpvote>
+                    </button>
 
-                <div>
-                    <h5 className="text-xl">{upvotedBy.length}</h5>
-                </div>
-            </div>
-
-            <div className="card-body">
-                <h2 className="card-title">{bookTitle}</h2>
-                <p>Author : {bookAuthor}</p>
-                <div className="card-actions justify-start">
-                    <div className="badge badge-outline">{bookCategory}</div>
+                    <div>
+                        <h5 className="text-xl">{upvotedBy.length}</h5>
+                    </div>
                 </div>
 
+                <div className="card-body">
+                    <h2 className="card-title">{bookTitle}</h2>
+                    <p>Author : {bookAuthor}</p>
+                    <div className="card-actions justify-start">
+                        <div className="badge badge-outline">
+                            {bookCategory}
+                        </div>
+                    </div>
 
-                {/* update delete */}
+                    {/* update delete */}
                     <div className="gap-2 flex">
                         <Link
                             to={`/updateBook/${_id}`}
@@ -91,17 +96,15 @@ const MyBookCard = ({ book }) => {
                         </button>
                     </div>
 
+                    <div>
+                        <Link to={`/bookDetails/${_id}`} className="btn">
+                            See Details
+                        </Link>
+                    </div>
 
-                <div>
-                    <Link to={`/bookDetails/${_id}`} className="btn">
-                        See Details
-                    </Link>
-                </div>
-
-                <div>
-                    <p>
-                        Added by : {userEmail}
-                    </p>
+                    {/* <div>
+                        <p>Added by : {userEmail}</p>
+                    </div> */}
                 </div>
             </div>
         </div>
