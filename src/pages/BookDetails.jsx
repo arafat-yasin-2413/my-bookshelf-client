@@ -68,7 +68,7 @@ const BookDetails = () => {
     // console.log('userEmail from books db : ', userEmail);
 
     const handleDeleteBook = (id) => {
-        console.log("id paisi : ", id);
+        // console.log("id paisi : ", id);
 
         if(userEmail !== user?.email) {
             return toast.error('Not your book. Cannot Delete.');
@@ -90,7 +90,7 @@ const BookDetails = () => {
                 })
                     .then((res) => res.json())
                     .then((data) => {
-                        console.log("after delete : ", data);
+                        // console.log("after delete : ", data);
                         if (data.deletedCount) {
                             Swal.fire({
                                 title: "Deleted!",
@@ -120,14 +120,14 @@ const BookDetails = () => {
                 email: user?.email,
             })
             .then((data) => {
-                console.log(data.data);
+                // console.log(data.data);
                 if (data.data.modifiedCount) {
                     toast.success("You have Liked the book Successfully");
                     setUpvoteCount((prev) => prev + 1);
                 }
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             });
     };
 
@@ -153,7 +153,7 @@ const BookDetails = () => {
         reviewData.photoURL = user?.photoURL;
         reviewData.createdAt = date;
 
-        console.log(reviewData);
+        // console.log(reviewData);
         // send reviewData to the database
 
         fetch(`${import.meta.env.VITE_API_URL}/addReview`, {

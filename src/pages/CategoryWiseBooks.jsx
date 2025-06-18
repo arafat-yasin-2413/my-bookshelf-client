@@ -6,7 +6,7 @@ const CategoryWiseBooks = () => {
     const cat = useParams();
     // console.log(cat.categoryName);
     const categoryWiseBooks = useLoaderData();
-    console.log(categoryWiseBooks);
+    // console.log(categoryWiseBooks);
 
     useEffect(() => {
         window.scrollTo(0, 0);

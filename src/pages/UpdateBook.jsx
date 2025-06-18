@@ -13,7 +13,7 @@ const UpdateBook = () => {
     const book = useLoaderData();
     const navigate = useNavigate();
     const {user} = use(AuthContext);
-    console.log(book);
+    // console.log(book);
 
     const {
         _id,
@@ -31,7 +31,7 @@ const UpdateBook = () => {
 
         const formData = new FormData(form);
         const updatedBookData = Object.fromEntries(formData.entries());
-        console.log(updatedBookData);
+        // console.log(updatedBookData);
 
         // send data to the database
         fetch(`${import.meta.env.VITE_API_URL}/book/${_id}`, {

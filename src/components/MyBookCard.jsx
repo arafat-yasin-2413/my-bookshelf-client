@@ -20,7 +20,7 @@ const MyBookCard = ({ book }) => {
     const { user } = use(AuthContext);
 
     const handleDeleteBook = (id) => {
-        console.log("id paisi : ", id);
+        // console.log("id paisi : ", id);
 
         Swal.fire({
             title: "Are you sure?",
@@ -38,7 +38,7 @@ const MyBookCard = ({ book }) => {
                 })
                     .then((res) => res.json())
                     .then((data) => {
-                        console.log("after delete : ", data);
+                        // console.log("after delete : ", data);
                         if (data.deletedCount) {
                             Swal.fire({
                                 title: "Deleted!",

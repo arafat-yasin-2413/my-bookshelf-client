@@ -49,8 +49,8 @@ const Profile = () => {
 
     const { photoURL, displayName, email } = user;
 
-    console.log(totalBookCount);
-    console.log(categoryCount);
+    // console.log(totalBookCount);
+    // console.log(categoryCount);
 
     return (
         <>

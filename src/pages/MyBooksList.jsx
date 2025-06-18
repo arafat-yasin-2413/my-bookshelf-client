@@ -4,7 +4,7 @@ import MyBookCard from "../components/MyBookCard";
 const MyBooksList = ({ myBooksPromise }) => {
     const myBooks = use(myBooksPromise);
 
-    console.log(myBooks);
+    // console.log(myBooks);
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">

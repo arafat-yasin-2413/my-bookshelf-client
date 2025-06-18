@@ -128,7 +128,7 @@ const Register = () => {
                     
 			})
 			.catch((error) => {
-				console.log(error);
+				// console.log(error);
 				setError(error.message);
                 toast.error(`User creation failed : ${error.message}`)
 			});

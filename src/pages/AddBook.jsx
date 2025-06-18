@@ -11,7 +11,7 @@ const AddBook = () => {
     }, [location.pathname]);
 
     const { user } = use(AuthContext);
-    console.log(user);
+    // console.log(user);
 
     const handleAddBook = (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ const AddBook = () => {
 
         bookData.upvotedBy = [];
 
-        console.log(bookData);
+        // console.log(bookData);
         // send data to the database
 
         fetch(`${import.meta.env.VITE_API_URL}/addBook`, {

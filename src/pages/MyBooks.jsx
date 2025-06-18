@@ -16,8 +16,8 @@ const MyBooks = () => {
     }, [location.pathname]);
 
 
-    console.log("user in mybooks : ", user);
-    console.log('token from the context : ', user.accessToken);
+    // console.log("user in mybooks : ", user);
+    // console.log('token from the context : ', user.accessToken);
 
     return (
         <>
