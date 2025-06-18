@@ -112,7 +112,7 @@ const BookDetails = () => {
         }
 
         if (user?.email === userEmail) {
-            return toast.error("Lojja kore na?");
+            return toast.error("You Cannot upvote your own book");
         }
 
         axios
