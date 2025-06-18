@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useLocation } from "react-router";
+import { useLocation } from "react-router";
 import BookCard from "../components/BookCard";
 import LoaderSpinner from "../components/LoaderSpinner";
 
@@ -11,7 +11,7 @@ const Bookshelf = () => {
 
     useEffect(() => {
         document.title = "Bookshelf";
-        fetchAllBooks(); // initial load
+        fetchAllBooks();
     }, [location.pathname]);
 
     const fetchAllBooks = async () => {
@@ -51,7 +51,7 @@ const Bookshelf = () => {
 
     const handleClearSearch = () => {
         setSearchQuery("");
-        fetchAllBooks(); // 🔄 fetch all books again
+        fetchAllBooks(); 
     };
 
     return (
