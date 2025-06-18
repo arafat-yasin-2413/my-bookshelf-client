@@ -159,11 +159,11 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                <div className="navbar-center border border-green-400 hidden sm:flex">
+                {/* <div className="navbar-center border border-green-400 hidden sm:flex">
                     <h5 className="text-xs">
                         {user && user?.email}
                     </h5>
-                </div>
+                </div> */}
 
                 <div className="navbar-end hidden lg:flex border border-red-300 w-fit gap-4">
 

@@ -17,6 +17,7 @@ const MyBooks = () => {
 
 
     console.log("user in mybooks : ", user);
+    console.log('token from the context : ', user.accessToken);
 
     return (
         <>
@@ -38,7 +39,7 @@ const MyBooks = () => {
                 {
                     user?.email ? (
                         <Suspense fallback={<LoaderSpinner></LoaderSpinner>}>
-                            <MyBooksList myBooksPromise={myBooksPromise(user.email)}>
+                            <MyBooksList myBooksPromise={myBooksPromise(user.email, user.accessToken)}>
 
                             </MyBooksList>
                         </Suspense>
