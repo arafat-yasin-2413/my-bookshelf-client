@@ -11,17 +11,17 @@
 
 
 :root {
-  --color-primary: #3B5B3B;
-  --color-secondary: #EADBC8;
-  --color-accent: #D97706;
+  --color-primary: #2563EB;
+  --color-secondary: #E0E7FF;
+  --color-accent: #F59E0B;
 }
 
 
 .nav.active{
     
     @apply bg-white p-1;
-    @apply outline outline-teal-300;
-    @apply text-teal-700;
+    @apply outline outline-primary;
+    @apply text-accent;
     
     
 }
