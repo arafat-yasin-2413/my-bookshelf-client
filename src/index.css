@@ -10,9 +10,10 @@
 }
 
 
-:root{
-    --color-primary: #dc2626;
-    --color-secondary: #67e8f9;
+:root {
+  --color-primary: #3B5B3B;
+  --color-secondary: #EADBC8;
+  --color-accent: #D97706;
 }
 
 

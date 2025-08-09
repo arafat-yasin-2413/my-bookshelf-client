@@ -23,7 +23,7 @@ const Navbar = () => {
         <>
             <li>
                 <NavLink
-                    className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
+                    className="nav text-sm text-primary font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
                     to="/"
                 >
                     Home
@@ -31,7 +31,7 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
-                    className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
+                    className="nav text-sm text-primary font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
                     to="/bookshelf"
                 >
                     Bookshelf
@@ -39,7 +39,7 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
-                    className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
+                    className="nav text-sm text-primary font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
                     to="/addBook"
                 >
                     Add Book
@@ -47,7 +47,7 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
-                    className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
+                    className="nav text-sm text-primary font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
                     to={`/myBooks`}
                 >
                     My Books
@@ -55,7 +55,7 @@ const Navbar = () => {
             </li>
             <li>
                 <NavLink
-                    className="nav text-sm text-white font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
+                    className="nav text-sm text-primary font-medium transition hover:text-teal-700 hover:bg-white hover:p-1 rounded-xl"
                     to="/profile"
                 >
                     Profile
@@ -68,13 +68,13 @@ const Navbar = () => {
         <>
             <Link
                 to="/register"
-                className="btn h-8 w-18 text-sm bg-teal-700 text-white hover:bg-white hover:text-teal-700"
+                className="btn h-8 w-18 text-sm bg-secondary text-primary hover:bg-white hover:text-teal-700"
             >
                 Register
             </Link>
             <Link
                 to="/login"
-                className="btn h-8 w-18 text-sm bg-teal-700 text-white hover:bg-white hover:text-teal-700"
+                className="btn h-8 w-18 text-sm bg-secondary text-primary hover:bg-white hover:text-teal-700"
             >
                 Login
             </Link>
@@ -85,7 +85,7 @@ const Navbar = () => {
         <>
             <button
                 onClick={handleLogout}
-                className="btn h-8 w-18 text-sm bg-red-700 text-white hover:bg-white hover:text-red-700"
+                className="btn h-8 w-18 text-sm bg-red-700 text-primary hover:bg-white hover:text-red-700"
             >
                 Logout
             </button>
@@ -107,7 +107,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="navbar bg-teal-600 text-white shadow-sm justify-between sticky top-0 z-50">
+            <nav className="navbar bg-secondary shadow-sm justify-between sticky top-0 z-50">
                 
                 <div className="navbar-start  w-fit">
                     <div className="dropdown">
@@ -152,7 +152,7 @@ const Navbar = () => {
                     <div>
                         <Link className="flex justify-center items-center gap-2">
                             <img className="w-8" src={logo} alt="logo" />
-                            <span className="text-2xl font-semibold text-white">
+                            <span className="text-2xl font-semibold text-primary">
                                 Bookshelf
                             </span>
                         </Link>
@@ -175,7 +175,7 @@ const Navbar = () => {
                         {user ? logOutOption : authOptions}
                     </div>
                 </div>
-            </div>
+            </nav>
         </>
     );
 };
