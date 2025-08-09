@@ -10,6 +10,12 @@
 }
 
 
+:root{
+    --color-primary: #dc2626;
+    --color-secondary: #67e8f9;
+}
+
+
 .nav.active{
     
     @apply bg-white p-1;
@@ -18,6 +24,8 @@
     
     
 }
+
+
 
 .custom-toast-position{
     top: 80px;
