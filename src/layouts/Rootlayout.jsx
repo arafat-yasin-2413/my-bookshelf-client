@@ -6,15 +6,15 @@ import Container from "../container/Container";
 
 const Rootlayout = () => {
     return (
-        <>
+        <section className="bg-base-100">
             <Navbar></Navbar>
 
-            <section className="bg-red-200">
+            
                 <Outlet></Outlet>
-            </section>
+            
 
             <Footer></Footer>
-        </>
+        </section>
     );
 };
 

@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { FaQ } from "react-icons/fa6";
 import Blog from "../../components/Blog/Blog";
 import FAQ from "../../components/FAQ/FAQ";
+import Banner from "../../components/Banner/Banner";
 
 const Home = () => {
     const location = useLocation();
@@ -21,6 +22,9 @@ const Home = () => {
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
         >
+            <Banner></Banner>
+
+
             <Slider></Slider>
 
             <Categories></Categories>
