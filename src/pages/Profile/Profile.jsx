@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
-import BookPieChart from "../components/BookPieChart";
 import { LiaSwatchbookSolid } from "react-icons/lia";
 import { SiBookstack } from "react-icons/si";
 import { motion } from "framer-motion";
+import BookPieChart from "../../components/BookPieChart/BookPieChart";
 
 const Profile = () => {
     const location = useLocation();

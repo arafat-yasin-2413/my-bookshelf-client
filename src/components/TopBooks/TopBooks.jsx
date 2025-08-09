@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
-import BookCard from "./BookCard";
+import BookCard from "../BookCard/BookCard";
 import { motion } from "framer-motion";
 
 const Top6Books = () => {

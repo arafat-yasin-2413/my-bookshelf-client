@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {

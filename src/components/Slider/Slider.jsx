@@ -11,7 +11,7 @@ const Slider = () => {
         <>
 
             <div>
-                <h2 className="text-4xl my-4 text-center font-medium text-teal-700">Our Popular Books</h2>
+                <h2 className="text-4xl text-center font-medium text-primary">Our Popular Books</h2>
             </div>
 
             <div className="max-w-2xs mx-auto">

@@ -5,11 +5,11 @@ import { MdDelete, MdKeyboardArrowDown } from "react-icons/md";
 import { Link, useLoaderData, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
-import { getCurrentDateFormatted } from "../utils/getDate";
-import LoaderSpinner from "../components/LoaderSpinner";
-import Review from "../components/Review";
+import { getCurrentDateFormatted } from "../../utils/getDate";
+import LoaderSpinner from "../../components/LoadingSpinner/LoaderSpinner";
+import Review from "../../components/Review/Review";
 
 const BookDetails = () => {
     const location = useLocation();

@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import MyBookCard from "../components/MyBookCard";
+import MyBookCard from "../../components/MyBookCard/MyBookCard";
 
 const MyBooksList = ({ myBooksPromise }) => {
     const myBooks = use(myBooksPromise);

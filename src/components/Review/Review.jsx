@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
 
 const Review = ({ singleReview, allReviews, setReviews, book }) => {

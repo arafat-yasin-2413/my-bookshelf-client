@@ -1,21 +1,21 @@
 import React from "react";
 import { createBrowserRouter } from "react-router";
 import Rootlayout from "../layouts/Rootlayout";
-import Home from "../components/Home";
-import ErrorPage from "../pages/ErrorPage";
-import AddBook from "../pages/AddBook";
-import Bookshelf from "../pages/Bookshelf";
-import BookDetails from "../pages/BookDetails";
-import UpdateBook from "../pages/UpdateBook";
-import Register from "../pages/Register";
-import Login from "../pages/Login";
-import Profile from "../pages/Profile";
-import LoaderSpinner from "../components/LoaderSpinner";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import AddBook from "../pages/AddBook/AddBook";
+import Bookshelf from "../pages/Bookshelf/Bookshelf";
+import BookDetails from "../pages/BookDetails/BookDetails";
+import UpdateBook from "../pages/UpdateBook/UpdateBook";
+import Register from "../pages/Register/Register";
+import Login from "../pages/Login/Login";
+import Profile from "../pages/Profile/Profile";
 import PrivateRoute from "../providers/PrivateRoute";
-import MyBooks from "../pages/MyBooks";
-import About from "../pages/About";
-import Contact from "../pages/Contact";
-import CategoryWiseBooks from "../pages/CategoryWiseBooks";
+import MyBooks from "../pages/MyBooks/MyBooks";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
+import CategoryWiseBooks from "../pages/CategoryWiseBooks/CategoryWiseBooks";
+import Home from "../pages/Home/Home";
+import LoaderSpinner from "../components/LoadingSpinner/LoaderSpinner";
 
 const router = createBrowserRouter([
     {

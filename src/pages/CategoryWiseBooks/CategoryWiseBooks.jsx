@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useLoaderData, useParams } from "react-router";
-import BookCard from "../components/BookCard";
+import BookCard from "../../components/BookCard/BookCard";
 
 const CategoryWiseBooks = () => {
     const cat = useParams();

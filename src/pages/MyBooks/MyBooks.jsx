@@ -1,11 +1,9 @@
 import React, { Suspense, use, useEffect } from "react";
 import { useLoaderData, useLocation } from "react-router";
-import BookCard from "../components/BookCard";
-import MyBookCard from "../components/MyBookCard";
-import { AuthContext } from "../contexts/AuthContext";
-import LoaderSpinner from "../components/LoaderSpinner";
-import MyBooksList from "./MyBooksList";
-import { myBooksPromise } from "../api/myBooksApi";
+import { AuthContext } from "../../contexts/AuthContext";
+import MyBooksList from "../MyBooksList/MyBooksList";
+import { myBooksPromise } from "../../api/myBooksApi";
+import LoaderSpinner from "../../components/LoadingSpinner/LoaderSpinner";
 
 const MyBooks = () => {
     const location = useLocation();

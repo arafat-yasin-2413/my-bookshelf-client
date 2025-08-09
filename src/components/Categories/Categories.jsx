@@ -1,8 +1,8 @@
 import React, { use, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { AuthContext } from "../contexts/AuthContext";
-import LoaderSpinner from "./LoaderSpinner";
-import BookCard from "./BookCard";
+import { AuthContext } from "../../contexts/AuthContext";
+import LoaderSpinner from "../LoadingSpinner/LoaderSpinner";
+import BookCard from "../BookCard/BookCard";
 import { Link } from "react-router";
 
 const Categories = () => {
@@ -25,17 +25,6 @@ const Categories = () => {
                 setLoading(false);
             });
     }, []);
-
-    // const handleCategoryWiseBooks = async (categoryName) => {
-    //     setLoading(true);
-    //     const res = await fetch(
-    //         `${import.meta.env.VITE_API_URL}/books/category/${categoryName}`
-    //     );
-    //     const data = await res.json();
-    //     setBooks(data);
-    //     setCurrentCategory(categoryName);
-    //     setLoading(false);
-    // };
 
     return (
         <>
@@ -75,27 +64,6 @@ const Categories = () => {
                     </div>
                 </div>
 
-                {/* <div className="col-span-12 md:col-span-9 border">
-                    <div>
-                        <h2 className="text-4xl font-bold text-center my-4">
-                            {currentCategory}
-                        </h2>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-6">
-                            {loading ? (
-                                <LoaderSpinner></LoaderSpinner>
-                            ) : (
-                                books.length > 0 &&
-                                books.map((book) => (
-                                    <BookCard
-                                        key={book._id}
-                                        book={book}
-                                    ></BookCard>
-                                ))
-                            )}
-                        </div>
-                    </div>
-                </div> */}
             </div>
         </>
     );

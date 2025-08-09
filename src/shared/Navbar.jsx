@@ -25,13 +25,13 @@ const Navbar = () => {
         <>
             <Link
                 to="/register"
-                className="btn h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-teal-700"
+                className="btn h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-primary"
             >
                 Register
             </Link>
             <Link
                 to="/login"
-                className="btn h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-teal-700"
+                className="btn h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-primary"
             >
                 Login
             </Link>
@@ -42,7 +42,7 @@ const Navbar = () => {
         <>
             <button
                 onClick={handleLogout}
-                className="btn h-8 w-18 text-sm bg-red-700 text-primary hover:bg-white hover:text-red-700"
+                className="btn h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-primary"
             >
                 Logout
             </button>
@@ -67,7 +67,7 @@ const Navbar = () => {
             <section className="bg-secondary">
                 <Container>
                     <nav className="navbar justify-between sticky top-0 z-50">
-                        <div className="navbar-start  w-fit">
+                        <div className="navbar-start w-fit">
                             <div className="dropdown">
                                 <div
                                     tabIndex={0}

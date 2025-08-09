@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import BookCard from "../components/BookCard";
-import LoaderSpinner from "../components/LoaderSpinner";
+import BookCard from "../../components/BookCard/BookCard";
+import LoaderSpinner from "../../components/LoadingSpinner/LoaderSpinner";
 
 const Bookshelf = () => {
     const location = useLocation();

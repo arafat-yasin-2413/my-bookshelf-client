@@ -4,7 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const MyBookCard = ({ book }) => {
     const {

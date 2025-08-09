@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import Categories from "./Categories";
+import Categories from "../../components/Categories/Categories";
 import { useLocation } from "react-router";
-import Top6Books from "./TopBooks";
-import Slider from "./Slider";
+import Top6Books from "../../components/TopBooks/TopBooks";
+import Slider from "../../components/Slider/Slider";
 import { motion } from "framer-motion";
 import { FaQ } from "react-icons/fa6";
-import FAQ from "./FAQ";
-import Blog from "./Blog";
+import Blog from "../../components/Blog/Blog";
+import FAQ from "../../components/FAQ/FAQ";
 
 const Home = () => {
     const location = useLocation();
@@ -27,11 +27,6 @@ const Home = () => {
 
             <Top6Books></Top6Books>
 
-            <div className="md:flex w-fit mx-auto gap-4">
-                <FAQ></FAQ>
-
-                <Blog></Blog>
-            </div>
         </motion.div>
     );
 };
