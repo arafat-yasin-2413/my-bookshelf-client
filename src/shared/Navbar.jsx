@@ -25,13 +25,13 @@ const Navbar = () => {
         <>
             <Link
                 to="/register"
-                className="btn h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-primary"
+                className="btn rounded-2xl h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-primary"
             >
                 Register
             </Link>
             <Link
                 to="/login"
-                className="btn h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-primary"
+                className="btn rounded-2xl h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-primary"
             >
                 Login
             </Link>
@@ -42,7 +42,7 @@ const Navbar = () => {
         <>
             <button
                 onClick={handleLogout}
-                className="btn h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-primary"
+                className="btn rounded-2xl h-8 w-18 text-sm bg-accent text-white hover:bg-white hover:text-primary"
             >
                 Logout
             </button>
