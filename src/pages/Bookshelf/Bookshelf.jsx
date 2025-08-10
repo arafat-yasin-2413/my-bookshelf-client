@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import BookCard from "../../components/BookCard/BookCard";
 import LoaderSpinner from "../../components/LoadingSpinner/LoaderSpinner";
+import Container from "../../container/Container";
 
 const Bookshelf = () => {
     const location = useLocation();
@@ -51,55 +52,57 @@ const Bookshelf = () => {
 
     const handleClearSearch = () => {
         setSearchQuery("");
-        fetchAllBooks(); 
+        fetchAllBooks();
     };
 
     return (
-        <div className="bg-gray-200 p-4 rounded my-10">
-            <h2 className="text-4xl font-medium my-6">Bookshelf</h2>
+        <Container>
+            <div className="bg-gray-200 p-4 rounded my-10">
+                <h2 className="text-4xl font-medium my-6">Bookshelf</h2>
 
-            <form
-                onSubmit={handleSearch}
-                className="mb-6 flex items-center gap-2"
-            >
-                <input
-                    type="text"
-                    placeholder="Search by title or author"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="px-4 py-2 rounded border border-gray-400 w-60"
-                />
-                <button
-                    type="submit"
-                    className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-blue-700"
+                <form
+                    onSubmit={handleSearch}
+                    className="mb-6 flex items-center gap-2"
                 >
-                    Search
-                </button>
-                {searchQuery && (
+                    <input
+                        type="text"
+                        placeholder="Search by title or author"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="px-4 py-2 rounded border border-gray-400 w-60"
+                    />
                     <button
-                        type="button"
-                        onClick={handleClearSearch}
-                        className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                        type="submit"
+                        className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-blue-700"
                     >
-                        Clear
+                        Search
                     </button>
-                )}
-            </form>
-
-            {loading ? (
-                <LoaderSpinner />
-            ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {books.length > 0 ? (
-                        books.map((book) => (
-                            <BookCard book={book} key={book._id} />
-                        ))
-                    ) : (
-                        <p>No books found</p>
+                    {searchQuery && (
+                        <button
+                            type="button"
+                            onClick={handleClearSearch}
+                            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                        >
+                            Clear
+                        </button>
                     )}
-                </div>
-            )}
-        </div>
+                </form>
+
+                {loading ? (
+                    <LoaderSpinner />
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {books.length > 0 ? (
+                            books.map((book) => (
+                                <BookCard book={book} key={book._id} />
+                            ))
+                        ) : (
+                            <p>No books found</p>
+                        )}
+                    </div>
+                )}
+            </div>
+        </Container>
     );
 };
 

@@ -7,7 +7,7 @@ const BookCard = ({ book }) => {
         book || {};
 
     return (
-        <div className="rounded-lg p-4 bg-gray-50 shadow-xs shadow-indigo-100">
+        <div className="rounded-lg p-4 bg-white shadow-xs shadow-indigo-100">
             <div className="w-fit mx-auto">
                 <div className="w-fit mx-auto">
                     <img

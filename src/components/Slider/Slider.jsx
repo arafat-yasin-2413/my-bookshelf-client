@@ -1,7 +1,7 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-
+import { motion } from "framer-motion";
 import slide1 from "/assets/hail-mary.webp";
 import slide2 from "/assets/summer-guest.webp";
 import slide3 from "/assets/wild-dark.jpg";
@@ -10,11 +10,19 @@ import Container from "../../container/Container";
 const Slider = () => {
     return (
         <Container>
-            <div className="my-20 bg-white rounded-xl py-16">
+            <div className="bg-white rounded-xl py-16">
                 <div>
-                    <h2 className="text-4xl text-center font-medium text-primary">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                            duration: 2,
+                            ease: [0.5, 1, 0.5, 2],
+                        }}
+                        className="text-2xl sm:text-3xl md:text-4xl mb-8 text-center font-semibold tracking-wider text-accent"
+                    >
                         Our Popular Books
-                    </h2>
+                    </motion.h2>
                 </div>
 
                 <div className="max-w-2xs mx-auto">

@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import MyBooksList from "../MyBooksList/MyBooksList";
 import { myBooksPromise } from "../../api/myBooksApi";
 import LoaderSpinner from "../../components/LoadingSpinner/LoaderSpinner";
+import Container from "../../container/Container";
 
 const MyBooks = () => {
     const location = useLocation();
@@ -13,37 +14,36 @@ const MyBooks = () => {
         document.title = "MyBooks";
     }, [location.pathname]);
 
-
     // console.log("user in mybooks : ", user);
     // console.log('token from the context : ', user.accessToken);
 
     return (
         <>
-            
-
-
-
-
-
-            <div className="my-10">
-
-                {/* <Suspense fallback={<LoaderSpinner></LoaderSpinner>}>
+            <Container>
+                <div className="my-10">
+                    {/* <Suspense fallback={<LoaderSpinner></LoaderSpinner>}>
                     <MyBooksList>
                         myBooksPromise = {myBooksPromise(user?.email)}
                     </MyBooksList>
                 </Suspense> */}
 
-                    <h2 className="mb-10 text-center text-4xl font-semibold">My Books</h2>
-                {
-                    user?.email ? (
+                    <h2 className="mb-10 text-center text-4xl font-semibold">
+                        My Books
+                    </h2>
+                    {user?.email ? (
                         <Suspense fallback={<LoaderSpinner></LoaderSpinner>}>
-                            <MyBooksList myBooksPromise={myBooksPromise(user.email, user.accessToken)}>
-
-                            </MyBooksList>
+                            <MyBooksList
+                                myBooksPromise={myBooksPromise(
+                                    user.email,
+                                    user.accessToken
+                                )}
+                            ></MyBooksList>
                         </Suspense>
-                    ) : (<LoaderSpinner></LoaderSpinner>)
-                }
-            </div>
+                    ) : (
+                        <LoaderSpinner></LoaderSpinner>
+                    )}
+                </div>
+            </Container>
         </>
     );
 };

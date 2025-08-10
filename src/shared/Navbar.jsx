@@ -66,10 +66,11 @@ const Navbar = () => {
         <>
             <section className="bg-secondary sticky top-0 z-50">
                 <Container>
-                    <nav className="navbar justify-between ">
+                    <nav className="navbar justify-between">
                         
                         <div className="navbar-start w-fit">
-                            <div className="dropdown">
+                            
+                            <div className="dropdown -ml-5">
                                 <div
                                     tabIndex={0}
                                     role="button"
@@ -94,7 +95,7 @@ const Navbar = () => {
 
                                 <ul
                                     tabIndex={0}
-                                    className="menu menu-sm dropdown-content bg-secondary rounded-box z-1 mt-4 ml-2 space-y-1 w-36 p-2 shadow"
+                                    className="menu menu-sm dropdown-content bg-secondary rounded-box z-1 mt-4 space-y-1 w-36 shadow"
                                 >
                                     <NavLinks></NavLinks>
 
@@ -122,7 +123,7 @@ const Navbar = () => {
                     <ul className="flex gap-3"><NavLinks></NavLinks></ul>
                     </div>
 
-                        <div className="navbar-end hidden lg:flex w-fit gap-4">
+                        <div className="navbar-end hidden lg:flex w-fit gap-4 -mr-2">
                             
 
                             <div className="flex gap-2 justify-center items-center">
