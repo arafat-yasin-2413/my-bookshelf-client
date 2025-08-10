@@ -51,7 +51,7 @@ const Navbar = () => {
 
     const userIconOption = (
         <>
-            <div className="">
+            <div className="ml-2 my-2">
                 <img
                     referrerPolicy="no-referrer"
                     className="w-8 rounded-full"
@@ -64,9 +64,10 @@ const Navbar = () => {
 
     return (
         <>
-            <section className="bg-secondary">
+            <section className="bg-secondary sticky top-0 z-50">
                 <Container>
-                    <nav className="navbar justify-between sticky top-0 z-50">
+                    <nav className="navbar justify-between ">
+                        
                         <div className="navbar-start w-fit">
                             <div className="dropdown">
                                 <div
@@ -93,7 +94,7 @@ const Navbar = () => {
 
                                 <ul
                                     tabIndex={0}
-                                    className="menu menu-sm dropdown-content bg-secondary rounded-box z-1 mt-4 w-36 p-2 shadow"
+                                    className="menu menu-sm dropdown-content bg-secondary rounded-box z-1 mt-4 ml-2 space-y-1 w-36 p-2 shadow"
                                 >
                                     <NavLinks></NavLinks>
 
@@ -104,7 +105,7 @@ const Navbar = () => {
                             </div>
 
                             <div>
-                                <Link className="flex justify-center items-center gap-2">
+                                <Link to="/" className="flex justify-center items-center gap-2">
                                     <img
                                         className="w-8"
                                         src={logo}
@@ -117,14 +118,12 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        {/* <div className="navbar-center border border-green-400 hidden sm:flex">
-                    <h5 className="text-xs">
-                    {user && user?.email}
-                    </h5>
-                    </div> */}
+                        <div className="navbar-center hidden lg:flex">
+                    <ul className="flex gap-3"><NavLinks></NavLinks></ul>
+                    </div>
 
                         <div className="navbar-end hidden lg:flex w-fit gap-4">
-                            <ul className="flex gap-3"><NavLinks></NavLinks></ul>
+                            
 
                             <div className="flex gap-2 justify-center items-center">
                                 {user ? userIconOption : ""}
