@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Banner = () => {
     return (
-        <div className="bg-[url(/assets/banner-images/book-banner-static.jpg)] bg-cover bg-center w-full mt-6 object-cover opacity-90">
+        <div className="bg-[url(/assets/banner-images/book-banner-static.jpg)] bg-cover bg-center w-full mt-24 object-cover opacity-90">
             <div className="h-96 lg:h-[calc(100dvh-300px)] flex flex-col justify-center items-center">
                 <motion.h2
                     className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-wider"
