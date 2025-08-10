@@ -8,6 +8,7 @@ import { FaQ } from "react-icons/fa6";
 import Blog from "../../components/Blog/Blog";
 import FAQ from "../../components/FAQ/FAQ";
 import Banner from "../../components/Banner/Banner";
+import SDAnimation from "../../components/SDAnimation/SDAnimation";
 
 const Home = () => {
     const location = useLocation();
@@ -23,6 +24,8 @@ const Home = () => {
             transition={{ duration: 0.5, ease: "easeOut" }}
         >
             <Banner></Banner>
+
+            <SDAnimation></SDAnimation>
 
 
             <Slider></Slider>
