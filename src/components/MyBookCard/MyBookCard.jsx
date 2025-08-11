@@ -105,11 +105,11 @@ const MyBookCard = ({ book }) => {
                         </button>
                     </div>
 
-                    <div className="bg-white w-fit px-1 py-0.5 rounded shadow text-accent hover:bg-primary hover:text-white">
+                    <div className="bg-white w-fit px-1 py-0.5 rounded shadow text-primary hover:bg-primary hover:text-white">
                         <Link to={`/bookDetails/${_id}`}
                             className="flex items-center gap-1">
-                            <span>See Details</span>
-                            <span><FaRegEye></FaRegEye></span>
+                            <span className="">See Details</span>
+                            <span><FaRegEye className=""></FaRegEye></span>
                         </Link>
                     </div>
                 </div>

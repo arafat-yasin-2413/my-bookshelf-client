@@ -11,7 +11,7 @@ import Container from "../../container/Container";
 const About = () => {
     return (
         <Container>
-            <div className="my-10">
+            <div className="mt-10 mb-20">
                 <div className="w-fit">
                     <h2 className="text-4xl font-medium">
                         About <span className="text-teal-800">Bookshelf</span>

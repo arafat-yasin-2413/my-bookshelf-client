@@ -5,9 +5,9 @@ import { Link } from "react-router";
 
 const Footer = () => {
     return (
-        <footer className="bg-teal-700 rounded">
+        <footer className="bg-secondary rounded">
             <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-                <div className="flex justify-center text-teal-600 dark:text-teal-300 items-center gap-2">
+                <div className="flex justify-center text-primary items-center gap-2">
                     
                     <img className="w-16" src={logo} alt="logo" />
                     <h2 className="font-bold text-4xl">Bookshelf</h2>
@@ -22,7 +22,7 @@ const Footer = () => {
                     <li>
                         <Link 
                             to="/about"
-                            className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
+                            className=""
                             
                         >
                             About
@@ -32,7 +32,7 @@ const Footer = () => {
                     <li>
                         <Link
                             to="/contact"
-                            className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
+                            className=""
                             
                         >
                             Contact
@@ -46,7 +46,7 @@ const Footer = () => {
                         <Link
                             to="https://www.facebook.com/yasin.arafat.482092/"
                             
-                            className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
+                            className=""
                         >
                             <span className="sr-only">Facebook</span>
                             <svg
@@ -69,7 +69,7 @@ const Footer = () => {
                         <Link
                             to="https://x.com/YasinArafa43087"
                     
-                            className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
+                            className=""
                         >
                             <span className="sr-only">Twitter</span>
                             <svg
@@ -88,7 +88,7 @@ const Footer = () => {
                         <Link
                             to="https://github.com/arafat-yasin-2413?tab=repositories"
                             
-                            className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
+                            className=""
                         >
                             <span className="sr-only">GitHub</span>
                             <svg

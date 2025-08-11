@@ -53,7 +53,7 @@ const AddBook = () => {
         <Container>
             <div className="my-10">
                 <motion.h2
-                    className="text-center text-4xl pt-10 font-semibold mb-6"
+                    className="text-center text-4xl text-primary pt-10 font-semibold mb-6"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
@@ -216,10 +216,10 @@ const AddBook = () => {
                         </fieldset>
                     </div>
 
-                    <div className="p-6">
+                    <div className="p-6 flex justify-center items-center">
                         <input
                             type="submit"
-                            className="btn w-full text-xl border-teal-200"
+                            className="p-4 w-fit text-xl font-semibold bg-accent hover:text-white border border-secondary rounded-full cursor-pointer"
                             value="Add Book"
                         />
                     </div>
