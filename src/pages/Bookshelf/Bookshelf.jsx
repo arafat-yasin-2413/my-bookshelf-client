@@ -24,7 +24,7 @@ const Bookshelf = () => {
             const data = await res.json();
             setBooks(data);
         } catch (err) {
-            console.error("Failed to fetch all books", err);
+            // console.error("Failed to fetch all books", err);
         } finally {
             setLoading(false);
         }
@@ -44,7 +44,7 @@ const Bookshelf = () => {
             const data = await res.json();
             setBooks(data);
         } catch (err) {
-            console.error("Search failed", err);
+            // console.error("Search failed", err);
         } finally {
             setLoading(false);
         }

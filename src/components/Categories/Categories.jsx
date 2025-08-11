@@ -45,7 +45,7 @@ const Categories = () => {
         }
     };
 
-    console.log("all books", books);
+    // console.log("all books", books);
 
     const fetchBookByCategory = async (category) => {
         setLoading(true);

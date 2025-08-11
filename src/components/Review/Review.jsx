@@ -49,7 +49,7 @@ const Review = ({ singleReview, allReviews, setReviews, book }) => {
                 }
             })
             .catch((err) => {
-                console.error(err);
+                // console.error(err);
                 toast.error("Error updating review.");
             });
     };
