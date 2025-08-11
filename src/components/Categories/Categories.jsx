@@ -4,67 +4,131 @@ import { AuthContext } from "../../contexts/AuthContext";
 import LoaderSpinner from "../LoadingSpinner/LoaderSpinner";
 import BookCard from "../BookCard/BookCard";
 import { Link } from "react-router";
+import Container from "../../container/Container";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../hooks/useAxios";
 
 const Categories = () => {
-    const [categories, setCategories] = useState([]);
-    const { loading, setLoading } = use(AuthContext);
     const [books, setBooks] = useState([]);
     const [currentCategory, setCurrentCategory] = useState("");
+    const { loading, setLoading } = use(AuthContext);
+    const axiosInstance = useAxios();
+
+    const {
+        data: categories = [],
+        isLoading: categoriesLoading,
+        isError: categoriesError,
+    } = useQuery({
+        queryKey: ["categories"],
+        queryFn: async () => {
+            const res = await axiosInstance.get("/categories");
+            return res.data;
+        },
+    });
+
+    // console.log(categories);
 
     useEffect(() => {
-        setLoading(true);
-        fetch(`${import.meta.env.VITE_API_URL}/categories`)
-            .then((res) => res.json())
-            .then((data) => {
-                setCategories(data);
-                setLoading(false);
-                // console.log(data);
-            })
-            .catch((error) => {
-                toast.error("Failed to fetch categories : ", error);
-                setLoading(false);
-            });
+        fetchAllBooks();
     }, []);
+
+    const fetchAllBooks = async () => {
+        setLoading(true);
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/allBooks`);
+            const data = await res.json();
+            setBooks(data);
+        } catch (error) {
+            toast.error("Failed to fetch all books!");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    console.log("all books", books);
+
+    const fetchBookByCategory = async (category) => {
+        setLoading(true);
+        try {
+            const res = await fetch(
+                `${import.meta.env.VITE_API_URL}/books/category/${category}`
+            );
+            const data = await res.json();
+            setBooks(data);
+        } catch (error) {
+            toast.error("Failed to fetch category-wise books");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleCategoryClick = (category) => {
+        // console.log(category);
+        setCurrentCategory(category);
+        if (category === "All") {
+            fetchAllBooks();
+        } else {
+            fetchBookByCategory(category);
+        }
+    };
+
+    if (categoriesLoading) return <LoaderSpinner></LoaderSpinner>;
+
+    if (categoriesError)
+        return (
+            <p className="text-center text-red-500 my-8">
+                Failed to Load Categories
+            </p>
+        );
 
     return (
         <>
-
-            <div className="mx-auto gap-3 my-10">
-                
-                <div className="">
-                    <div className="my-10 w-fit mx-auto">
-                        <h2 className="text-xl text-center my-4 text-gray-800 font-medium">
-                            All categories
-                            <span className="font-bold">
-                                ({categories.length ? categories.length : 0}){" "}
-                            </span>
-                        </h2>
-                        <div className="flex-wrap md:flex gap-3 space-x-2">
-                            {loading ? (
-                                <LoaderSpinner></LoaderSpinner>
-                            ) : (
-                                categories.length > 0 &&
-                                categories.map((category, idx) => (
-                                    <Link to={`/books/category/${category}`}
-                                        className={`btn btn-sm bg-white text-base rounded-2xl border border-gray-500
-                                
-                                    ${
-                                        currentCategory === category
-                                            ? "bg-black text-gray-800"
-                                            : "bg-gray-100 hover:bg-black  hover:text-white"
-                                    } 
-                                `}
-                                        key={idx}
-                                    >
-                                        {category}
-                                    </Link>
-                                ))
-                            )}
+            <section className="bg-white">
+                <Container>
+                    <div className="gap-3 py-4">
+                        <div className="flex gap-3 my-10 flex-wrap">
+                            
+                                <button
+                                    onClick={() => handleCategoryClick("All")}
+                                    className={`btn rounded-md border 
+                        ${
+                            currentCategory === "All"
+                                ? "bg-accent text-white"
+                                : "bg-gray-200"
+                        }`}
+                                >
+                                    All
+                                </button>
+                            
+                            {categories.map((cat) => (
+                                <button
+                                    key={cat._id || cat}
+                                    onClick={() => handleCategoryClick(cat)}
+                                    className={`btn rounded-md border 
+                            ${
+                                currentCategory === cat
+                                    ? "bg-accent text-white"
+                                    : "bg-gray-200"
+                            }`}
+                                >
+                                    {cat}
+                                </button>
+                            ))}
                         </div>
                     </div>
-                </div>
+                </Container>
+            </section>
 
-            </div>
+            {/* book showing section */}
+            {loading && <LoaderSpinner />}
+
+            <Container>
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-4 mb-10">
+                    {books.map((book) => (
+                        <BookCard key={book._id} book={book}></BookCard>
+                    ))}
+                </div>
+            </Container>
         </>
     );
 };

@@ -6,7 +6,7 @@ import Container from "../container/Container";
 
 const Rootlayout = () => {
     return (
-        <section className="bg-gray-50">
+        <section className="bg-gray-100">
             <Navbar></Navbar>
 
             

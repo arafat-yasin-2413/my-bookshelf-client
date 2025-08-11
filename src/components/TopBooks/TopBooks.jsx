@@ -12,7 +12,7 @@ const Top6Books = () => {
         <Container>
             <div className="rounded-2xl my-10">
                 <motion.h2
-                    className="text-4xl my-10 font-semibold"
+                    className="text-4xl text-primary my-10 font-semibold"
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.6 }}

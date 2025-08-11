@@ -16,6 +16,7 @@ import Contact from "../pages/Contact/Contact";
 import CategoryWiseBooks from "../pages/CategoryWiseBooks/CategoryWiseBooks";
 import Home from "../pages/Home/Home";
 import LoaderSpinner from "../components/LoadingSpinner/LoaderSpinner";
+import Categories from "../components/Categories/Categories";
 
 const router = createBrowserRouter([
     {
@@ -50,9 +51,10 @@ const router = createBrowserRouter([
 
             {
                 path: '/books/category/:categoryName',
-                loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/books/category/${params.categoryName}`),
-                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
-                Component: CategoryWiseBooks,
+                // loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/books/category/${params.categoryName}`),
+                // hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
+                // Component: CategoryWiseBooks,
+                Component: Categories,
             },
 
     
