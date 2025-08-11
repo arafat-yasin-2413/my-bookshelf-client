@@ -10,6 +10,7 @@ import axios from "axios";
 import { getCurrentDateFormatted } from "../../utils/getDate";
 import LoaderSpinner from "../../components/LoadingSpinner/LoaderSpinner";
 import Review from "../../components/Review/Review";
+import Container from "../../container/Container";
 
 const BookDetails = () => {
     const location = useLocation();
@@ -70,8 +71,8 @@ const BookDetails = () => {
     const handleDeleteBook = (id) => {
         // console.log("id paisi : ", id);
 
-        if(userEmail !== user?.email) {
-            return toast.error('Not your book. Cannot Delete.');
+        if (userEmail !== user?.email) {
+            return toast.error("Not your book. Cannot Delete.");
         }
 
         Swal.fire({
@@ -132,16 +133,16 @@ const BookDetails = () => {
     };
 
     const handleAddReview = (e) => {
-
-        
         e.preventDefault();
         const form = e.target;
 
-        const alreadyReviewed = reviews.some((rev)=> rev.email === user?.email);
+        const alreadyReviewed = reviews.some(
+            (rev) => rev.email === user?.email
+        );
 
-        if(alreadyReviewed) {
+        if (alreadyReviewed) {
             form.reset();
-            return toast.error('You have already reviewed this book.');
+            return toast.error("You have already reviewed this book.");
         }
 
         const formData = new FormData(form);
@@ -181,168 +182,167 @@ const BookDetails = () => {
         form.reset();
     };
 
-
-    const handleEditClick = (e)=>{
-        if(userEmail !== user?.email) {
+    const handleEditClick = (e) => {
+        if (userEmail !== user?.email) {
             e.preventDefault();
-            toast.error('You are not allowed to update this book.');
+            toast.error("You are not allowed to update this book.");
         }
-    }
+    };
 
     return (
         <>
-            <div className="grid grid-cols-8 w-5xl mx-auto my-16 ">
-                {/* left side of book details */}
-                <div className="col-span-3 h-fit sticky top-24 z-20">
-                    {/* book cover photo */}
-                    <div>
-                        <img
-                            className="rounded-tr-2xl rounded-br-2xl shadow-2xl w-4/5"
-                            src={coverPhoto}
-                            alt={`image of ${bookTitle}`}
-                        />
-                    </div>
+            <Container>
+                <div className="grid grid-cols-12 mx-auto my-16 rounded-xl shadow px-2 mb-20 py-20">
+                    {/* left side of book details */}
+                    <div className="col-span-3 h-fit sticky top-24 z-20">
+                        {/* book cover photo */}
+                        <div>
+                            <img
+                                className="rounded-tr-2xl rounded-br-2xl shadow-2xl w-4/5"
+                                src={coverPhoto}
+                                alt={`image of ${bookTitle}`}
+                            />
+                        </div>
 
-                    {/* reading status */}
-                    <div className="my-4 flex">
-                        <button className="btn bg-success rounded-l-full">
-                            {readingStatus}
-                        </button>
-                        <button className="btn bg-success rounded-r-full">
-                            <MdKeyboardArrowDown
-                                size={30}
-                            ></MdKeyboardArrowDown>
-                        </button>
-                    </div>
-
-                    {/* update delete */}
-                    <div className="gap-2 flex">
-                        <Link
-                            to={`/updateBook/${_id}`}
-                            className="btn text-xl bg-blue-400"
-                            onClick={handleEditClick}
-                        >
-                            <FaEdit></FaEdit>
-                        </Link>
-                        <button
-                            onClick={() => handleDeleteBook(_id)}
-                            className="btn text-xl bg-red-400"
-                        >
-                            <MdDelete></MdDelete>
-                        </button>
-                    </div>
-                </div>
-
-                {/* content */}
-                <div className="col-span-5">
-                    {/* book title */}
-                    <h2 className="text-2xl md:text-4xl font-semibold ">
-                        {bookTitle}
-                    </h2>
-
-                    {/* book author */}
-                    <p className="text-xl text-gray-500 my-3">{bookAuthor}</p>
-
-                    {/* upvotes and reviews*/}
-                    <div className="flex gap-4 items-center">
-                        <div className="flex items-center gap-2">
-                            <button
-                                onClick={handleUpvote}
-                                className="btn bg-gray-300 rounded hover:bg-green-200 hover:text-blue-500"
-                            >
-                                <BiUpvote size={20}></BiUpvote>
+                        {/* reading status */}
+                        <div className="my-4 flex">
+                            <button className="btn bg-primary text-white rounded-l-full">
+                                {readingStatus}
                             </button>
+                            <button className="btn bg-accent text-white rounded-r-full">
+                                <MdKeyboardArrowDown
+                                    size={30}
+                                ></MdKeyboardArrowDown>
+                            </button>
+                        </div>
 
-                            <div>
-                                <h5 className="text-xl">{upvoteCount}</h5>
+                        {/* update delete */}
+                        <div className="gap-2 flex items-center">
+                            <Link
+                                to={`/updateBook/${_id}`}
+                                className="bg-white p-1 shadow hover:bg-secondary rounded"
+                                onClick={handleEditClick}
+                            >
+                                <FaEdit className="text-2xl text-accent"></FaEdit>
+                            </Link>
+                            <button
+                                onClick={() => handleDeleteBook(_id)}
+                                className="px-2 py-1 bg-white shadow cursor-pointer hover:bg-secondary rounded"
+                            >
+                                <MdDelete className="text-2xl text-accent"></MdDelete>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* content */}
+                    <div className="col-span-5">
+                        {/* book title */}
+                        <h2 className="text-2xl md:text-4xl font-semibold ">
+                            {bookTitle}
+                        </h2>
+
+                        {/* book author */}
+                        <p className="text-xl text-gray-500 my-3">
+                            {bookAuthor}
+                        </p>
+
+                        {/* upvotes and reviews*/}
+                        <div className="flex gap-4 items-center">
+                            <div className="flex items-center bg-secondary rounded">
+                                <button
+                                    onClick={handleUpvote}
+                                    className="p-1 rounded hover:bg-green-200 hover:text-blue-500 flex justify-center items-center gap-1"
+                                >
+                                    <BiUpvote className="text-xl text-accent"></BiUpvote>
+                                    <span className="font-semibold">{upvoteCount}</span>
+                                </button>
                             </div>
                         </div>
 
-                        {/* reviews */}
-                        <p className="text-gray-500">0 reviews</p>
-                    </div>
-
-                    {/* book category */}
-                    <div>
-                        <p className="outline outline-green-500 w-fit px-4 rounded-full mt-4 text-green-700 font-medium">
-                            {bookCategory}
-                        </p>
-                    </div>
-
-                    <div className="flex gap-4 my-4 font-medium">
-                        {/* pages */}
-                        <p className="text-gray-600 text-base">
-                            {totalPage} pages
-                        </p>
-
-                        {/* publishing year */}
-                        <p className="text-gray-600 text-base">
-                            Published {publishingYear}
-                        </p>
-                    </div>
-
-                    {/* book overview */}
-                    <p className="text-justify font-semibold">{bookOverview}</p>
-
-                    {/* added by */}
-                    <div className="my-4">
-                        <h5 className="font-medium">Added By</h5>
-                        <p>Name : {userName}</p>
-
-                        <p>Email : {userEmail}</p>
-                    </div>
-                    <div className="border-b-3 border-gray-300"></div>
-
-                    <h1 className="text-4xl font-semibold my-5">Reviews</h1>
-
-                    <div className="flex flex-col justify-center items-center">
-                        <h5 className="text-xl font-medium mt-4">
-                            Write a Review below
-                        </h5>
-                    </div>
-
-                    <div>
-                        <form onSubmit={handleAddReview}>
-                            <fieldset className="fieldset">
-                                <label className="fieldset-legend text-sm">
-                                    What do you think
-                                </label>
-                                <textarea
-                                    className="textarea h-24 w-full"
-                                    placeholder="write a short review"
-                                    name="review"
-                                ></textarea>
-                            </fieldset>
-
-                            <input
-                                className="btn mt-2"
-                                type="submit"
-                                value="Post"
-                            />
-                        </form>
-
-                        <div className="border-b-3 border-gray-300 my-10"></div>
-
-                        {/* showing reviews */}
+                        {/* book category */}
                         <div>
-                            {loading ? (
-                                <LoaderSpinner></LoaderSpinner>
-                            ) : (
-                                reviews.length > 0 &&
-                                reviews.map((singleReview) => (
-                                    <Review
-                                        allReviews={reviews}
-                                        setReviews={setReviews}
-                                        key={singleReview._id}
-                                        singleReview={singleReview}
-                                        book={bookData}
-                                    ></Review>
-                                ))
-                            )}
+                            <p className="outline outline-accent w-fit px-4 rounded-full mt-4 text-primary font-medium">
+                                {bookCategory}
+                            </p>
+                        </div>
+
+                        <div className="flex gap-4 my-4 font-medium">
+                            {/* pages */}
+                            <p className="text-gray-600 text-base">
+                                {totalPage} pages
+                            </p>
+
+                            {/* publishing year */}
+                            <p className="text-gray-600 text-base">
+                                Published {publishingYear}
+                            </p>
+                        </div>
+
+                        {/* book overview */}
+                        <p className="text-justify font-semibold">
+                            {bookOverview}
+                        </p>
+
+                        {/* added by */}
+                        <div className="my-4">
+                            <h5 className="font-medium">Added By</h5>
+                            <p>Name : {userName}</p>
+
+                            <p>Email : {userEmail}</p>
+                        </div>
+                        <div className="border-b-3 border-gray-300"></div>
+
+                        <h1 className="text-4xl font-semibold my-5">Reviews</h1>
+
+                        <div className="flex flex-col justify-center items-center">
+                            <h5 className="text-xl font-medium mt-4">
+                                Write a Review below
+                            </h5>
+                        </div>
+
+                        <div>
+                            <form onSubmit={handleAddReview}>
+                                <fieldset className="fieldset">
+                                    <label className="fieldset-legend text-sm">
+                                        What do you think
+                                    </label>
+                                    <textarea
+                                        className="textarea h-24 w-full"
+                                        placeholder="write a short review"
+                                        name="review"
+                                    ></textarea>
+                                </fieldset>
+
+                                <input
+                                    className="btn mt-2"
+                                    type="submit"
+                                    value="Post"
+                                />
+                            </form>
+
+                            <div className="border-b-3 border-gray-300 my-10"></div>
+
+                            {/* showing reviews */}
+                            <div>
+                                {loading ? (
+                                    <LoaderSpinner></LoaderSpinner>
+                                ) : (
+                                    reviews.length > 0 &&
+                                    reviews.map((singleReview) => (
+                                        <Review
+                                            allReviews={reviews}
+                                            setReviews={setReviews}
+                                            key={singleReview._id}
+                                            singleReview={singleReview}
+                                            book={bookData}
+                                        ></Review>
+                                    ))
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </Container>
         </>
     );
 };

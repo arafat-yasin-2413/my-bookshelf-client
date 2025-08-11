@@ -38,19 +38,6 @@ const Footer = () => {
                             Contact
                         </Link>
                     </li>
-
-                    <li>
-                        <a
-                            className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
-                            href="#"
-                        >
-                            Terms & Conditions
-                        </a>
-                    </li>
-
-                    
-
-                    
                 </ul>
 
                 <ul className="mt-12 flex justify-center gap-6 md:gap-8">
