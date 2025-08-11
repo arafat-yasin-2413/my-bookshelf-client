@@ -30,10 +30,10 @@ const Home = () => {
 
             <Slider></Slider>
 
-            <Categories></Categories>
 
             <Top6Books></Top6Books>
 
+            <Categories></Categories>
         </motion.div>
     );
 };

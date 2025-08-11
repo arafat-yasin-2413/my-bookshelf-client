@@ -10,7 +10,7 @@ import Container from "../../container/Container";
 const Slider = () => {
     return (
         <Container>
-            <div className="bg-white rounded-xl py-16">
+            <div className="bg-white rounded-xl mt-10 py-16">
                 <div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
