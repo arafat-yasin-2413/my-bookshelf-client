@@ -6,6 +6,12 @@ import { LiaSwatchbookSolid } from "react-icons/lia";
 import { SiBookstack } from "react-icons/si";
 import { motion } from "framer-motion";
 import BookPieChart from "../../components/BookPieChart/BookPieChart";
+import Container from "../../container/Container";
+import FeatureCard from "../../reUsableComponents/FeatureCard/FeatureCard";
+import { LuBookOpenCheck } from "react-icons/lu";
+import { FaHeart } from "react-icons/fa";
+import { PiBookFill } from "react-icons/pi";
+import { FaStar } from "react-icons/fa";
 
 const Profile = () => {
     const location = useLocation();
@@ -48,90 +54,70 @@ const Profile = () => {
     }
 
     const { photoURL, displayName, email } = user;
+    // console.log(user);
 
     // console.log(totalBookCount);
     // console.log(categoryCount);
 
     return (
         <>
-            <motion.div
-                className="my-10 w-fit mx-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-                <div className="w-sm md:w-xl rounded-md border border-gray-300 p-4 shadow-sm sm:p-6">
-                    <div className="sm:flex sm:justify-between sm:gap-4 lg:gap-6">
-                        <div className="sm:order-last sm:shrink-0 bg-gray-100 w-fit h-fit rounded-full p-1">
+            <Container>
+                <section>
+                    {/* profile div */}
+                    <div className="bg-white rounded-xl flex items-center gap-8 px-4 py-8">
+                        {/* image div */}
+                        <div>
                             <img
-                                alt="user profile"
+                                className="w-24 outline-4 outline-accent rounded-full"
                                 src={photoURL}
-                                className="rounded-full object-cover sm:size-[84px]"
+                                alt="image of user"
                             />
                         </div>
 
-                        <div className="mt-6 sm:mt-0 bg-white shadow-md rounded-xl p-6 border border-gray-200 max-w-md">
-                            {/* Name */}
-                            <h3 className="text-4xl font-semibold text-gray-800">
-                                {displayName}
-                            </h3>
-
-                            {/* Email */}
-                            <p className="mt-1 text-sm text-gray-500">
-                                {email}
-                            </p>
-
-                            {/* Total Books */}
-                            <div className="mt-4 text-base text-gray-700 font-medium">
-                                <p className="flex items-center">
-                                    <span>
-                                        <LiaSwatchbookSolid
-                                            size={24}
-                                            color="teal"
-                                        ></LiaSwatchbookSolid>
-                                    </span>
-                                    Total Books: {totalBookCount}
-                                </p>
-                            </div>
-
-                            {/* Category Title */}
-                            <p className="mt-3 text-base text-gray-700 font-medium flex items-center gap-1">
-                                <span>
-                                    <SiBookstack
-                                        size={24}
-                                        color="teal"
-                                    ></SiBookstack>
-                                </span>{" "}
-                                Books per Category:
-                            </p>
-
-                            {/* Category List */}
-                            {Array.isArray(categoryCount) &&
-                            categoryCount.length > 0 ? (
-                                <ul className="mt-1 text-sm text-gray-600 list-disc list-inside space-y-1">
-                                    {categoryCount.map((item, index) => (
-                                        <li key={index}>
-                                            <span className="font-medium text-gray-700">
-                                                {item.category}
-                                            </span>
-                                            :{" "}
-                                            <span className="text-base font-medium">
-                                                {item.count}
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            ) : (
-                                <p className="text-4xl text-center text-gray-400 mt-1">
-                                    No category data found.
-                                </p>
-                            )}
+                        {/* content div */}
+                        <div>
+                            <h3 className="text-xl">{displayName}</h3>
+                            <h4 className="text-base text-gray-500">{email}</h4>
                         </div>
                     </div>
-                </div>
-            </motion.div>
 
-            <BookPieChart categoryCount={categoryCount}></BookPieChart>
+                    {/* feature divs */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                        <FeatureCard
+                            icon={LiaSwatchbookSolid}
+                            text={"Total Books"}
+                            value={totalBookCount}
+                        ></FeatureCard>
+                        <FeatureCard
+                            icon={LuBookOpenCheck}
+                            text={"Reading Hours"}
+                            value={14}
+                        ></FeatureCard>
+                        <FeatureCard
+                            icon={FaStar}
+                            text={"Total Review"}
+                            value={7}
+                        ></FeatureCard>
+                        <FeatureCard
+                            icon={FaHeart}
+                            text={"Wishlist"}
+                            value={10}
+                        ></FeatureCard>
+                        <FeatureCard
+                            icon={PiBookFill}
+                            text={"Unread"}
+                            value={4}
+                        ></FeatureCard>
+                    </div>
+
+                    {/* pie chart div */}
+                    <div>
+                        <BookPieChart
+                            categoryCount={categoryCount}
+                        ></BookPieChart>
+                    </div>
+                </section>
+            </Container>
         </>
     );
 };

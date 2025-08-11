@@ -19,13 +19,14 @@ const COLORS = [
 
 const BookPieChart = ({ categoryCount }) => {
     return (
-        <div className="w-full max-w-xl mx-auto mt-6 p-4 bg-white border border-gray-100 rounded-xl shadow">
-            <p className="text-center text-sm text-gray-700 font-medium mb-4">
+
+        <div className="w-full mx-auto mt-6 mb-12 p-4 bg-white border border-gray-100 rounded-xl shadow">
+            <p className="text-center text-4xl text-primary font-medium my-8">
                 Books per Category (Pie Chart)
             </p>
 
             {Array.isArray(categoryCount) && categoryCount.length > 0 ? (
-                <div className="w-full h-72">
+                <div className="w-full h-[calc(100dvh-300px)]">
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie
