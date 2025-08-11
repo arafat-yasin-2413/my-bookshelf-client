@@ -21,13 +21,7 @@ const MyBooks = () => {
         <>
             <Container>
                 <div className="my-10">
-                    {/* <Suspense fallback={<LoaderSpinner></LoaderSpinner>}>
-                    <MyBooksList>
-                        myBooksPromise = {myBooksPromise(user?.email)}
-                    </MyBooksList>
-                </Suspense> */}
-
-                    <h2 className="mb-10 text-center text-4xl font-semibold">
+                    <h2 className="mb-10 text-center text-4xl text-primary font-semibold">
                         My Books
                     </h2>
                     {user?.email ? (

@@ -57,8 +57,8 @@ const Bookshelf = () => {
 
     return (
         <Container>
-            <div className="bg-gray-200 p-4 rounded my-10">
-                <h2 className="text-4xl font-medium my-6">Bookshelf</h2>
+            <div className="my-10">
+                <h2 className="text-4xl text-primary font-medium my-6">Bookshelf</h2>
 
                 <form
                     onSubmit={handleSearch}
@@ -73,7 +73,7 @@ const Bookshelf = () => {
                     />
                     <button
                         type="submit"
-                        className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-blue-700"
+                        className="px-4 py-2 bg-accent cursor-pointer text-white rounded hover:bg-primary"
                     >
                         Search
                     </button>
@@ -81,7 +81,8 @@ const Bookshelf = () => {
                         <button
                             type="button"
                             onClick={handleClearSearch}
-                            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                            className="px-4 py-2 bg-gray-500
+                             cursor-pointer text-white rounded hover:bg-gray-600"
                         >
                             Clear
                         </button>
@@ -91,7 +92,7 @@ const Bookshelf = () => {
                 {loading ? (
                     <LoaderSpinner />
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                         {books.length > 0 ? (
                             books.map((book) => (
                                 <BookCard book={book} key={book._id} />

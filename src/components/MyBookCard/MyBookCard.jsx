@@ -1,6 +1,6 @@
 import React, { use } from "react";
 import { BiUpvote } from "react-icons/bi";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaRegEye } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
@@ -55,56 +55,63 @@ const MyBookCard = ({ book }) => {
     };
 
     return (
-        <div className="card bg-base-100 shadow-sm">
-            <figure>
-                <img className="rounded w-36 object-cover" src={`${coverPhoto}`} alt={`image of ${bookTitle}`} />
+        <div className="shadow rounded-xl">
+            <figure className="bg-white rounded-xl w-full flex justify-center">
+                <img
+                    className="w-48 px-8 py-4 object-cover"
+                    src={`${coverPhoto}`}
+                    alt={`image of ${bookTitle}`}
+                />
             </figure>
 
-            <div className="flex flex-col justify-center items-center mt-2">
-                <div className="flex items-center gap-2 mt-4">
-                    <button className="btn bg-gray-300 rounded">
-                        <BiUpvote size={20}></BiUpvote>
+            <div className="flex flex-col justify-start p-4">
+                <div className="bg-secondary flex justify-start w-fit items-center px-0.5 mb-1">
+                    <button className="p-1 text-primary rounded">
+                        <BiUpvote className="text-base"></BiUpvote>
                     </button>
 
                     <div>
-                        <h5 className="text-xl">{upvotedBy.length}</h5>
+                        <h5 className="text-[1rem] font-semibold">
+                            {upvotedBy.length}
+                        </h5>
                     </div>
                 </div>
 
-                <div className="card-body">
-                    <h2 className="card-title">{bookTitle}</h2>
-                    <p>Author : {bookAuthor}</p>
-                    <div className="card-actions justify-start">
-                        <div className="badge badge-outline">
-                            {bookCategory}
-                        </div>
-                    </div>
+                <div className="">
+                    <h3 className="text-[1.1rem] font-medium mb-1">
+                        {bookTitle}
+                    </h3>
+                    <h4 className="text-gray-500 text-[0.9rem] tracking-wider mb-1">
+                        {bookAuthor}
+                    </h4>
+                    <h5 className="text-[0.9rem] text-primary tracking-wider bg-white w-fit px-3 py-1 rounded-full outline outline-secondary mb-2">
+                        {bookCategory}
+                    </h5>
 
                     {/* update delete */}
-                    <div className="gap-2 flex">
+                    <div className="gap-1 flex mb-2">
                         <Link
                             to={`/updateBook/${_id}`}
-                            className="btn text-xl bg-blue-400"
+                            className="bg-white px-2 py-1 shadow hover:bg-secondary rounded"
                         >
-                            <FaEdit></FaEdit>
+                            <FaEdit className="text-xl text-accent"></FaEdit>
                         </Link>
+
                         <button
                             onClick={() => handleDeleteBook(_id)}
-                            className="btn text-xl bg-red-400"
+                            className="px-2 py-1 bg-white shadow cursor-pointer hover:bg-secondary rounded"
                         >
-                            <MdDelete></MdDelete>
+                            <MdDelete className="text-accent text-xl"></MdDelete>
                         </button>
                     </div>
 
-                    <div>
-                        <Link to={`/bookDetails/${_id}`} className="btn">
-                            See Details
+                    <div className="bg-white w-fit px-1 py-0.5 rounded shadow text-accent hover:bg-primary hover:text-white">
+                        <Link to={`/bookDetails/${_id}`}
+                            className="flex items-center gap-1">
+                            <span>See Details</span>
+                            <span><FaRegEye></FaRegEye></span>
                         </Link>
                     </div>
-
-                    {/* <div>
-                        <p>Added by : {userEmail}</p>
-                    </div> */}
                 </div>
             </div>
         </div>

@@ -51,7 +51,7 @@ const AddBook = () => {
     };
     return (
         <Container>
-            <div className="bg-base-300 rounded my-10">
+            <div className="my-10">
                 <motion.h2
                     className="text-center text-4xl pt-10 font-semibold mb-6"
                     initial={{ opacity: 0, y: 30 }}
@@ -64,7 +64,7 @@ const AddBook = () => {
                 <form onSubmit={handleAddBook}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-6">
                         {/* book title */}
-                        <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
+                        <fieldset className="fieldset bg-base-200 border-secondary rounded-box  border p-4">
                             <label className="fieldset-legend text-sm">
                                 Book Title
                             </label>
@@ -78,7 +78,7 @@ const AddBook = () => {
                         </fieldset>
 
                         {/* cover photo */}
-                        <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
+                        <fieldset className="fieldset bg-base-200 border-secondary rounded-box  border p-4">
                             <label className="fieldset-legend text-sm">
                                 Cover Photo
                             </label>
@@ -92,7 +92,7 @@ const AddBook = () => {
                         </fieldset>
 
                         {/* total page */}
-                        <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
+                        <fieldset className="fieldset bg-base-200 border-secondary rounded-box  border p-4">
                             <label className="fieldset-legend text-sm">
                                 Total Page
                             </label>
@@ -106,7 +106,7 @@ const AddBook = () => {
                         </fieldset>
 
                         {/* book author */}
-                        <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
+                        <fieldset className="fieldset bg-base-200 border-secondary rounded-box  border p-4">
                             <label className="fieldset-legend text-sm">
                                 Book Author
                             </label>
@@ -120,7 +120,7 @@ const AddBook = () => {
                         </fieldset>
 
                         {/* user email read only */}
-                        <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
+                        <fieldset className="fieldset bg-base-200 border-secondary rounded-box  border p-4">
                             <label className="fieldset-legend text-sm">
                                 User Email
                             </label>
@@ -135,7 +135,7 @@ const AddBook = () => {
                         </fieldset>
 
                         {/* user name read only */}
-                        <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
+                        <fieldset className="fieldset bg-base-200 border-secondary rounded-box  border p-4">
                             <label className="fieldset-legend text-sm">
                                 User Name
                             </label>
@@ -150,7 +150,7 @@ const AddBook = () => {
                         </fieldset>
 
                         {/* publishing year */}
-                        <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
+                        <fieldset className="fieldset bg-base-200 border-secondary rounded-box  border p-4">
                             <label className="fieldset-legend text-sm">
                                 Publishing Year
                             </label>
@@ -164,7 +164,7 @@ const AddBook = () => {
                         </fieldset>
 
                         {/* book category */}
-                        <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
+                        <fieldset className="fieldset bg-base-200 border-secondary rounded-box  border p-4">
                             <label className="fieldset-legend text-sm">
                                 Book Category
                             </label>
@@ -185,7 +185,7 @@ const AddBook = () => {
                         </fieldset>
 
                         {/* reading status */}
-                        <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
+                        <fieldset className="fieldset bg-base-200 border-secondary rounded-box  border p-4">
                             <label className="fieldset-legend text-sm">
                                 Reading Status
                             </label>
@@ -204,7 +204,7 @@ const AddBook = () => {
                         </fieldset>
 
                         {/* book overview */}
-                        <fieldset className="fieldset bg-base-200 border-teal-100 rounded-box  border p-4">
+                        <fieldset className="fieldset bg-base-200 border-secondary rounded-box  border p-4">
                             <label className="fieldset-legend text-sm">
                                 Book Overview
                             </label>
