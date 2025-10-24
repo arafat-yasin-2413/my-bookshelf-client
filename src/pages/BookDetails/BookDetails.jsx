@@ -14,6 +14,7 @@ import Container from "../../container/Container";
 
 const BookDetails = () => {
     const location = useLocation();
+    const [showOptions, setShowOptions] = useState(false);
     useEffect(() => {
         document.title = "Book Details";
     }, [location.pathname]);
@@ -22,6 +23,8 @@ const BookDetails = () => {
     const navigate = useNavigate();
     // TODO: user email, name niye ashte hobe
     const { user } = use(AuthContext);
+
+
 
     const {
         _id,
@@ -67,6 +70,31 @@ const BookDetails = () => {
     // console.log(userEmail);
     // console.log('user email : ', user.email);
     // console.log('userEmail from books db : ', userEmail);
+
+    const handleAddToWishlist = async () => {
+        try {
+            const wishlistItem = {
+                bookId: _id,
+                userEmail: userEmail,
+            };
+
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/wishlist`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(wishlistItem),
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                toast.success("Book added to wishlist");
+            } else {
+                toast.error("Failed to add to wishlist!");
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong!");
+        }
+    };
 
     const handleDeleteBook = (id) => {
         // console.log("id paisi : ", id);
@@ -189,6 +217,8 @@ const BookDetails = () => {
         }
     };
 
+
+
     return (
         <>
             <Container>
@@ -209,12 +239,25 @@ const BookDetails = () => {
                             <button className="btn bg-primary text-white rounded-l-full">
                                 {readingStatus}
                             </button>
-                            <button className="btn bg-accent text-white rounded-r-full">
+                            <button onClick={() => setShowOptions(!showOptions)} className="btn bg-accent text-white rounded-r-full">
                                 <MdKeyboardArrowDown
                                     size={30}
                                 ></MdKeyboardArrowDown>
                             </button>
                         </div>
+
+
+                        {/* dropdown */}
+                        {showOptions && (
+                            <div className="absolute mt-2 bg-white shadow-lg rounded-lg z-10 w-fit ">
+                                <button
+                                    onClick={handleAddToWishlist}
+                                    className="block w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                >
+                                    Add to Wishlist
+                                </button>
+                            </div>
+                        )}
 
                         {/* update delete */}
                         <div className="gap-2 flex items-center">

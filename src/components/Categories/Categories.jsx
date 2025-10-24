@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import Container from "../../container/Container";
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
+import { motion } from "framer-motion";
 
 const Categories = () => {
     const [books, setBooks] = useState([]);
@@ -85,8 +86,20 @@ const Categories = () => {
         <>
             <section className="bg-white">
                 <Container>
-                    <div className="gap-3 py-4">
-                        <div className="flex gap-3 my-10 flex-wrap">
+
+                    <motion.h2
+                    className="text-4xl text-primary py-6 font-semibold"
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: 3, ease: "easeOut" }}
+                >
+                    Browse All Books
+                </motion.h2>
+
+
+                    <div className="gap-3 pb-4">
+                        <div className="flex gap-3 flex-wrap">
                             
                                 <button
                                     onClick={() => handleCategoryClick("All")}
