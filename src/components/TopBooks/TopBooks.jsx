@@ -3,10 +3,23 @@ import { useLoaderData } from "react-router";
 import BookCard from "../BookCard/BookCard";
 import { motion } from "framer-motion";
 import Container from "../../container/Container";
+import { useQuery } from "@tanstack/react-query";
+import LoaderSpinner from "../LoadingSpinner/LoaderSpinner";
 
 const Top6Books = () => {
-    const initialTopBooks = useLoaderData();
-    const [topBooks, setTopBooks] = useState(initialTopBooks);
+    const { data : topBooks = [], isLoading, isError } = useQuery({
+        queryKey: ["topBooks"],
+        queryFn: async () => {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/books/top`);
+            return res.json();
+        },
+    });
+
+    if (isLoading) return <LoaderSpinner></LoaderSpinner>
+
+    if (isError) return <div className="flex justify-center items-center my-10"> <div className="text-center text-2xl font-semibold bg-red-400 p-4 rounded-md w-fit">Failed to load top Books.</div></div>
+
+
 
     return (
         <Container>
