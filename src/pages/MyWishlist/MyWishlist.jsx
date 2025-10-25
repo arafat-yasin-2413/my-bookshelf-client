@@ -31,7 +31,7 @@ const MyWishlist = () => {
         enabled: !!user?.email,
     });
 
-    console.log(wishlist);
+    // console.log(wishlist);
 
     const handleDelete = async (id) => {
         Swal.fire({
@@ -50,7 +50,7 @@ const MyWishlist = () => {
                     });
 
                     const data = await response.json();
-                    console.log(data);
+                    // console.log(data);
 
                     if (data.deletedCount > 0) {
                         Swal.fire("Deleted!", "Your item has been removed.", "success");
