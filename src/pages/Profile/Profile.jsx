@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useLocation } from "react-router";
+import { Link, useLocation } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 import axios from "axios";
 import { LiaSwatchbookSolid } from "react-icons/lia";
@@ -22,6 +22,11 @@ const Profile = () => {
     useEffect(() => {
         document.title = "Profile";
     }, [location.pathname]);
+
+    useEffect(() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }, []);
+    
 
     useEffect(() => {
         const fetchCounts = async () => {
@@ -79,6 +84,11 @@ const Profile = () => {
                             <h3 className="text-xl">{displayName}</h3>
                             <h4 className="text-base text-gray-500">{email}</h4>
                         </div>
+                    </div>
+
+                    {/* redirect to myWishlist */}
+                    <div className="mt-6">
+                        <Link to="/myWishlist" className="btn">Go to My Wishlisht</Link>
                     </div>
 
                     {/* feature divs */}

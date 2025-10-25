@@ -80,6 +80,8 @@ const BookDetails = () => {
             const wishlistItem = {
                 bookId: _id,
                 bookName: bookTitle,
+                bookAuthor: bookAuthor,
+                bookCategory: bookCategory,
                 userEmail: currentUserEmail,
             };
 

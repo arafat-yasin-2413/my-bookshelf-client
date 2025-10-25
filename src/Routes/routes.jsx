@@ -17,6 +17,7 @@ import CategoryWiseBooks from "../pages/CategoryWiseBooks/CategoryWiseBooks";
 import Home from "../pages/Home/Home";
 import LoaderSpinner from "../components/LoadingSpinner/LoaderSpinner";
 import Categories from "../components/Categories/Categories";
+import MyWishlist from "../pages/MyWishlist/MyWishlist";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
             //     path: "/categories/:categoryName",
             //     Component: Categories,
             // },
+            {
+                path: "/myWishlist",
+                element: (
+                    <PrivateRoute>
+                        <MyWishlist></MyWishlist>
+                    </PrivateRoute>
+                ),
+            },
             {
                 path: "/addBook",
                 element: (
