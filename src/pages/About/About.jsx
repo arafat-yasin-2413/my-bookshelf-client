@@ -14,7 +14,7 @@ const About = () => {
             <div className="mt-10 mb-20">
                 <div className="w-fit">
                     <h2 className="text-4xl font-medium">
-                        About <span className="text-teal-800">Bookshelf</span>
+                        About <span className="text-primary">Bookshelf</span>
                     </h2>
                     <div className="border border-b border-gray-200 my-4"></div>
                 </div>

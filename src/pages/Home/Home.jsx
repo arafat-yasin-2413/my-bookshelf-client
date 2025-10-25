@@ -12,6 +12,11 @@ import SDAnimation from "../../components/SDAnimation/SDAnimation";
 
 const Home = () => {
     const location = useLocation();
+
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
     useEffect(() => {
         document.title = "Home";
     }, [location.pathname]);

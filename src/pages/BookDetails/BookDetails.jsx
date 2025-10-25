@@ -23,7 +23,7 @@ const BookDetails = () => {
     const navigate = useNavigate();
     // TODO: user email, name niye ashte hobe
     const { user } = use(AuthContext);
-
+    const currentUserEmail = user?.email;
 
 
     const {
@@ -44,6 +44,10 @@ const BookDetails = () => {
     const [upvoteCount, setUpvoteCount] = useState(upvotedBy.length);
     const [date, setDate] = useState("");
     const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
 
     useEffect(() => {
         const formattedDate = getCurrentDateFormatted();
@@ -75,7 +79,8 @@ const BookDetails = () => {
         try {
             const wishlistItem = {
                 bookId: _id,
-                userEmail: userEmail,
+                bookName: bookTitle,
+                userEmail: currentUserEmail,
             };
 
             const res = await fetch(`${import.meta.env.VITE_API_URL}/wishlist`, {
@@ -88,7 +93,7 @@ const BookDetails = () => {
             if (data.success) {
                 toast.success("Book added to wishlist");
             } else {
-                toast.error("Failed to add to wishlist!");
+                toast.error("This book already in your Wishlist");
             }
         } catch (error) {
             console.log(error);

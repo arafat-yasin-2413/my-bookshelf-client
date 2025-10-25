@@ -62,7 +62,7 @@ const Profile = () => {
     return (
         <>
             <Container>
-                <section>
+                <section className="pt-12">
                     {/* profile div */}
                     <div className="bg-white rounded-xl flex items-center gap-8 px-4 py-8">
                         {/* image div */}
@@ -82,7 +82,7 @@ const Profile = () => {
                     </div>
 
                     {/* feature divs */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 py-8">
                         <FeatureCard
                             icon={LiaSwatchbookSolid}
                             text={"Total Books"}

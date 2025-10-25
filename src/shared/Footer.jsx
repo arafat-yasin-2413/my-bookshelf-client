@@ -8,12 +8,12 @@ const Footer = () => {
     return (
         <footer className="bg-secondary rounded">
             <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-                <div className="flex justify-center text-primary items-center gap-2">
+                <Link to="/" className="flex justify-center text-primary items-center gap-2">
                     
                     <img className="w-16" src={logo} alt="logo" />
                     <h2 className="font-bold text-4xl">Bookshelf</h2>
 
-                </div>
+                </Link>
 
                 <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-800">
                     Discover, organize, and track your favorite books. Bookshelf helps you read smarter and stay inspired every single day.
