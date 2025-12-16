@@ -26,20 +26,20 @@ const BookCard = ({ book }) => {
                         {upvotedBy.length}
                     </span>
                 </p>
-                <h3 className="text-[1.1rem] font-medium mb-2">{bookTitle}</h3>
+                <h3 className="text-[1.25rem] font-medium mb-2">{bookTitle}</h3>
                 <h4 className="text-[0.8rem] text-accent mb-2">
                     {bookAuthor}
                 </h4>
 
                 <div className="flex items-center gap-2">
-                    <h5 className="text-primary bg-white w-fit px-3 py-1 rounded-xl outline outline-secondary">
+                    <h5 className="text-primary bg-white w-fit px-3 py-0.5 rounded-xl outline outline-secondary">
                         {bookCategory}
                     </h5>
 
 
                     <Link
                         to={`/bookDetails/${_id}`}
-                        className="flex w-fit items-center gap-1 px-3 py-1 bg-white rounded-xl shadow text-primary hover:bg-primary hover:text-white"
+                        className="flex w-fit items-center gap-1 px-3 py-0.5 bg-white rounded-xl shadow text-primary hover:bg-primary hover:text-white"
                     >
                         <span className="">See Details</span>
                         <span>
