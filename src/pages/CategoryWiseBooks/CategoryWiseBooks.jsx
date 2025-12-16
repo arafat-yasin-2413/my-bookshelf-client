@@ -20,7 +20,7 @@ const CategoryWiseBooks = () => {
                     Found {categoryWiseBooks.length} "{cat.categoryName}" books
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 my-10 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 my-10 gap-4">
                     {categoryWiseBooks.length > 0 &&
                         categoryWiseBooks.map((book) => (
                             <BookCard key={book._id} book={book}></BookCard>

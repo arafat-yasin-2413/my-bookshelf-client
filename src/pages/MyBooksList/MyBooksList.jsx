@@ -7,7 +7,7 @@ const MyBooksList = ({ myBooksPromise }) => {
     // console.log(myBooks);
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {myBooks.length > 0 ? (
                 myBooks.map((book) => (
                     <MyBookCard key={book._id} book={book}></MyBookCard>
