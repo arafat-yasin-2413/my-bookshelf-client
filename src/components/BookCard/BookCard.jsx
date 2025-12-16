@@ -9,7 +9,7 @@ const BookCard = ({ book }) => {
 
     return (
         // main div
-        <div className="shadow rounded-xl w-4/5 sm:w-full flex flex-col ">
+        <div className="shadow rounded-xl w-full flex flex-col ">
             {/* image div */}
             <div className="bg-white rounded-t-xl w-full flex justify-center items-center">
                 <img
