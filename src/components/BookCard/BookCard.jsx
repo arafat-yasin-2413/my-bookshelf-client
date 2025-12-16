@@ -30,20 +30,23 @@ const BookCard = ({ book }) => {
                 <h4 className="text-gray-500 text-[0.8rem] mb-2">
                     {bookAuthor}
                 </h4>
-                <h5 className="text-[0.9rem] text-primary bg-white w-fit px-3 py-1 rounded-full outline outline-secondary">
-                    {bookCategory}
-                </h5>
 
-                <div className="bg-white w-fit px-1 py-0.5 mt-1 rounded shadow text-primary hover:bg-primary hover:text-white">
-                    <Link
-                        to={`/bookDetails/${_id}`}
-                        className="flex items-center gap-1"
-                    >
-                        <span className="">See Details</span>
-                        <span>
-                            <FaRegEye className=""></FaRegEye>
-                        </span>
-                    </Link>
+                <div className="flex items-center gap-2">
+                    <h5 className="text-primary bg-white w-fit px-3 py-1 rounded-xl outline outline-secondary">
+                        {bookCategory}
+                    </h5>
+
+                    <div className="bg-white w-fit rounded-xl shadow text-primary hover:bg-primary hover:text-white">
+                        <Link
+                            to={`/bookDetails/${_id}`}
+                            className="flex items-center gap-1 px-3 py-1"
+                        >
+                            <span className="">See Details</span>
+                            <span>
+                                <FaRegEye className=""></FaRegEye>
+                            </span>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
