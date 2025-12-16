@@ -284,7 +284,7 @@ const BookDetails = () => {
                         </div>
                     </div>
 
-                    {/* content */}
+                    {/* right side of book details */}
                     <div className="col-span-5">
                         {/* book title */}
                         <h2 className="text-2xl md:text-4xl font-semibold ">
