@@ -1,150 +1,103 @@
 import React from "react";
-import { BiSolidEdit } from "react-icons/bi";
-import { FcPrivacy } from "react-icons/fc";
 import { GiSupersonicArrow } from "react-icons/gi";
 import { IoIosPeople, IoIosRocket } from "react-icons/io";
 import { MdWorkspaces } from "react-icons/md";
-import { RiFunctionAddFill } from "react-icons/ri";
 import { SiGnuprivacyguard } from "react-icons/si";
 import Container from "../../container/Container";
 
 const About = () => {
     return (
         <Container>
-            <div className="mt-10 mb-20">
-                <div className="w-fit">
-                    <h2 className="text-4xl font-medium">
+            <div className="mt-16 mb-28 space-y-20">
+
+                {/* Header */}
+                <div className="text-center max-w-3xl mx-auto">
+                    <h1 className="text-4xl md:text-5xl font-semibold text-gray-800">
                         About <span className="text-primary">Bookshelf</span>
-                    </h2>
-                    <div className="border border-b border-gray-200 my-4"></div>
-                </div>
-
-                <div>
-                    <h2 className="text-xl font-semibold flex items-center gap-2 mb-2">
-                        {" "}
-                        <GiSupersonicArrow
-                            size={30}
-                            color="#E56353"
-                        ></GiSupersonicArrow>{" "}
-                        Our Mission
-                    </h2>
-
-                    <p>
-                        At Bookshelf, our mission is to empower readers by
-                        providing a simple yet powerful platform to track,
-                        organize, and cherish their reading journey. We aim to
-                        inspire consistent reading habits, support personal
-                        growth, and foster a love for books. Whether you're a
-                        casual reader or a passionate bibliophile, Bookshelf is
-                        here to help you stay connected with the stories that
-                        shape your world.
+                    </h1>
+                    <p className="mt-5 text-gray-600 text-lg leading-relaxed">
+                        Bookshelf is a modern reading companion designed to help you
+                        organize, track, and truly enjoy your reading journey — all in one simple place.
                     </p>
                 </div>
 
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold flex items-center gap-2">
-                        <MdWorkspaces size={30} color="#E56353"></MdWorkspaces>{" "}
-                        What you can do here?
-                    </h2>
+                {/* Shared Width Wrapper */}
+                <div className="max-w-7xl mx-auto space-y-20">
 
-                    <p className="list-disc mt-2">
-                        <li>Add new books to your personal collection.</li>
-                        <li>
-                            Update reading status: Want to Read, Reading, or
-                            Read.
-                        </li>
+                    {/* Mission */}
+                    <div className="relative bg-primary/5 rounded-3xl p-10 md:p-14">
+                        <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
+                            <div className="flex-shrink-0">
+                                <div className="w-16 h-16 rounded-2xl bg-white shadow-md flex items-center justify-center">
+                                    <GiSupersonicArrow size={34} className="text-[#E56353]" />
+                                </div>
+                            </div>
 
-                        <li>Edit or remove any book anytime.</li>
-                        <li>
-                            View your bookshelf with smart filters and clean UI.
-                        </li>
+                            <div>
+                                <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">
+                                    Our Mission
+                                </h2>
+                                <p className="mt-4 text-gray-600 leading-relaxed text-lg">
+                                    At Bookshelf, our mission is to bring clarity and calm to your
+                                    reading life. We believe reading should feel inspiring not overwhelming.
+                                </p>
+                                <p className="mt-3 text-gray-600 leading-relaxed">
+                                    By helping you organize books, track progress, and reflect on
+                                    what you read, Bookshelf supports meaningful habits that grow with you over time.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-                        <li>
-                            Maintain a personal profile with your book list and
-                            progress.
-                        </li>
-                    </p>
-                </div>
+                    {/* Cards */}
+                    <div className="grid md:grid-cols-3 gap-6">
+                        <div className="rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <MdWorkspaces size={36} className="text-[#E56353]" />
+                            <h3 className="text-xl font-semibold mt-4 text-gray-800">
+                                Manage Your Library
+                            </h3>
+                            <p className="mt-3 text-gray-600">
+                                Add, edit, or remove books anytime and keep your personal
+                                collection exactly the way you want it.
+                            </p>
+                        </div>
 
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold flex items-center gap-2">
-                        <IoIosPeople size={30} color="#E56353"></IoIosPeople>{" "}
-                        Who is Bookshelf For?
-                    </h2>
+                        <div className="rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <IoIosRocket size={36} className="text-[#E56353]" />
+                            <h3 className="text-xl font-semibold mt-4 text-gray-800">
+                                Track Your Progress
+                            </h3>
+                            <p className="mt-3 text-gray-600">
+                                Clearly track what you want to read, what you're currently
+                                reading, and what you’ve already finished.
+                            </p>
+                        </div>
 
-                    <p className="mt-2">
-                        <li>
-                            Students managing academic or personal reading
-                            lists.
-                        </li>
-                        <li>
-                            Professionals keeping track of self-help or career
-                            books.
-                        </li>
-                        <li>
-                            Book club members who need a record of group
-                            readings.
-                        </li>
-                        <li>
-                            Encourage readers wanting to build a personal
-                            digital library.
-                        </li>
-                    </p>
-                </div>
+                        <div className="rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <IoIosPeople size={36} className="text-[#E56353]" />
+                            <h3 className="text-xl font-semibold mt-4 text-gray-800">
+                                Built for Every Reader
+                            </h3>
+                            <p className="mt-3 text-gray-600">
+                                Perfect for students, professionals, book club members,
+                                and anyone who loves staying organized while reading.
+                            </p>
+                        </div>
+                    </div>
 
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold flex items-center gap-2">
-                        <IoIosRocket size={30} color="#E56353"></IoIosRocket>Key
-                        Features
-                    </h2>
+                    {/* Privacy */}
+                    <div className="bg-gray-50 rounded-3xl p-10 text-center">
+                        <SiGnuprivacyguard size={48} className="text-[#E56353] mx-auto" />
+                        <h2 className="text-2xl font-semibold mt-4 text-gray-800">
+                            Privacy & Ownership
+                        </h2>
+                        <p className="mt-4 text-gray-600 leading-relaxed">
+                            Your data belongs only to you. Bookshelf never shares or sells
+                            your information. All activity and personal details are securely
+                            stored and used solely to improve your experience.
+                        </p>
+                    </div>
 
-                    <p className="mt-2">
-                        <li>
-                            <span className="font-medium">
-                                Personal Library:{" "}
-                            </span>{" "}
-                            Students managing academic or personal reading
-                            lists.
-                        </li>
-
-                        <li>
-                            <span className="font-medium">
-                                Reading Status:{" "}
-                            </span>{" "}
-                            Track progress as “Want to Read,” “Reading,” or
-                            “Read.”
-                        </li>
-                        <li>
-                            <span className="font-medium">
-                                Responsive Design:{" "}
-                            </span>{" "}
-                            Enjoy a smooth experience on both desktop and
-                            mobile.
-                        </li>
-                        <li>
-                            <span className="font-medium">Secure Login: </span>{" "}
-                            Your data is safe with us.
-                        </li>
-                    </p>
-                </div>
-
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold flex items-center gap-2">
-                        {" "}
-                        <SiGnuprivacyguard
-                            size={30}
-                            color="#E56353"
-                        ></SiGnuprivacyguard>{" "}
-                        Privacy and Ownership
-                    </h2>
-
-                    <p className="mt-2">
-                        Your privacy is our priority. At Bookshelf, your data
-                        belongs to you. We never share or sell your information.
-                        All reading activity and personal details are securely
-                        stored and used only to enhance your experience on our
-                        platform.
-                    </p>
                 </div>
             </div>
         </Container>
