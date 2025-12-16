@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from "react";
-import { BiSolidUpvote, BiUpvote } from "react-icons/bi";
+import { BiUpvote } from "react-icons/bi";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete, MdKeyboardArrowDown } from "react-icons/md";
 import { Link, useLoaderData, useLocation, useNavigate } from "react-router";
@@ -14,17 +14,15 @@ import Container from "../../container/Container";
 
 const BookDetails = () => {
     const location = useLocation();
-    const [showOptions, setShowOptions] = useState(false);
-    useEffect(() => {
-        document.title = "Book Details";
-    }, [location.pathname]);
-    const { loading, setLoading } = use(AuthContext);
-    const bookData = useLoaderData();
     const navigate = useNavigate();
-    // TODO: user email, name niye ashte hobe
-    const { user } = use(AuthContext);
-    const currentUserEmail = user?.email;
+    const bookData = useLoaderData();
 
+    const { user, loading, setLoading } = use(AuthContext);
+
+    const [showOptions, setShowOptions] = useState(false);
+    const [upvoteCount, setUpvoteCount] = useState(bookData?.upvotedBy?.length || 0);
+    const [reviews, setReviews] = useState([]);
+    const [date, setDate] = useState("");
 
     const {
         _id,
@@ -36,364 +34,200 @@ const BookDetails = () => {
         readingStatus,
         bookOverview,
         publishingYear,
-        upvotedBy,
         userEmail,
         userName,
     } = bookData || {};
 
-    const [upvoteCount, setUpvoteCount] = useState(upvotedBy.length);
-    const [date, setDate] = useState("");
-    const [reviews, setReviews] = useState([]);
-
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+        document.title = "Book Details";
+        window.scrollTo({ top: 0 });
+        setDate(getCurrentDateFormatted());
+    }, [location.pathname]);
 
-    useEffect(() => {
-        const formattedDate = getCurrentDateFormatted();
-        setDate(formattedDate);
-    }, []);
-
-    // getting reviews
+    // fetch reviews
     useEffect(() => {
         setLoading(true);
         fetch(`${import.meta.env.VITE_API_URL}/reviews/${_id}`)
-            .then((res) => res.json())
-            .then((data) => {
+            .then(res => res.json())
+            .then(data => {
                 setReviews(data);
                 setLoading(false);
-                // console.log(data);
             })
-            .catch((error) => {
-                toast.error("Failed to fetch reviews : ", error);
-                setLoading(false);
-            });
+            .catch(() => setLoading(false));
     }, [_id, setLoading]);
 
-    // console.log(user?.email);
-    // console.log(userEmail);
-    // console.log('user email : ', user.email);
-    // console.log('userEmail from books db : ', userEmail);
+    const handleUpvote = () => {
+        if (!user) return toast.error("Login required");
+        if (user.email === userEmail) return toast.error("Cannot upvote your own book");
 
-    const handleAddToWishlist = async () => {
-        try {
-            const wishlistItem = {
-                bookId: _id,
-                bookName: bookTitle,
-                bookAuthor: bookAuthor,
-                bookCategory: bookCategory,
-                userEmail: currentUserEmail,
-            };
-
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/wishlist`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(wishlistItem),
+        axios
+            .patch(`${import.meta.env.VITE_API_URL}/upvote/${_id}`, { email: user.email })
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    setUpvoteCount(prev => prev + 1);
+                    toast.success("Upvoted successfully");
+                }
             });
-
-            const data = await res.json();
-            if (data.success) {
-                toast.success("Book added to wishlist");
-            } else {
-                toast.error("This book already in your Wishlist");
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong!");
-        }
     };
 
-    const handleDeleteBook = (id) => {
-        // console.log("id paisi : ", id);
-
-        if (userEmail !== user?.email) {
-            return toast.error("Not your book. Cannot Delete.");
-        }
+    const handleDeleteBook = () => {
+        if (userEmail !== user?.email) return toast.error("Not allowed");
 
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
+        }).then(result => {
             if (result.isConfirmed) {
-                // delete functionality here
-                fetch(`${import.meta.env.VITE_API_URL}/book/${_id}`, {
-                    method: "DELETE",
-                })
-                    .then((res) => res.json())
-                    .then((data) => {
-                        // console.log("after delete : ", data);
-                        if (data.deletedCount) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success",
-                                timer: 1500,
-                            });
-
-                            navigate("/bookshelf");
-                        }
+                fetch(`${import.meta.env.VITE_API_URL}/book/${_id}`, { method: "DELETE" })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) navigate("/bookshelf");
                     });
             }
         });
     };
 
-    const handleUpvote = () => {
-        if (!user) {
-            return toast.error("You have to Login before upvoting.");
-        }
-
-        if (user?.email === userEmail) {
-            return toast.error("You Cannot upvote your own book");
-        }
-
-        axios
-            .patch(`${import.meta.env.VITE_API_URL}/upvote/${_id}`, {
-                email: user?.email,
-            })
-            .then((data) => {
-                // console.log(data.data);
-                if (data.data.modifiedCount) {
-                    toast.success("You have Liked the book Successfully");
-                    setUpvoteCount((prev) => prev + 1);
-                }
-            })
-            .catch((error) => {
-                // console.log(error);
-            });
-    };
-
-    const handleAddReview = (e) => {
+    const handleAddReview = e => {
         e.preventDefault();
         const form = e.target;
 
-        const alreadyReviewed = reviews.some(
-            (rev) => rev.email === user?.email
-        );
-
-        if (alreadyReviewed) {
-            form.reset();
-            return toast.error("You have already reviewed this book.");
+        if (reviews.some(r => r.email === user?.email)) {
+            return toast.error("Already reviewed");
         }
 
-        const formData = new FormData(form);
-        const reviewData = Object.fromEntries(formData.entries());
-
-        reviewData.bookId = _id;
-        reviewData.email = user?.email;
-        reviewData.name = user?.displayName;
-        reviewData.photoURL = user?.photoURL;
-        reviewData.createdAt = date;
-
-        // console.log(reviewData);
-        // send reviewData to the database
+        const review = {
+            review: form.review.value,
+            bookId: _id,
+            email: user?.email,
+            name: user?.displayName,
+            photoURL: user?.photoURL,
+            createdAt: date,
+        };
 
         fetch(`${import.meta.env.VITE_API_URL}/addReview`, {
             method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify(reviewData),
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(review),
         })
-            .then((res) => res.json())
-            .then((data) => {
-                // console.log('after adding to db : ',data);
+            .then(res => res.json())
+            .then(data => {
                 if (data.insertedId) {
-                    setReviews((oldReviews) => [reviewData, ...oldReviews]);
-                    !Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Review Added to DB successfully",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
+                    setReviews(prev => [review, ...prev]);
+                    form.reset();
                 }
             });
-
-        form.reset();
     };
-
-    const handleEditClick = (e) => {
-        if (userEmail !== user?.email) {
-            e.preventDefault();
-            toast.error("You are not allowed to update this book.");
-        }
-    };
-
-
 
     return (
-        <>
-            <Container>
-                <div className="grid grid-cols-12 mx-auto my-16 rounded-xl shadow px-2 mb-20 py-20">
-                    {/* left side of book details */}
-                    <div className="col-span-3 h-fit sticky top-24 z-20">
-                        {/* book cover photo */}
-                        <div>
-                            <img
-                                className="rounded-tr-2xl rounded-br-2xl shadow-2xl w-4/5"
-                                src={coverPhoto}
-                                alt={`image of ${bookTitle}`}
-                            />
-                        </div>
+        <Container>
+            <div
+                className="flex flex-col lg:flex-row gap-8 shadow rounded-2xl px-4 sm:px-6 py-6 sm:py-10 my-10"
+            >
+                {/* LEFT */}
+                <div
+                    className="flex flex-col items-center lg:items-start lg:sticky lg:top-24 h-fit gap-4"
+                >
+                    <img
+                        src={coverPhoto}
+                        alt={bookTitle}
+                        className="w-48 sm:w-56 md:w-64 rounded-2xl shadow-2xl"
+                    />
 
-                        {/* reading status */}
-                        <div className="my-4 flex">
-                            <button className="btn bg-primary text-white rounded-l-full">
-                                {readingStatus}
-                            </button>
-                            <button onClick={() => setShowOptions(!showOptions)} className="btn bg-accent text-white rounded-r-full">
-                                <MdKeyboardArrowDown
-                                    size={30}
-                                ></MdKeyboardArrowDown>
-                            </button>
-                        </div>
-
-
-                        {/* dropdown */}
-                        {showOptions && (
-                            <div className="absolute mt-2 bg-white shadow-lg rounded-lg z-10 w-fit ">
-                                <button
-                                    onClick={handleAddToWishlist}
-                                    className="block w-full text-left px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                                >
-                                    Add to Wishlist
-                                </button>
-                            </div>
-                        )}
-
-                        {/* update delete */}
-                        <div className="gap-2 flex items-center">
-                            <Link
-                                to={`/updateBook/${_id}`}
-                                className="bg-white p-1 shadow hover:bg-secondary rounded"
-                                onClick={handleEditClick}
-                            >
-                                <FaEdit className="text-2xl text-accent"></FaEdit>
-                            </Link>
-                            <button
-                                onClick={() => handleDeleteBook(_id)}
-                                className="px-2 py-1 bg-white shadow cursor-pointer hover:bg-secondary rounded"
-                            >
-                                <MdDelete className="text-2xl text-accent"></MdDelete>
-                            </button>
-                        </div>
+                    <div className="flex">
+                        <button className="btn bg-primary text-white rounded-l-full px-6">
+                            {readingStatus}
+                        </button>
+                        <button
+                            onClick={() => setShowOptions(!showOptions)}
+                            className="btn bg-accent text-white rounded-r-full"
+                        >
+                            <MdKeyboardArrowDown size={28} />
+                        </button>
                     </div>
 
-                    {/* right side of book details */}
-                    <div className="col-span-5">
-                        {/* book title */}
-                        <h2 className="text-2xl md:text-4xl font-semibold ">
-                            {bookTitle}
-                        </h2>
-
-                        {/* book author */}
-                        <p className="text-xl text-gray-500 my-3">
-                            {bookAuthor}
-                        </p>
-
-                        {/* upvotes and reviews*/}
-                        <div className="flex gap-4 items-center">
-                            <div className="flex items-center bg-secondary rounded">
-                                <button
-                                    onClick={handleUpvote}
-                                    className="p-1 rounded hover:bg-green-200 hover:text-blue-500 flex justify-center items-center gap-1"
-                                >
-                                    <BiUpvote className="text-xl text-accent"></BiUpvote>
-                                    <span className="font-semibold">{upvoteCount}</span>
-                                </button>
-                            </div>
+                    {showOptions && (
+                        <div className="bg-white shadow-lg rounded-lg w-full">
+                            <button className="w-full px-4 py-2 hover:bg-gray-100">
+                                Add to Wishlist
+                            </button>
                         </div>
+                    )}
 
-                        {/* book category */}
-                        <div>
-                            <p className="outline outline-accent w-fit px-4 rounded-full mt-4 text-primary font-medium">
-                                {bookCategory}
-                            </p>
-                        </div>
-
-                        <div className="flex gap-4 my-4 font-medium">
-                            {/* pages */}
-                            <p className="text-gray-600 text-base">
-                                {totalPage} pages
-                            </p>
-
-                            {/* publishing year */}
-                            <p className="text-gray-600 text-base">
-                                Published {publishingYear}
-                            </p>
-                        </div>
-
-                        {/* book overview */}
-                        <p className="text-justify font-semibold">
-                            {bookOverview}
-                        </p>
-
-                        {/* added by */}
-                        <div className="my-4">
-                            <h5 className="font-medium">Added By</h5>
-                            <p>Name : {userName}</p>
-
-                            <p>Email : {userEmail}</p>
-                        </div>
-                        <div className="border-b-3 border-gray-300"></div>
-
-                        <h1 className="text-4xl font-semibold my-5">Reviews</h1>
-
-                        <div className="flex flex-col justify-center items-center">
-                            <h5 className="text-xl font-medium mt-4">
-                                Write a Review below
-                            </h5>
-                        </div>
-
-                        <div>
-                            <form onSubmit={handleAddReview}>
-                                <fieldset className="fieldset">
-                                    <label className="fieldset-legend text-sm">
-                                        What do you think
-                                    </label>
-                                    <textarea
-                                        className="textarea h-24 w-full"
-                                        placeholder="write a short review"
-                                        name="review"
-                                    ></textarea>
-                                </fieldset>
-
-                                <input
-                                    className="btn mt-2"
-                                    type="submit"
-                                    value="Post"
-                                />
-                            </form>
-
-                            <div className="border-b-3 border-gray-300 my-10"></div>
-
-                            {/* showing reviews */}
-                            <div>
-                                {loading ? (
-                                    <LoaderSpinner></LoaderSpinner>
-                                ) : (
-                                    reviews.length > 0 &&
-                                    reviews.map((singleReview) => (
-                                        <Review
-                                            allReviews={reviews}
-                                            setReviews={setReviews}
-                                            key={singleReview._id}
-                                            singleReview={singleReview}
-                                            book={bookData}
-                                        ></Review>
-                                    ))
-                                )}
-                            </div>
-                        </div>
+                    <div className="flex gap-3">
+                        <Link to={`/updateBook/${_id}`} className="p-2 bg-white shadow rounded-lg">
+                            <FaEdit className="text-xl text-accent" />
+                        </Link>
+                        <button
+                            onClick={handleDeleteBook}
+                            className="p-2 bg-white shadow rounded-lg"
+                        >
+                            <MdDelete className="text-xl text-accent" />
+                        </button>
                     </div>
                 </div>
-            </Container>
-        </>
+
+                {/* RIGHT */}
+                <div className="flex-1">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">
+                        {bookTitle}
+                    </h2>
+                    <p className="text-gray-500 mt-2">{bookAuthor}</p>
+
+                    <div className="flex items-center gap-4">
+                        <button
+                        onClick={handleUpvote}
+                        className="flex items-center gap-2 mt-4 px-3 py-1 bg-accent/20 rounded-xl"
+                    >
+                        <BiUpvote className="text-xl text-accent" />
+                        <span className="font-semibold">{upvoteCount}</span>
+                    </button>
+
+                    <p className="inline-block mt-4 px-4 py-1 rounded-xl font-semibold text-accent bg-white">
+                        {bookCategory}
+                    </p>
+                    </div>
+
+                    <div className="flex gap-6 mt-4 text-gray-600">
+                        <p className="bg-white px-2 py-1 rounded-xl">{totalPage} pages</p>
+                        <p className="bg-white px-2 py-1 rounded-xl">Published {publishingYear}</p>
+                    </div>
+
+                    <p className="mt-6 leading-relaxed max-w-3xl">
+                        {bookOverview}
+                    </p>
+
+                    <div className="mt-6">
+                        <h5 className="font-semibold">Added By</h5>
+                        <p>{userName}</p>
+                        <p>{userEmail}</p>
+                    </div>
+
+                    <div className="border-b my-8" />
+
+                    <h3 className="text-3xl font-semibold mb-4">Reviews</h3>
+
+                    <form onSubmit={handleAddReview} className="max-w-xl">
+                        <textarea
+                            name="review"
+                            className="textarea w-full h-24"
+                            placeholder="Write a review"
+                        />
+                        <button className="btn mt-3">Post</button>
+                    </form>
+
+                    <div className="border-b my-8" />
+
+                    {loading ? (
+                        <LoaderSpinner />
+                    ) : (
+                        reviews.map(review => (
+                            <Review key={review._id} singleReview={review} />
+                        ))
+                    )}
+                </div>
+            </div>
+        </Container>
     );
 };
 
