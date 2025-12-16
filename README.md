@@ -22,7 +22,7 @@ Bookshelf is a feature-rich, single-page web application built with **React** th
 
 ## 🌐 Live Site
 
-🔗 [Live URL](https://bookshelf-project-d43ac.web.app/)
+🔗 [Live URL](https://my-bookshelf-client.vercel.app/)
 
 ---
 
