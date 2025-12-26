@@ -172,7 +172,7 @@ const BookDetails = () => {
                     <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold">
                         {bookTitle}
                     </h2>
-                    <p className="text-gray-500 mt-2">{bookAuthor}</p>
+                    <p className="text-gray-500 mt-2 font-semibold">{bookAuthor}</p>
 
                     <div className="flex items-center gap-4">
                         <button
@@ -189,7 +189,7 @@ const BookDetails = () => {
                     </div>
 
                     <div className="flex gap-6 mt-4 text-gray-600">
-                        <p className="bg-white px-2 py-1 rounded-xl">{totalPage} pages</p>
+                        <p className="bg-white px-2 py-1 rounded-xl"><span className="font-semibold">{totalPage}</span> pages</p>
                         <p className="bg-white px-2 py-1 rounded-xl">Published {publishingYear}</p>
                     </div>
 
