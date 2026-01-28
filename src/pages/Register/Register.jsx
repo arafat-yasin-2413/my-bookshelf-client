@@ -269,7 +269,7 @@ const Register = () => {
                             <div className="divider">OR</div>
                         </div>
 
-                        <button className="btn btn-neutral mt-4">
+                        <button className="btn btn-primary mt-4">
                             Register
                         </button>
                     </form>
