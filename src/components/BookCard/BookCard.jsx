@@ -32,14 +32,14 @@ const BookCard = ({ book }) => {
                 </h4>
 
                 <div className="flex items-center gap-2">
-                    <h5 className="text-primary bg-white w-fit px-3 py-0.5 rounded-xl outline outline-secondary">
+                    <h5 className="text-primary bg-white w-fit px-3 py-0.5 rounded-xl outline outline-primary">
                         {bookCategory}
                     </h5>
 
 
                     <Link
                         to={`/bookDetails/${_id}`}
-                        className="flex w-fit items-center gap-1 px-3 py-0.5 bg-white rounded-xl shadow text-primary hover:bg-primary hover:text-white"
+                        className="flex w-fit items-center gap-1 px-3 py-0.5 bg-white rounded-xl shadow text-primary hover:bg-primary hover:text-white outline outline-primary"
                     >
                         <span className="">See Details</span>
                         <span>
